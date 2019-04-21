@@ -1,3 +1,4 @@
+package crossers;
 import java.awt.image.BufferedImage;
 
 public interface ICrosser {
@@ -9,5 +10,13 @@ public interface ICrosser {
 	public ICrosser makeCopy();
 	public void setLabelToBeShown(String label);
 	public String getLabelToBeShown();
+	
+	
+	// added functions 
+	
+	public void setWeight (double weight) ;
+	public void setImages (BufferedImage [] images);
+	public void setProperties (double weight , BufferedImage [] image);
+
 	
 }

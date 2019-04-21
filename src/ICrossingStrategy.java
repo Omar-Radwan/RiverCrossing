@@ -1,5 +1,7 @@
 import java.util.List;
 
+import crossers.ICrosser;
+
 public interface ICrossingStrategy {
 
 	public boolean isValid (List<ICrosser> rightBankCrossers,List<ICrosser> leftBankCrossers,List<ICrosser> boatRiders);

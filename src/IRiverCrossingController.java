@@ -1,6 +1,9 @@
 import java.util.List;
 
+import crossers.ICrosser;
+
 public interface IRiverCrossingController {
+	
 	public void newGame (ICrossingStrategy gameStrategy);
 	public void resetGame();
 	public String [] getInstructions();
@@ -17,7 +20,5 @@ public interface IRiverCrossingController {
 	public void saveGame();
 	public void loadGame();
 	public List<List<ICrosser>> solveGame();
-
-
 
 }
