@@ -71,14 +71,10 @@ public void handle(ActionEvent e) {
  
  VBox vb = new VBox(10);
  vb.getChildren().addAll(buttons , grid);
-//stage.setScene(scenehomescreen);
 scenehomescreen = new Scene(vb , 800 , 800);
+ stage.setScene(scenehomescreen);
+
  
-}
- 
-public Scene getScene () {
-	Homescreen();
-return scenehomescreen;
 }
  
 

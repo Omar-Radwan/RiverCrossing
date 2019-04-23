@@ -23,33 +23,10 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		HomeScreen homeScreen = new HomeScreen(primaryStage);
 		primaryStage.setTitle("River crossing");
-		primaryStage.setScene(homeScreen.getScene());
+		homeScreen.Homescreen();
+		//primaryStage.setScene(homeScreen.getScene());
 		primaryStage.show();
 		
 	}
 
 }
-
-/*package gui.related;
-
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-public class HomeScreen {
-	private Stage stage;
-	private Scene scene;
-	public HomeScreen(Stage stage1) {
-		this.stage = stage1;
-	}
-	private void Homescreen(){
-		//ektebi el buttons bta3et level 1 w level 2 wel set on action bta3ha sebih fadi w ana hakamelo w b3d keda 7otihom f scene
-		//ba3d keda e3mli stage.setScene(esm el scene da)
-		
-		
-	}
-	public Scene getSCene() {
-		return scene;
-	}
-
-}
-*/
