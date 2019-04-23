@@ -8,14 +8,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public abstract class IGameLevel {
-	public void selectlevel(Stage stage) {
+	public void selectlevel(Stage stage , Object gameLevel) {
 		Button newGame = new Button("New game");
 		Button loadGame = new Button("Continue");
 		newGame.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
+				if(gameLevel instanceof Level1) {
+					
+				}
+				else if(gameLevel instanceof Level2) {
+					
+				}
 				
 			}
 		});
@@ -29,7 +34,7 @@ public abstract class IGameLevel {
 		});
 		VBox vb = new VBox(10);
 		vb.getChildren().addAll(newGame , loadGame);
-		Scene scene = new Scene(vb , 900 , 900);
+		Scene scene = new Scene(vb , 800 , 800);
 		stage.setScene(scene);
 		
 	}

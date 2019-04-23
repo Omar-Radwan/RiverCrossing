@@ -1,9 +1,18 @@
 package gui.related;
 
-public class Level1 extends IGameLevel{
+import javafx.stage.Stage;
 
+public class Level1 extends IGameLevel{
+	private Stage stage;
+	public Level1(Stage stage1) {
+		stage = stage1;
+	}
+
+	public Level1() {
+		// TODO Auto-generated constructor stub
+	}
 	public void makeNewGame() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

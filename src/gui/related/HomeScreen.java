@@ -24,7 +24,7 @@ public class HomeScreen {
 //private Image image;
 private Stage stage;
 private Scene scenehomescreen;
- 
+private IGameLevel gameLevel; 
 public HomeScreen(Stage stage1) {
 //Image image = new Image ("file:backgroundColorForest.png");
 this.stage=stage1;
@@ -43,6 +43,8 @@ level1.setOnAction(new EventHandler<ActionEvent>() {
 @Override
 public void handle(ActionEvent e) {
 
+	//gameLevel = new Level1();
+	//gameLevel.selectlevel(stage , gameLevel);
 }
 });
  
@@ -53,6 +55,8 @@ level2.setOnAction(new EventHandler<ActionEvent>() {
 @Override
 public void handle(ActionEvent e) {
 
+	gameLevel = new Level2();
+	gameLevel.selectlevel(stage , gameLevel);
 }
 });
 buttons.getChildren().addAll(level1,level2);
@@ -65,7 +69,7 @@ exit.setOnAction(new EventHandler<ActionEvent>() {
 
 @Override
 public void handle(ActionEvent e) {
-
+System.exit(0);
 }
 });
  
@@ -76,18 +80,6 @@ scenehomescreen = new Scene(vb , 800 , 800);
 
  
 }
- 
-
- 
- 
- 
- 
- 
- 
- 
-
-
-
 
 }
 
