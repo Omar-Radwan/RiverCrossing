@@ -13,13 +13,14 @@ public class Main extends Application {
 		ICrosser f1 = crossersFactory.getCrosser("farmer");
 
 		launch(args);
-	
 		
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
+		
+		
 		
 	}
 

@@ -39,6 +39,7 @@ public class HomeScreen {
 		 label.setAlignment(Pos.CENTER);
 		 HBox buttons = new HBox();
 		 Button level1 = new Button ("Level 1");
+		 level1.setMaxSize(100, 200);
 		 level1.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -47,7 +48,8 @@ public class HomeScreen {
 				}
 			});
 		 
-		 Button level2 = new Button ("Level 2");
+		Button level2 = new Button ("Level 2");
+		level2.setMaxSize(100, 200);
 		level2.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -60,6 +62,7 @@ public class HomeScreen {
 		 Button exit = new Button ("Exit");
 		 grid.add(exit, 10, 10);
 		 GridPane.setHalignment(exit, HPos.LEFT);
+		 exit.setMaxSize(100, 200);
 		 exit.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -67,6 +70,7 @@ public class HomeScreen {
 					
 				}
 			});
+		 
 		 
 		 stage.setScene(scenehomescreen);
 		 
