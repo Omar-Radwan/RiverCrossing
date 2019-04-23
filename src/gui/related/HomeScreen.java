@@ -21,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 public class HomeScreen {
+<<<<<<< HEAD
 //private Image image;
 private Stage stage;
 private Scene scenehomescreen;
@@ -42,6 +43,78 @@ level1.setOnAction(new EventHandler<ActionEvent>() {
 
 @Override
 public void handle(ActionEvent e) {
+=======
+	 //private Image image;
+		private Stage stage;
+		private Scene scenehomescreen;
+	 
+	 public HomeScreen(Stage stage1) {
+		 //Image image = new Image ("file:backgroundColorForest.png");
+		 this.stage=stage1;
+		 
+		 
+		 
+	 }
+	 public void HomeScreen() {
+		 VBox label= new VBox();
+		 Label l1= new Label("River Crossing puzzle");
+		 label.getChildren().add(l1);
+		 label.setAlignment(Pos.CENTER);
+		 HBox buttons = new HBox();
+		 Button level1 = new Button ("Level 1");
+		 level1.setMaxSize(100, 200);
+		 level1.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent e) {
+					
+				}
+			});
+		 
+		Button level2 = new Button ("Level 2");
+		level2.setMaxSize(100, 200);
+		level2.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent e) {
+					
+				}
+			});
+		 buttons.getChildren().addAll(level1,level2);
+		 GridPane grid = new GridPane();
+		 Button exit = new Button ("Exit");
+		 grid.add(exit, 10, 10);
+		 GridPane.setHalignment(exit, HPos.LEFT);
+		 exit.setMaxSize(100, 200);
+		 exit.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent e) {
+					
+				}
+			});
+		 
+		 
+		 stage.setScene(scenehomescreen);
+		 
+	 }
+	 
+	 public Scene getScene () {
+		 return scenehomescreen;
+	 }
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/Omar-Radwan/RiverCrossing
 
 }
 });

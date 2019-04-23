@@ -15,7 +15,6 @@ public class Main extends Application {
 		ICrosser f1 = crossersFactory.getCrosser("farmer");
 
 		launch(args);
-	
 		
 	}
 
@@ -26,6 +25,8 @@ public class Main extends Application {
 		homeScreen.Homescreen();
 		//primaryStage.setScene(homeScreen.getScene());
 		primaryStage.show();
+		
+		
 		
 	}
 
