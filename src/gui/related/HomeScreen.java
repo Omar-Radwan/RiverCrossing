@@ -22,7 +22,6 @@ import javafx.scene.layout.HBox;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-
 public class HomeScreen {
 //private Image image;
 private Stage stage;
