@@ -8,7 +8,7 @@ public interface IRiverCrossingController {
 	public void resetGame();
 	public String [] getInstructions();
 	public List<ICrosser> getCrossersOnRightBank();
-	public List<ICrosser> getCrosserOnLeftBank();
+	public List<ICrosser> getCrossersOnLeftBank();
 	public boolean isBoatOnTheLeftBank();
 	public int getNumberOfSails();
 	public boolean canMove(List<ICrosser> crossers, boolean fromLeftToRightBank);

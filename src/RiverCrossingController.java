@@ -3,43 +3,47 @@ import java.util.List;
 import crossers.interfaces.ICrosser;
 
 public class RiverCrossingController implements IRiverCrossingController {
+	private List<ICrosser> crossersOnRightBank;
+	private List<ICrosser> crossersOnLeftBank;
+	private List<ICrosser> boatRiders;
+	private int numberOfSails;
+	private String[] instructions = new String[5];
 	private static RiverCrossingController instance;
-	private RiverCrossingController(){};
-	public static RiverCrossingController getInstance()
-	{
-		if(instance==null)
-			instance=new RiverCrossingController();
+
+	private RiverCrossingController() {
+	};
+
+	public static RiverCrossingController getInstance() {
+		if (instance == null)
+			instance = new RiverCrossingController();
 		return instance;
 	}
 
 	@Override
 	public void newGame(ICrossingStrategy gameStrategy) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resetGame() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public String[] getInstructions() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructions;
 	}
 
 	@Override
 	public List<ICrosser> getCrossersOnRightBank() {
-		// TODO Auto-generated method stub
-		return null;
+		return crossersOnRightBank;
 	}
 
 	@Override
-	public List<ICrosser> getCrosserOnLeftBank() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ICrosser> getCrossersOnLeftBank() {
+		return crossersOnLeftBank;
 	}
 
 	@Override
@@ -50,8 +54,31 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public int getNumberOfSails() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numberOfSails;
+	}
+
+	public void setCrossersOnLeftBank(List<ICrosser> crossersOnLeftBank) {
+		this.crossersOnLeftBank = crossersOnLeftBank;
+	}
+
+	public List<ICrosser> getBoatRiders() {
+		return boatRiders;
+	}
+
+	public void setBoatRiders(List<ICrosser> boatRiders) {
+		this.boatRiders = boatRiders;
+	}
+
+	public void setCrossersOnRightBank(List<ICrosser> crossersOnRightBank) {
+		this.crossersOnRightBank = crossersOnRightBank;
+	}
+
+	public void setNumberOfSails(int numberOfSails) {
+		this.numberOfSails = numberOfSails;
+	}
+
+	public void setInstructions(String[] instructions) {
+		this.instructions = instructions;
 	}
 
 	@Override
@@ -63,7 +90,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -81,25 +108,25 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void redo() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void saveGame() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void loadGame() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -107,6 +134,5 @@ public class RiverCrossingController implements IRiverCrossingController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 }
