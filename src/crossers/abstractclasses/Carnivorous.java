@@ -1,6 +1,6 @@
 package crossers.abstractclasses;
 
-public abstract class Carnivorous extends Crosser{
+public abstract class Carnivorous extends CrosserAC{
 
 	public Carnivorous() {
 		super();

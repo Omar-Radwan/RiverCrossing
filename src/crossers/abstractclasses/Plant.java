@@ -1,6 +1,6 @@
 package crossers.abstractclasses;
 
-public abstract class Plant extends Crosser {
+public abstract class Plant extends CrosserAC {
 
 	public Plant() {
 		super();

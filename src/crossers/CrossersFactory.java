@@ -6,35 +6,41 @@ import crossers.concreteclasses.Goat;
 import crossers.concreteclasses.Lion;
 import crossers.concreteclasses.Sheep;
 import crossers.concreteclasses.Wolf;
+import crossers.interfaces.Crosser;
+import crossers.interfaces.ICrosser;
+import sun.security.jca.GetInstance.Instance;
 
 public class CrossersFactory {
 
-	public CrossersFactory() {}
-	
-	public ICrosser getCrosser (String type) {
-		
+	private static CrossersFactory instance;
+
+	private CrossersFactory() {
+	}
+
+	public static CrossersFactory getInstance() {
+		if (instance == null) {
+			instance = new CrossersFactory();
+		}
+		return instance;
+	}
+
+	public Crosser getCrosser(String type) {
+
 		if (type.equalsIgnoreCase("farmer")) {
 			return new Farmer();
-		}
-		else if (type.equalsIgnoreCase("lion")) {
+		} else if (type.equalsIgnoreCase("lion")) {
 			return new Lion();
-		}
-		else if (type.equalsIgnoreCase("wolf")) {
+		} else if (type.equalsIgnoreCase("wolf")) {
 			return new Wolf();
-		}
-		else if (type.equalsIgnoreCase("goat")) {
+		} else if (type.equalsIgnoreCase("goat")) {
 			return new Goat();
-		}
-		else if(type.equalsIgnoreCase("sheep")) {
+		} else if (type.equalsIgnoreCase("sheep")) {
 			return new Sheep();
-		}
-		else if (type.equalsIgnoreCase("carrot")) {
+		} else if (type.equalsIgnoreCase("carrot")) {
 			return new Carrot();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
-	
 
 }
