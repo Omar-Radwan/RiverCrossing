@@ -1,6 +1,6 @@
 package gui.related;
 
-public class Level2 implements IGameLevel {
+public class Level2 extends IGameLevel {
 
 	@Override
 	public void makeNewGame() {
