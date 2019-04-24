@@ -1,30 +1,32 @@
 package crossers;
 
+import java.util.Random;
+
 import crossers.concreteclasses.Carrot;
 import crossers.concreteclasses.Farmer;
 import crossers.concreteclasses.Goat;
 import crossers.concreteclasses.Lion;
 import crossers.concreteclasses.Sheep;
 import crossers.concreteclasses.Wolf;
-import crossers.interfaces.Crosser;
 import crossers.interfaces.ICrosser;
-import sun.security.jca.GetInstance.Instance;
 
-public class CrossersFactory {
+public class ICrossersFactory {
 
-	private static CrossersFactory instance;
+	private static ICrossersFactory instance;
+	private Random r;
 
-	private CrossersFactory() {
+	private ICrossersFactory() {
+		r = new Random();
 	}
 
-	public static CrossersFactory getInstance() {
+	public static ICrossersFactory getInstance() {
 		if (instance == null) {
-			instance = new CrossersFactory();
+			instance = new ICrossersFactory();
 		}
 		return instance;
 	}
 
-	public Crosser getCrosser(String type) {
+	public ICrosser getICrosser(String type) {
 
 		if (type.equalsIgnoreCase("farmer")) {
 			return new Farmer();
@@ -41,6 +43,19 @@ public class CrossersFactory {
 		} else {
 			return null;
 		}
+	}
+
+	public ICrosser getRandomCarnivorous() {
+
+		String[] carnivorous = { "wolf", "lion" };
+		int randomCarnivorousIndx = r.nextInt(carnivorous.length);
+		return getICrosser(carnivorous[randomCarnivorousIndx]);
+	}
+
+	public ICrosser getRandomHerbivorous() {
+		String[] herbivorous = { "sheep", "goat" };
+		int randomHerbivorousIndx = r.nextInt(herbivorous.length);
+		return getICrosser(herbivorous[randomHerbivorousIndx]);
 	}
 
 }

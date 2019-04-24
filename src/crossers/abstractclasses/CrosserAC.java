@@ -3,18 +3,17 @@ package crossers.abstractclasses;
 import java.awt.image.BufferedImage;
 
 import crossers.BufferedImagesGetter;
-import crossers.CrossersFactory;
-import crossers.interfaces.Crosser;
-import javafx.scene.control.Label;
+import crossers.ICrossersFactory;
+import crossers.interfaces.ICrosser;
 
-public abstract class CrosserAC implements Crosser {
+public abstract class CrosserAC implements ICrosser {
 
 	protected boolean canSail;
 	protected double weight;
 	protected int eatingRank;
 	protected BufferedImage[] images;
 	protected BufferedImagesGetter bufferedImageFactory;
-	protected CrossersFactory crossersFactory;
+	protected ICrossersFactory crossersFactory;
 	
 	//msh3arf di al mfrod tb2a kda wla l2
 	protected String labelToBeShown;
@@ -22,7 +21,7 @@ public abstract class CrosserAC implements Crosser {
 	public CrosserAC() {
 		this.weight = 0;
 		bufferedImageFactory = BufferedImagesGetter.getInstance();
-		crossersFactory = CrossersFactory.getInstance();
+		crossersFactory = ICrossersFactory.getInstance();
 	}
 
 	@Override

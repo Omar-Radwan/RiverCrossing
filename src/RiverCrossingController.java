@@ -1,6 +1,7 @@
 import java.util.List;
 
 import crossers.interfaces.ICrosser;
+import level.ICrossingStrategy;
 
 public class RiverCrossingController implements IRiverCrossingController {
 	private static RiverCrossingController instance;

@@ -1,23 +1,21 @@
 package crossers.concreteclasses;
 
 import crossers.abstractclasses.Human;
-import crossers.interfaces.Crosser;
 import crossers.interfaces.ICrosser;
 
-public class  Farmer extends Human {
-	
+public class Farmer extends Human {
+
 	public Farmer() {
-		super ();
+		super();
 		this.images = bufferedImageFactory.getFarmerImages();
 	}
 
 	@Override
 	public ICrosser makeCopy() {
-		Crosser copy = crossersFactory.getCrosser("farmer");
+		// msh3arf kda sa7 wla l2
+		ICrosser copy = crossersFactory.getICrosser("farmer");
 		copy.setWeight(this.weight);
 		return copy;
 	}
-
-
 
 }

@@ -1,7 +1,6 @@
 package crossers.concreteclasses;
 
 import crossers.abstractclasses.Plant;
-import crossers.interfaces.Crosser;
 import crossers.interfaces.ICrosser;
 
 public class Carrot extends Plant {
@@ -13,7 +12,7 @@ public class Carrot extends Plant {
 
 	@Override
 	public ICrosser makeCopy() {
-		Crosser copy = crossersFactory.getCrosser("carrot");
+		ICrosser copy = crossersFactory.getICrosser("carrot");
 		copy.setWeight(this.weight);
 		return copy;
 	}
