@@ -1,7 +1,6 @@
 package crossers.concreteclasses;
 
 import crossers.abstractclasses.Carnivorous;
-import crossers.interfaces.Crosser;
 import crossers.interfaces.ICrosser;
 
 public class Lion extends Carnivorous {
@@ -10,9 +9,10 @@ public class Lion extends Carnivorous {
 		super();
 		this.images = bufferedImageFactory.getLionImages();
 	}
+
 	@Override
 	public ICrosser makeCopy() {
-		Crosser copy = crossersFactory.getCrosser("lion");
+		ICrosser copy = crossersFactory.getICrosser("lion");
 		copy.setWeight(this.weight);
 		return copy;
 	}

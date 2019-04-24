@@ -1,13 +1,13 @@
 import java.util.List;
 
 import crossers.interfaces.ICrosser;
+import level.ICrossingStrategy;
 
 public class CrossingStrategy implements ICrossingStrategy {
 	private List<ICrosser> leftBankCrossers;
 	private List<ICrosser> rightBankCrossers;
 	private List<ICrosser> boatRiders;
 	private String[] instructions=new String[5];
-	// lessa mesh mota2aked el setters wel getters btoo3 el crossers leehom lazma henna walla la2
 	
 	@Override
 	public List<ICrosser> getInitialCrossers() {
@@ -33,7 +33,7 @@ public class CrossingStrategy implements ICrossingStrategy {
 	public void setBoatRiders(List<ICrosser> boatRiders) {
 		this.boatRiders = boatRiders;
 	}
-	
+
 	@Override
 	public boolean isValid(List<ICrosser> rightBankCrossers, List<ICrosser> leftBankCrossers,
 			List<ICrosser> boatRiders) {
@@ -47,7 +47,7 @@ public class CrossingStrategy implements ICrossingStrategy {
 
 	@Override
 	public String[] getInstructions() {
-		
+
 		return instructions;
 	}
 

@@ -10,5 +10,7 @@ public interface ICrosser {
 	public ICrosser makeCopy();
 	public void setLabelToBeShown(String label);
 	public String getLabelToBeShown();
-	
+
+	// added methods
+	public void setWeight (double weight);
 }

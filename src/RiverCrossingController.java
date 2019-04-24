@@ -1,6 +1,7 @@
 import java.util.List;
 
 import crossers.interfaces.ICrosser;
+import level.ICrossingStrategy;
 
 public class RiverCrossingController implements IRiverCrossingController {
 	private List<ICrosser> crossersOnRightBank;
@@ -132,6 +133,12 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public List<List<ICrosser>> solveGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ICrosser> getCrosserOnLeftBank() {
 		// TODO Auto-generated method stub
 		return null;
 	}

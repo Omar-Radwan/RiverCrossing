@@ -1,5 +1,5 @@
-import crossers.CrossersFactory;
-import crossers.interfaces.Crosser;
+import crossers.ICrossersFactory;
+import crossers.interfaces.ICrosser;
 import gui.related.HomeScreen;
 //import gui.related.HomeScreen;
 import javafx.application.Application;
@@ -9,7 +9,12 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 
+		ICrossersFactory iCrossersFactory = ICrossersFactory.getInstance();
+
+		ICrosser f1 = iCrossersFactory.getICrosser("farmer");
+
 		
+
 		launch(args);
 
 	}
