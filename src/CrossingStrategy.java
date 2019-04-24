@@ -8,6 +8,7 @@ public class CrossingStrategy implements ICrossingStrategy {
 	private List<ICrosser> boatRiders;
 	private String[] instructions=new String[5];
 	// lessa mesh mota2aked el setters wel getters btoo3 el crossers leehom lazma henna walla la2
+	
 	@Override
 	public List<ICrosser> getInitialCrossers() {
 		return leftBankCrossers;

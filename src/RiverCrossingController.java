@@ -9,6 +9,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 	private int numberOfSails;
 	private String[] instructions = new String[5];
 	private static RiverCrossingController instance;
+	// lessa mesh mota2aked el setters wel getters btoo3 el crossers leehom lazma henna walla la2
 
 	private RiverCrossingController() {
 	};
