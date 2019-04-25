@@ -2,6 +2,7 @@ package level;
 
 import java.util.List;
 
+import crossers.concreteclasses.Farmer;
 import crossers.interfaces.ICrosser;
 
 public class Level2 extends Level {
@@ -9,7 +10,16 @@ public class Level2 extends Level {
 	@Override
 	public boolean isValid(List<ICrosser> rightBankCrossers, List<ICrosser> leftBankCrossers,
 			List<ICrosser> boatRiders) {
-		return false;
+		boolean boat = false;
+		double weight = 0;
+		for (ICrosser x : boatRiders) {
+			if (x instanceof Farmer)
+				boat = true;
+			weight += x.getWeight();
+		}
+		if(weight>100)
+			boat=false;
+		return boat;
 	}
 
 	@Override
