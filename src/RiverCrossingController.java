@@ -139,8 +139,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public List<ICrosser> getCrosserOnLeftBank() {
-		// TODO Auto-generated method stub
-		return null;
+		return crossersOnLeftBank;
 	}
 
 }

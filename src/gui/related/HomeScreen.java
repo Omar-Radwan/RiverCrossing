@@ -1,4 +1,5 @@
 package gui.related;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,69 +23,69 @@ import javafx.scene.layout.HBox;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+
 public class HomeScreen {
 //private Image image;
-private Stage stage;
-private Scene scenehomescreen;
-private IGameLevel gameLevel; 
-public HomeScreen(Stage stage1) {
-this.stage=stage1;
+	private Stage stage;
+	private Scene scenehomescreen;
+	private IGameLevel gameLevel;
+
+	public HomeScreen(Stage stage1) {
+		this.stage = stage1;
+	}
+
+	public void Homescreen() {
+		VBox label = new VBox();
+		Label l1 = new Label("River Crossing puzzle");
+		label.getChildren().add(l1);
+		label.setAlignment(Pos.CENTER);
+		HBox buttons = new HBox(10);
+		Button level1 = new Button("Level 1");
+		level1.setStyle("-fx-font-size: 15pt;");
+
+		level1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+
+				// gameLevel = new Level1();
+				// gameLevel.selectlevel(stage , gameLevel);
+			}
+		});
+
+		Button level2 = new Button("Level 2");
+		level2.setStyle("-fx-font-size: 15pt;");
+
+		buttons.setAlignment(Pos.CENTER);
+		level2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+
+				gameLevel = new Level2();
+				gameLevel.selectlevel(stage, gameLevel);
+			}
+		});
+		buttons.getChildren().addAll(level1, level2);
+		GridPane grid = new GridPane();
+		Button exit = new Button("Exit");
+		grid.setAlignment(Pos.CENTER);
+		grid.add(exit, 10, 10);
+		exit.setStyle("-fx-font-size: 15pt;");
+
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
+		VBox vb = new VBox(10);
+		vb.getChildren().addAll(label, buttons, grid);
+		scenehomescreen = new Scene(vb, 800, 800);
+		stage.setScene(scenehomescreen);
+
+	}
+
 }
-
-public void Homescreen() {
-VBox label= new VBox();
-Label l1= new Label("River Crossing puzzle");
-label.getChildren().add(l1);
-label.setAlignment(Pos.CENTER);
-HBox buttons = new HBox(10);
-Button level1 = new Button ("Level 1");
-level1.setStyle("-fx-font-size: 15pt;");
-
-level1.setOnAction(new EventHandler<ActionEvent>() {
-
-@Override
-public void handle(ActionEvent e) {
-
-	//gameLevel = new Level1();
-	//gameLevel.selectlevel(stage , gameLevel);
-}
-});
- 
-Button level2 = new Button ("Level 2");
-level2.setStyle("-fx-font-size: 15pt;");
-
-buttons.setAlignment(Pos.CENTER);
-level2.setOnAction(new EventHandler<ActionEvent>() {
-
-@Override
-public void handle(ActionEvent e) {
-
-	gameLevel = new Level2();
-	gameLevel.selectlevel(stage , gameLevel);
-}
-});
-buttons.getChildren().addAll(level1,level2);
-GridPane grid = new GridPane();
-Button exit = new Button ("Exit");
-grid.setAlignment(Pos.CENTER);
-grid.add(exit, 10, 10);
-exit.setStyle("-fx-font-size: 15pt;");
-
-exit.setOnAction(new EventHandler<ActionEvent>() {
-
-@Override
-public void handle(ActionEvent e) {
-System.exit(0);
-}
-});
-
- VBox vb = new VBox(10);
- vb.getChildren().addAll(label,buttons , grid);
-scenehomescreen = new Scene(vb , 800 , 800);
- stage.setScene(scenehomescreen);
-
- 
-}
-
-}
-
