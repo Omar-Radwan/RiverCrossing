@@ -48,8 +48,8 @@ public class HomeScreen {
 			@Override
 			public void handle(ActionEvent e) {
 
-				// gameLevel = new Level1();
-				// gameLevel.selectlevel(stage , gameLevel);
+				gameLevel = new Level1(stage);
+				gameLevel.selectlevel(stage, gameLevel);
 			}
 		});
 

@@ -21,6 +21,8 @@ public abstract class IGameLevel {
 			public void handle(ActionEvent event) {
 				if (gameLevel instanceof Level1) {
 
+					((Level1) gameLevel).makeNewGame();
+
 				} else if (gameLevel instanceof Level2) {
 
 				}
