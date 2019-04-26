@@ -7,11 +7,10 @@ public class RiverCrossingController implements IRiverCrossingController {
 	private List<ICrosser> crossersOnRightBank;
 	private List<ICrosser> crossersOnLeftBank;
 	private List<ICrosser> boatRiders;
+	private boolean isBoatOnTheLeftBank;
 	private int numberOfSails;
 	private String[] instructions = new String[5];
 	private static RiverCrossingController instance;
-	// lessa mesh mota2aked el setters wel getters btoo3 el crossers leehom lazma
-	// henna walla la2
 
 	private RiverCrossingController() {
 	};
@@ -20,6 +19,18 @@ public class RiverCrossingController implements IRiverCrossingController {
 		if (instance == null)
 			instance = new RiverCrossingController();
 		return instance;
+	}
+
+	public Memento save() {
+		return new Memento(crossersOnRightBank, crossersOnLeftBank, boatRiders, isBoatOnTheLeftBank, numberOfSails);
+	}
+
+	public void restore(Memento m) {
+		boatRiders = m.getBoatRiders();
+		crossersOnRightBank = m.getCrossersOnRightBank();
+		crossersOnLeftBank = m.getCrossersOnLeftBank();
+		numberOfSails = m.getNumberOfSails();
+		isBoatOnTheLeftBank = m.isBoatOnTheLeftBank();
 	}
 
 	@Override
@@ -51,8 +62,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public boolean isBoatOnTheLeftBank() {
-		// TODO Auto-generated method stub
-		return false;
+		return isBoatOnTheLeftBank;
 	}
 
 	@Override
@@ -111,7 +121,6 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
