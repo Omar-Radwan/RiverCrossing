@@ -12,11 +12,11 @@ import crossers.interfaces.ICrosser;
 
 public abstract class CrosserAC implements ICrosser {
 
-	protected boolean canSail;
+	protected boolean canSail; 
 	protected double weight;
 	protected int eatingRank;
 	protected BufferedImage[] images;
-	protected BufferedImagesGetter bufferedImageFactory;
+	protected static BufferedImagesGetter bufferedImageFactory;
 	protected static ICrossersFactory iCrossersFactory;
 
 	// msh3arf di al mfrod tb2a kda wla l2
@@ -26,26 +26,23 @@ public abstract class CrosserAC implements ICrosser {
 		this.weight = 0;
 		bufferedImageFactory = BufferedImagesGetter.getInstance();
 		iCrossersFactory = ICrossersFactory.getInstance();
+		this.labelToBeShown = "";
 	}
-
 
 	@Override
 	public boolean canSail() {
 		return canSail;
 	}
-	
 
 	@Override
 	public double getWeight() {
 		return this.weight;
 	}
-	
 
 	@Override
 	public int getEatingRank() {
 		return this.eatingRank;
 	}
-	
 
 	@Override
 	public BufferedImage[] getImages() {
@@ -57,13 +54,12 @@ public abstract class CrosserAC implements ICrosser {
 		this.labelToBeShown = label;
 
 	}
-	
 
 	@Override
 	public String getLabelToBeShown() {
 		return labelToBeShown;
 	}
-	
+
 	@Override
 	public void setWeight(double weight) {
 		this.weight = weight;
@@ -85,11 +81,10 @@ public abstract class CrosserAC implements ICrosser {
 	public BufferedImagesGetter getBufferedImageFactory() {
 		return bufferedImageFactory;
 	}
-	
-	public void setBufferedImageFactory(BufferedImagesGetter bufferedImageFactory) {
-		this.bufferedImageFactory = bufferedImageFactory;
-	}
 
+	public static void setBufferedImageFactory(BufferedImagesGetter bufferedImageFactory) {
+		CrosserAC.bufferedImageFactory = bufferedImageFactory;
+	}
 
 	public static ICrossersFactory getiCrossersFactory() {
 		return iCrossersFactory;
@@ -106,6 +101,5 @@ public abstract class CrosserAC implements ICrosser {
 	public void setImages(BufferedImage[] images) {
 		this.images = images;
 	}
-
 
 }

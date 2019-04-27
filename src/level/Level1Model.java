@@ -7,12 +7,13 @@ import crossers.ICrossersFactory;
 import crossers.concreteclasses.Farmer;
 import crossers.interfaces.ICrosser;
 
-public class Level1 extends Level {
+public class Level1Model extends LevelModel {
 
-	public Level1() {
+	public Level1Model() {
 		super();
 		this.instructions = new String[3];
-		this.initialCrossers = new LinkedList<ICrosser>();
+		fillInitialCrossers();
+		fillInstructions();
 	}
 
 	@Override
@@ -38,10 +39,11 @@ public class Level1 extends Level {
 
 	@Override
 	protected void fillInitialCrossers() {
-		this.initialCrossers.add(crossersFactory.getICrosser("farmer"));
-		this.initialCrossers.add(crossersFactory.getICrosser("carrot"));
-		this.initialCrossers.add(crossersFactory.getRandomHerbivorous());
-		this.initialCrossers.add(crossersFactory.getRandomCarnivorous());
+		System.out.println(initialCrossers);
+		this.initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
+		this.initialCrossers.add(iCrossersFactory.getICrosser("carrot"));
+		this.initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
+		this.initialCrossers.add(iCrossersFactory.getRandomCarnivorous());
 	}
 
 	@Override

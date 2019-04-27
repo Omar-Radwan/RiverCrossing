@@ -1,5 +1,12 @@
 import java.io.IOException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+
+import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.abstractclasses.CrosserAC;
 import crossers.concreteclasses.Farmer;
@@ -9,24 +16,33 @@ import gui.related.HomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import level.ICrossingStrategy;
-import level.Level1;
-import xmlfiles.XReader;
-import xmlfiles.XWriter;
-import xmlparsers.XmlFilesReader;
-import xmlparsers.XmlFilesWriter;
+import level.Level1Model;
+import level.Level2Model;
+
+import org.w3c.dom.*;
+
+import java.io.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
 
 public class Main extends Application {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParserConfigurationException {
 
 		ICrossersFactory iCrossersFactory = ICrossersFactory.getInstance();
+		BufferedImagesGetter bufferedImagesGetter = BufferedImagesGetter.getInstance();
+
 		CrosserAC.setICrosserFactory(iCrossersFactory);
-		
-		
-		
-		
-		
-		//launch(args);
+		CrosserAC.setBufferedImageFactory(bufferedImagesGetter);
+
+		RiverCrossingController riverCrossingController = RiverCrossingController.getInstance();
+		ICrossingStrategy iCrossingStrategy = new Level2Model();
+		riverCrossingController.newGame(iCrossingStrategy);
+
+		riverCrossingController.saveGame();
+		riverCrossingController.loadGame();
+		// launch(args);
 
 	}
 

@@ -13,7 +13,5 @@ public interface ICrossingStrategy {
 	
 	public String[] getInstructions();
 	
-	// added methods
-	
-	public void prepare () ;
+
 }

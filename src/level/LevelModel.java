@@ -1,24 +1,28 @@
 package level;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
 
-public abstract class Level implements ICrossingStrategy {
+public abstract class LevelModel implements ICrossingStrategy {
 
 	protected List<ICrosser> initialCrossers;
 	protected String[] instructions;
-	protected ICrossersFactory crossersFactory;
-
-	public Level() {}
+	protected ICrossersFactory iCrossersFactory;
+	
+	public LevelModel() {
+		iCrossersFactory = ICrossersFactory.getInstance();
+		this.initialCrossers = new LinkedList<ICrosser>();
+	}
 
 	public ICrossersFactory getCrossersFactory() {
-		return crossersFactory;
+		return iCrossersFactory;
 	}
 
 	public void setCrossersFactory(ICrossersFactory crossersFactory) {
-		this.crossersFactory = crossersFactory;
+		this.iCrossersFactory = crossersFactory;
 	}
 
 	public void setInitialCrossers(List<ICrosser> initialCrossers) {
@@ -43,13 +47,6 @@ public abstract class Level implements ICrossingStrategy {
 
 	protected abstract void fillInstructions();
 
-	@Override
-	public void prepare() {
-		this.crossersFactory = ICrossersFactory.getInstance();
-		fillInitialCrossers();
-		fillInstructions();
-		
-	}
 
 
 }
