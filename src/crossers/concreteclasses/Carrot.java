@@ -7,7 +7,7 @@ public class Carrot extends Plant {
 
 	public Carrot() {
 		super();
-		this.bufferedImageFactory.getCarrotImages();
+		this.images = bufferedImageFactory.getCarrotImages();
 	}
 
 	@Override

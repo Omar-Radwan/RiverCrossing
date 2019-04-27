@@ -58,4 +58,22 @@ public class ICrossersFactory {
 		return getICrosser(herbivorous[randomHerbivorousIndx]);
 	}
 
+	public String iCrosserType(ICrosser iCrosser) {
+		if (iCrosser instanceof Farmer) {
+			return "Farmer";
+		} else if (iCrosser instanceof Wolf) {
+			return "Wolf";
+		} else if (iCrosser instanceof Lion) {
+			return "Lion";
+		} else if (iCrosser instanceof Sheep) {
+			return "Sheep";
+		} else if (iCrosser instanceof Goat) {
+			return "Goat";
+		} else if (iCrosser instanceof Carrot) {
+			return "Carrot";
+
+		}
+		return "";
+	}
+
 }

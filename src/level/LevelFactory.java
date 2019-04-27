@@ -22,4 +22,16 @@ public class LevelFactory {
 		}
 		return null;
 	}
+
+	public String levelType(ICrossingStrategy gameStrategy) {
+
+		if (gameStrategy instanceof Level1Model) {
+			return "level1";
+		} else if (gameStrategy instanceof Level2Model) {
+			return "level2";
+		}
+
+		return "";
+
+	}
 }

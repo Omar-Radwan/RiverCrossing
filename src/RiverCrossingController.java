@@ -42,6 +42,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	// not sure if these must be included
 	private int index = 0;
+
 	// singleton
 	private static RiverCrossingController instance;
 
@@ -242,7 +243,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 			numberOfSailsElement.appendChild(numberOfSailsText);
 
 			Node levelTypeElement = document.createElement("level-type");
-			Text levelTypeText = document.createTextNode(levelType(gameStrategy));
+			Text levelTypeText = document.createTextNode(levelFactory.levelType(gameStrategy));
 			levelTypeElement.appendChild(levelTypeText);
 
 			levelDetailsElement.appendChild(crossersOnRightBankElement);
@@ -284,7 +285,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void loadGame() {
-		File file = new File(levelType(gameStrategy) + ".xml");
+		File file = new File(levelFactory.levelType(gameStrategy) + ".xml");
 		try {
 
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -314,15 +315,8 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	}
 
-	/// xml shit
+	/// xml functions
 	// format source , document , destination
-
-	private void listToElement(List<ICrosser> list, Document document, Element element) {
-		for (ICrosser iCrosser : list) {
-			iCrosserToElement(iCrosser, document, element);
-		}
-
-	}
 
 	private void nodeListToList(NodeList nodeList, Document document, List<ICrosser> list) {
 
@@ -336,6 +330,13 @@ public class RiverCrossingController implements IRiverCrossingController {
 		}
 	}
 
+	private void listToElement(List<ICrosser> list, Document document, Element element) {
+		for (ICrosser iCrosser : list) {
+			iCrosserToElement(iCrosser, document, element);
+		}
+
+	}
+
 	private void iCrosserToElement(ICrosser iCrosser, Document document, Element rootElement) {
 
 		Element iCrosserElement = document.createElement("crosser");
@@ -343,7 +344,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 		Element weightElement = document.createElement("weight");
 		Element labelToBeShownElement = document.createElement("label-to-be-shown");
 
-		Text typeText = document.createTextNode(iCrosserType(iCrosser));
+		Text typeText = document.createTextNode(iCrossersFactory.iCrosserType(iCrosser));
 		Text weightText = document.createTextNode(Double.toString(iCrosser.getWeight()));
 		Text labelToBeShownText = document.createTextNode(iCrosser.getLabelToBeShown());
 
@@ -356,36 +357,6 @@ public class RiverCrossingController implements IRiverCrossingController {
 		iCrosserElement.appendChild(labelToBeShownElement);
 
 		rootElement.appendChild(iCrosserElement);
-	}
-
-	private String iCrosserType(ICrosser iCrosser) {
-		if (iCrosser instanceof Farmer) {
-			return "farmer";
-		} else if (iCrosser instanceof Wolf) {
-			return "wolf";
-		} else if (iCrosser instanceof Lion) {
-			return "lion";
-		} else if (iCrosser instanceof Sheep) {
-			return "sheep";
-		} else if (iCrosser instanceof Goat) {
-			return "goat";
-		} else if (iCrosser instanceof Carrot) {
-			return "carrot";
-
-		}
-		return "";
-	}
-
-	private String levelType(ICrossingStrategy gameStrategy) {
-
-		if (gameStrategy instanceof Level1Model) {
-			return "level1";
-		} else if (gameStrategy instanceof Level2Model) {
-			return "level2";
-		}
-
-		return "";
-
 	}
 
 }

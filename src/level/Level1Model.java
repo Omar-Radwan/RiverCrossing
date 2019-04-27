@@ -39,19 +39,25 @@ public class Level1Model extends LevelModel {
 
 	@Override
 	protected void fillInitialCrossers() {
-		System.out.println(initialCrossers);
-		this.initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
-		this.initialCrossers.add(iCrossersFactory.getICrosser("carrot"));
-		this.initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
-		this.initialCrossers.add(iCrossersFactory.getRandomCarnivorous());
+
+		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
+		initialCrossers.get(0).setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(0)));
+
+		initialCrossers.add(iCrossersFactory.getICrosser("carrot"));
+		initialCrossers.get(0).setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(1)));
+
+		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
+		initialCrossers.get(0).setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(2)));
+
+		initialCrossers.add(iCrossersFactory.getRandomCarnivorous());
+		initialCrossers.get(0).setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(3)));
 	}
 
 	@Override
 	protected void fillInstructions() {
-		this.instructions[0] = "A farmer wants to cross a river and take with him a carnivorous, a herbivorous and plant";
-		this.instructions[1] = "The farmer is the only one who can sail the boat. He can only take one passenger, in addition to himself";
-		this.instructions[2] = "You can not leave any wo crossers on the same bank if they can harm(eat) each other";
+		instructions[0] = "A farmer wants to cross a river and take with him a carnivorous, a herbivorous and plant";
+		instructions[1] = "The farmer is the only one who can sail the boat. He can only take one passenger, in addition to himself";
+		instructions[2] = "You can not leave any wo crossers on the same bank if they can harm(eat) each other";
 	}
-
 
 }

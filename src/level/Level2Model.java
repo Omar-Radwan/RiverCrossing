@@ -32,27 +32,44 @@ public class Level2Model extends LevelModel {
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(0).setWeight(90);
+		initialCrossers.get(0)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(0)) + " " + 90 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(1).setWeight(80);
+		initialCrossers.get(1)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(1)) + " " + 80 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(2).setWeight(60);
+		initialCrossers.get(2)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(2)) + " " + 60 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(3).setWeight(40);
+		initialCrossers.get(3)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(3)) + " " + 40 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
 		initialCrossers.get(4).setWeight(20);
+		initialCrossers.get(4)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(4)) + " " + 20 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
 		initialCrossers.get(5).setWeight(20);
+		initialCrossers.get(5)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(5)) + " " + 20 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
 		initialCrossers.get(6).setWeight(20);
+		initialCrossers.get(6)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(6)) + " " + 20 + " Kg");
 
 		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
 		initialCrossers.get(7).setWeight(20);
+		initialCrossers.get(7)
+				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(7)) + " " + 20 + " Kg");
+
 	}
 
 	protected void fillInstructions() {
@@ -61,5 +78,4 @@ public class Level2Model extends LevelModel {
 		instructions[2] = "All farmers can raft, while the animal cannot";
 	}
 
-	
 }
