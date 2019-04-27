@@ -1,21 +1,32 @@
+import java.io.IOException;
+
 import crossers.ICrossersFactory;
+import crossers.abstractclasses.CrosserAC;
+import crossers.concreteclasses.Farmer;
 import crossers.interfaces.ICrosser;
 import gui.related.HomeScreen;
 //import gui.related.HomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import level.ICrossingStrategy;
+import level.Level1;
+import xmlfiles.XReader;
+import xmlfiles.XWriter;
+import xmlparsers.XmlFilesReader;
+import xmlparsers.XmlFilesWriter;
 
 public class Main extends Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		ICrossersFactory iCrossersFactory = ICrossersFactory.getInstance();
-
-		ICrosser f1 = iCrossersFactory.getICrosser("farmer");
-
+		CrosserAC.setICrosserFactory(iCrossersFactory);
 		
-
-		launch(args);
+		
+		
+		
+		
+		//launch(args);
 
 	}
 

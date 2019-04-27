@@ -11,10 +11,22 @@ public abstract class Level implements ICrossingStrategy {
 	protected String[] instructions;
 	protected ICrossersFactory crossersFactory;
 
-	protected Level() {
-		crossersFactory = ICrossersFactory.getInstance();
-		fillInitialCrossers();
-		fillInstructions();
+	public Level() {}
+
+	public ICrossersFactory getCrossersFactory() {
+		return crossersFactory;
+	}
+
+	public void setCrossersFactory(ICrossersFactory crossersFactory) {
+		this.crossersFactory = crossersFactory;
+	}
+
+	public void setInitialCrossers(List<ICrosser> initialCrossers) {
+		this.initialCrossers = initialCrossers;
+	}
+
+	public void setInstructions(String[] instructions) {
+		this.instructions = instructions;
 	}
 
 	@Override
@@ -30,4 +42,14 @@ public abstract class Level implements ICrossingStrategy {
 	protected abstract void fillInitialCrossers();
 
 	protected abstract void fillInstructions();
+
+	@Override
+	public void prepare() {
+		this.crossersFactory = ICrossersFactory.getInstance();
+		fillInitialCrossers();
+		fillInstructions();
+		
+	}
+
+
 }

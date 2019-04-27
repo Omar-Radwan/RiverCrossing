@@ -12,4 +12,8 @@ public interface ICrossingStrategy {
 	public List<ICrosser> getInitialCrossers();
 	
 	public String[] getInstructions();
+	
+	// added methods
+	
+	public void prepare () ;
 }

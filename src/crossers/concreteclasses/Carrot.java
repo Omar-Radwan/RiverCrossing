@@ -12,7 +12,7 @@ public class Carrot extends Plant {
 
 	@Override
 	public ICrosser makeCopy() {
-		ICrosser copy = crossersFactory.getICrosser("carrot");
+		ICrosser copy = iCrossersFactory.getICrosser("carrot");
 		copy.setWeight(this.weight);
 		return copy;
 	}

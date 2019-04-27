@@ -1,8 +1,11 @@
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import crossers.interfaces.ICrosser;
 import level.ICrossingStrategy;
 
+@XmlRootElement
 public class RiverCrossingController implements IRiverCrossingController {
 	private List<ICrosser> crossersOnRightBank;
 	private List<ICrosser> crossersOnLeftBank;

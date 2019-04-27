@@ -2,6 +2,10 @@ package crossers.abstractclasses;
 
 import java.awt.image.BufferedImage;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
@@ -13,31 +17,35 @@ public abstract class CrosserAC implements ICrosser {
 	protected int eatingRank;
 	protected BufferedImage[] images;
 	protected BufferedImagesGetter bufferedImageFactory;
-	protected ICrossersFactory crossersFactory;
-	
-	//msh3arf di al mfrod tb2a kda wla l2
+	protected static ICrossersFactory iCrossersFactory;
+
+	// msh3arf di al mfrod tb2a kda wla l2
 	protected String labelToBeShown;
 
 	public CrosserAC() {
 		this.weight = 0;
 		bufferedImageFactory = BufferedImagesGetter.getInstance();
-		crossersFactory = ICrossersFactory.getInstance();
+		iCrossersFactory = ICrossersFactory.getInstance();
 	}
+
 
 	@Override
 	public boolean canSail() {
 		return canSail;
 	}
+	
 
 	@Override
 	public double getWeight() {
 		return this.weight;
 	}
+	
 
 	@Override
 	public int getEatingRank() {
 		return this.eatingRank;
 	}
+	
 
 	@Override
 	public BufferedImage[] getImages() {
@@ -49,16 +57,55 @@ public abstract class CrosserAC implements ICrosser {
 		this.labelToBeShown = label;
 
 	}
+	
 
 	@Override
 	public String getLabelToBeShown() {
 		return labelToBeShown;
 	}
-
+	
 	@Override
 	public void setWeight(double weight) {
 		this.weight = weight;
 
 	}
+
+	public static void setICrosserFactory(ICrossersFactory iCrossersFactoryy) {
+		iCrossersFactory = iCrossersFactoryy;
+	}
+
+	public boolean isCanSail() {
+		return canSail;
+	}
+
+	public void setCanSail(boolean canSail) {
+		this.canSail = canSail;
+	}
+
+	public BufferedImagesGetter getBufferedImageFactory() {
+		return bufferedImageFactory;
+	}
+	
+	public void setBufferedImageFactory(BufferedImagesGetter bufferedImageFactory) {
+		this.bufferedImageFactory = bufferedImageFactory;
+	}
+
+
+	public static ICrossersFactory getiCrossersFactory() {
+		return iCrossersFactory;
+	}
+
+	public static void setiCrossersFactory(ICrossersFactory iCrossersFactory) {
+		CrosserAC.iCrossersFactory = iCrossersFactory;
+	}
+
+	public void setEatingRank(int eatingRank) {
+		this.eatingRank = eatingRank;
+	}
+
+	public void setImages(BufferedImage[] images) {
+		this.images = images;
+	}
+
 
 }

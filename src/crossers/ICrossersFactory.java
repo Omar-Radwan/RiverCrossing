@@ -15,7 +15,7 @@ public class ICrossersFactory {
 	private static ICrossersFactory instance;
 	private Random r;
 
-	private ICrossersFactory() {
+	public ICrossersFactory() {
 		r = new Random();
 	}
 

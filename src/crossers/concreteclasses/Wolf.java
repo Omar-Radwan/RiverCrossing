@@ -12,7 +12,7 @@ public class Wolf extends Carnivorous {
 
 	@Override
 	public ICrosser makeCopy() {
-		ICrosser copy = crossersFactory.getICrosser("wolf");
+		ICrosser copy = iCrossersFactory.getICrosser("wolf");
 		copy.setWeight(this.weight);
 		return copy;
 	}

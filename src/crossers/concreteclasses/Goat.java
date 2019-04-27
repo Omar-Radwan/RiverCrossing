@@ -12,7 +12,7 @@ public class Goat extends Herbivorous {
 
 	@Override
 	public ICrosser makeCopy() {
-		ICrosser copy = crossersFactory.getICrosser("goat");
+		ICrosser copy = iCrossersFactory.getICrosser("goat");
 		copy.setWeight(this.weight);
 		return copy;
 	}
