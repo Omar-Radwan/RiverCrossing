@@ -9,6 +9,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 	private List<ICrosser> boatRiders;
 	private boolean isBoatOnTheLeftBank;
 	private int numberOfSails;
+	private int index = 0;
 	private String[] instructions = new String[5];
 	private static RiverCrossingController instance;
 
@@ -22,15 +23,36 @@ public class RiverCrossingController implements IRiverCrossingController {
 	}
 
 	public Memento save() {
+		setIndex(getIndex() + 1);
 		return new Memento(crossersOnRightBank, crossersOnLeftBank, boatRiders, isBoatOnTheLeftBank, numberOfSails);
 	}
 
-	public void restore(Memento m) {
+	@Override
+	public void undo(Memento m) {
 		boatRiders = m.getBoatRiders();
 		crossersOnRightBank = m.getCrossersOnRightBank();
 		crossersOnLeftBank = m.getCrossersOnLeftBank();
 		numberOfSails = m.getNumberOfSails();
 		isBoatOnTheLeftBank = m.isBoatOnTheLeftBank();
+		setIndex(getIndex() - 1);
+	}
+
+	@Override
+	public void redo(Memento m) {
+		boatRiders = m.getBoatRiders();
+		crossersOnRightBank = m.getCrossersOnRightBank();
+		crossersOnLeftBank = m.getCrossersOnLeftBank();
+		numberOfSails = m.getNumberOfSails();
+		isBoatOnTheLeftBank = m.isBoatOnTheLeftBank();
+		setIndex(getIndex() + 1);
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	@Override
@@ -108,25 +130,18 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public boolean canUndo() {
-		// TODO Auto-generated method stub
-		return false;
+		if (index == 0)
+			return false;
+		else
+			return true;
 	}
 
 	@Override
-	public boolean canRedo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void undo() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void redo() {
-		// TODO Auto-generated method stub
-
+	public boolean canRedo(CareTaker T) {
+		if (index == T.getSize() - 1)
+			return false;
+		else
+			return true;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ public class Memento {
 	private boolean isBoatOnTheLeftBank;
 	private int numberOfSails;
 
+
 	public Memento(List<ICrosser> crossersOnRightBank, List<ICrosser> crossersOnLeftBank, List<ICrosser> boatRiders,
 			boolean isBoatOnTheLeftBank, int numberOfSails) {
 		this.boatRiders = boatRiders;

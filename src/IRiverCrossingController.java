@@ -25,11 +25,11 @@ public interface IRiverCrossingController {
 
 	public boolean canUndo();
 
-	public boolean canRedo();
+	public boolean canRedo(CareTaker T);
 
-	public void undo();
+	public void undo(Memento M);
 
-	public void redo();
+	public void redo(Memento M);
 
 	public void saveGame();
 
