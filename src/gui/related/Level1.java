@@ -1,5 +1,8 @@
 package gui.related;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +14,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -41,25 +43,25 @@ public class Level1 extends IGameLevel {
 
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		// object background
-		objects[0] = new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/background.jpg"));
+		objects[0] = new Sprite(new Image("file:background.jpg"));
 
 		objects[0].render(gc);
 		// -------------------------------------
 
 		// boat object
-		objects[1] = new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/boat.jpg"));
+		objects[1] = new Sprite(new Image("file:boat.jpg"));
 		objects[1].setPositionX(500);
 		objects[1].setPositionY(600);
 		objects[1].render(gc);
 		// -------------------------------
 		// farmer object
-		objects[2] = new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/farmer.png"));
+		objects[2] = new Sprite(new Image("file:farmer.png"));
 		objects[2].setPositionX(520);
 		objects[2].setPositionY(570);
 		objects[2].render(gc);
 		// --------------------------------------
 		// plant object
-		objects[3] = new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/plant.png"));
+		objects[3] = new Sprite(new Image("file:plant.png"));
 		objects[3].setPositionX(580);
 		objects[3].setPositionY(510);
 		objects[3].render(gc);
@@ -68,14 +70,14 @@ public class Level1 extends IGameLevel {
 		// el mafrod ha3mel random ya3ni bas lesa ama agib animal tany
 		// ha3mel rand we law 0 yeb2a el object da lion
 		// law 1 haykon el object da wolf same will go with herbi
-		objects[4] = new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/lion.png"));
+		objects[4] = new Sprite(new Image("file:lion.png"));
 		objects[4].setPositionX(650);
 		objects[4].setPositionY(530);
 		objects[4].render(gc);
 
 		// ----------------------------------------------
 		// herbi
-		objects[5] = new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/sheep.png"));
+		objects[5] = new Sprite(new Image("file:sheep.png"));
 		objects[5].setPositionX(730);
 		objects[5].setPositionY(530);
 		objects[5].render(gc);

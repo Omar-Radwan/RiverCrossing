@@ -1,7 +1,12 @@
 package crossers;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 public class BufferedImagesGetter {
 
@@ -12,7 +17,6 @@ public class BufferedImagesGetter {
 		bufferedImageMap = new HashMap<>();
 		fillMap();
 	}
-	
 
 	public static BufferedImagesGetter getInstance() {
 		if (instance == null) {
@@ -23,7 +27,31 @@ public class BufferedImagesGetter {
 	}
 
 	private void fillMap() {
-		// code for filling the map with images
+
+		ArrayList<String> iCrossersTypes = new ArrayList<>();
+
+		iCrossersTypes.add("farmer");
+		
+		//iCrossersTypes.add("wolf");
+		iCrossersTypes.add("lion");
+		iCrossersTypes.add("sheep");
+		
+		//iCrossersTypes.add("goat");
+		iCrossersTypes.add("plant");
+
+		for (String type : iCrossersTypes) {
+			BufferedImage[] bufferedImages = new BufferedImage[2];
+
+			try {
+				bufferedImages[0] = ImageIO.read(new File(type + ".png"));
+				//bufferedImages[1] = ImageIO.read(new File(type + "reverse.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			bufferedImageMap.put(type, bufferedImages);
+		}
+
 	}
 
 	public BufferedImage[] getFarmerImages() {

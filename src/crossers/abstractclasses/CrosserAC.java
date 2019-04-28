@@ -12,7 +12,7 @@ import crossers.interfaces.ICrosser;
 
 public abstract class CrosserAC implements ICrosser {
 
-	protected boolean canSail; 
+	protected boolean canSail;
 	protected double weight;
 	protected int eatingRank;
 	protected BufferedImage[] images;
