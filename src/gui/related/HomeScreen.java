@@ -16,10 +16,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,16 +35,18 @@ public class HomeScreen {
 	private Stage stage;
 	private Scene scenehomescreen;
 	private IGameLevel gameLevel;
-
+	private Level level ;
 	public HomeScreen(Stage stage1) {
 		this.stage = stage1;
 	}
 
 	public void Homescreen() {
+		
+		
 		VBox label = new VBox();
-		Label l1 = new Label("River Crossing puzzle");
-		label.getChildren().add(l1);
-		label.setAlignment(Pos.CENTER);
+		//Label l1 = new Label("River Crossing puzzle");
+		//label.getChildren().add(l1);
+		//label.setAlignment(Pos.CENTER);
 		HBox buttons = new HBox(10);
 		Button level1 = new Button("Level 1");
 		level1.setStyle("-fx-font-size: 15pt;");
@@ -48,8 +56,10 @@ public class HomeScreen {
 			@Override
 			public void handle(ActionEvent e) {
 
-				gameLevel = new Level1(stage);
-				gameLevel.selectlevel(stage, gameLevel);
+				gameLevel = new Level1();
+				gameLevel.selectlevel(gameLevel , stage);
+
+				
 			}
 		});
 
@@ -63,7 +73,7 @@ public class HomeScreen {
 			public void handle(ActionEvent e) {
 
 				gameLevel = new Level2();
-				gameLevel.selectlevel(stage, gameLevel);
+				gameLevel.selectlevel(gameLevel , stage);
 			}
 		});
 		buttons.getChildren().addAll(level1, level2);
@@ -83,6 +93,13 @@ public class HomeScreen {
 
 		VBox vb = new VBox(10);
 		vb.getChildren().addAll(label, buttons, grid);
+		
+		Image img = new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/homeground.png");
+		BackgroundImage bgImg = new BackgroundImage(img, 
+		    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+		    BackgroundPosition.DEFAULT, 
+		    new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+		vb.setBackground(new Background(bgImg) );
 		scenehomescreen = new Scene(vb, 800, 800);
 		stage.setScene(scenehomescreen);
 
