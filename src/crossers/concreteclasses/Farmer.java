@@ -1,5 +1,7 @@
 package crossers.concreteclasses;
 
+import java.util.Arrays;
+
 import crossers.abstractclasses.Human;
 import crossers.interfaces.ICrosser;
 
@@ -12,8 +14,7 @@ public class Farmer extends Human {
 
 	@Override
 	public ICrosser makeCopy() {
-		// msh3arf kda sa7 wla l2
-		ICrosser copy = crossersFactory.getICrosser("farmer");
+		ICrosser copy = iCrossersFactory.getICrosser("farmer");
 		copy.setWeight(this.weight);
 		return copy;
 	}

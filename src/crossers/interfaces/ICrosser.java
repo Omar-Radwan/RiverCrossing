@@ -1,6 +1,11 @@
 package crossers.interfaces;
 import java.awt.image.BufferedImage;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import crossers.abstractclasses.CrosserAC;
+
+
 public interface ICrosser {
 
 	public boolean canSail();

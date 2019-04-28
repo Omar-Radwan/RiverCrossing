@@ -12,7 +12,7 @@ public class Sheep extends Herbivorous {
 
 	@Override
 	public ICrosser makeCopy() {
-		ICrosser copy = crossersFactory.getICrosser("sheep");
+		ICrosser copy = iCrossersFactory.getICrosser("sheep");
 		copy.setWeight(this.weight);
 		return copy;
 	}

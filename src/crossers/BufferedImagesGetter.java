@@ -10,7 +10,9 @@ public class BufferedImagesGetter {
 
 	private BufferedImagesGetter() {
 		bufferedImageMap = new HashMap<>();
+		fillMap();
 	}
+	
 
 	public static BufferedImagesGetter getInstance() {
 		if (instance == null) {

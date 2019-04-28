@@ -2,26 +2,31 @@ package crossers.abstractclasses;
 
 import java.awt.image.BufferedImage;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
 
 public abstract class CrosserAC implements ICrosser {
 
-	protected boolean canSail;
+	protected boolean canSail; 
 	protected double weight;
 	protected int eatingRank;
 	protected BufferedImage[] images;
-	protected BufferedImagesGetter bufferedImageFactory;
-	protected ICrossersFactory crossersFactory;
-	
-	//msh3arf di al mfrod tb2a kda wla l2
+	protected static BufferedImagesGetter bufferedImageFactory;
+	protected static ICrossersFactory iCrossersFactory;
+
+	// msh3arf di al mfrod tb2a kda wla l2
 	protected String labelToBeShown;
 
 	public CrosserAC() {
 		this.weight = 0;
 		bufferedImageFactory = BufferedImagesGetter.getInstance();
-		crossersFactory = ICrossersFactory.getInstance();
+		iCrossersFactory = ICrossersFactory.getInstance();
+		this.labelToBeShown = "";
 	}
 
 	@Override
@@ -59,6 +64,42 @@ public abstract class CrosserAC implements ICrosser {
 	public void setWeight(double weight) {
 		this.weight = weight;
 
+	}
+
+	public static void setICrosserFactory(ICrossersFactory iCrossersFactoryy) {
+		iCrossersFactory = iCrossersFactoryy;
+	}
+
+	public boolean isCanSail() {
+		return canSail;
+	}
+
+	public void setCanSail(boolean canSail) {
+		this.canSail = canSail;
+	}
+
+	public BufferedImagesGetter getBufferedImageFactory() {
+		return bufferedImageFactory;
+	}
+
+	public static void setBufferedImageFactory(BufferedImagesGetter bufferedImageFactory) {
+		CrosserAC.bufferedImageFactory = bufferedImageFactory;
+	}
+
+	public static ICrossersFactory getiCrossersFactory() {
+		return iCrossersFactory;
+	}
+
+	public static void setiCrossersFactory(ICrossersFactory iCrossersFactory) {
+		CrosserAC.iCrossersFactory = iCrossersFactory;
+	}
+
+	public void setEatingRank(int eatingRank) {
+		this.eatingRank = eatingRank;
+	}
+
+	public void setImages(BufferedImage[] images) {
+		this.images = images;
 	}
 
 }
