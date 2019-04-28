@@ -88,7 +88,23 @@ public abstract class Level {
 	            }
 	            
 			}
-		});
+		});/*for(int k = 3 ; k< 6 ; k++) {
+				//el mfrod hena azawed condition en ana dost 3ala wa7ed men el f 50 w 0 w 150
+				//mesh el 270 da w b3d keda an2el el fo2 tany
+				if(objects.get(k).intersects(temp) && objects.get(k).getPositionX() != 270) {
+				for(int i =3 ; i<6 ;i++) {
+					if(objects.get(i).getPositionX() == 270 )
+					objectNumber = 0;
+			}}}
+			if(objectNumber != 0) {
+				//System.out.println("FU");
+				if(objects.get(1).getPositionX() == 150) {
+					objects.get(objectNumber).setPositionX(270);
+					objects.get(objectNumber).setPositionY(580);
+					objectNumber = 0;
+					}
+				
+			}*/
 		move.setStyle("-fx-font-size: 15pt;");
 		move.setLayoutX(380);
 		move.setLayoutY(150);
@@ -106,7 +122,7 @@ public abstract class Level {
 						if (objects.get(i).intersects(temp)) {
 							objectNumber = i;
 							Level1.objectNumber = objectNumber;
-							
+							Level1.x = objectNumber;
 						}
 					}
 				}

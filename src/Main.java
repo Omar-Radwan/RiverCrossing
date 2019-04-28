@@ -42,7 +42,7 @@ public class Main extends Application {
 
 		riverCrossingController.saveGame();
 		riverCrossingController.loadGame();
-		// launch(args);
+		 launch(args);
 
 	}
 
