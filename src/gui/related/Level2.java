@@ -38,8 +38,8 @@ public class Level2 extends IGameLevel {
 
 		objects.get(1).setPositionX(400);
 		objects.get(1).setPositionY(500);
-		objects.get(2).setPositionX(550);
-		objects.get(2).setPositionY(500);
+		objects.get(2).setPositionX(580);
+		objects.get(2).setPositionY(480);
 		objects.get(3).setPositionX(590);
 		objects.get(3).setPositionY(510);
 		objects.get(4).setPositionX(650);
@@ -351,13 +351,19 @@ public class Level2 extends IGameLevel {
 
 	}
 
+	static boolean flag = false;
+
 	public void moveOnAction(GraphicsContext gc) {
 		boolean flagMove = false;
 		for (int j = 2; j < 7; j++) {
 			if (objects.get(1).intersects(objects.get(j)))
 				flagMove = true;
 		}
+		flag = flagMove;
+
 		if (flagMove) {
+			flagMove = false;
+
 			if (objects.get(1).getPositionX() == 400) {
 
 				objects.get(1).addDeltaX(-200);
@@ -396,7 +402,7 @@ public class Level2 extends IGameLevel {
 		boolean flag1 = false;
 		boolean flag2 = false;
 		for (int k = 2; k < 7; k++) {
-			if (objects.get(k).getPositionX() == 550 || objects.get(k).getPositionX() == 590
+			if (objects.get(k).getPositionX() == 580 || objects.get(k).getPositionX() == 590
 					|| objects.get(k).getPositionX() == 650 || objects.get(k).getPositionX() == 690
 					|| objects.get(k).getPositionX() == 730) {
 				if (objects.get(k).intersects(temp)) {
@@ -418,8 +424,8 @@ public class Level2 extends IGameLevel {
 						&& temp.intersects(objects.get(k))) {
 					switch (k) {
 					case 2:
-						objects.get(2).setPositionX(550);
-						objects.get(2).setPositionY(500);
+						objects.get(2).setPositionX(580);
+						objects.get(2).setPositionY(480);
 						break;
 					case 3:
 						objects.get(3).setPositionX(590);
@@ -468,37 +474,59 @@ public class Level2 extends IGameLevel {
 					objects.get(objectNumber).setPositionY(500);
 					objectNumber = 0;
 				}
+				flag1 = false;
+				flag2 = false;
 
 			} else if (objects.get(objectNumber).intersects(objects.get(1))) {
 
 				switch (objectNumber) {
 				case 2:
-					objects.get(objectNumber).setPositionX(60);
-					objects.get(objectNumber).setPositionY(581);
+					objects.get(objectNumber).setPositionX(110);
+					objects.get(objectNumber).setPositionY(530);
 					break;
 				case 3:
-					objects.get(objectNumber).setPositionX(50);
+					objects.get(objectNumber).setPositionX(60);
 					objects.get(objectNumber).setPositionY(550);
 					break;
 				case 4:
 					objects.get(objectNumber).setPositionX(40);
-					objects.get(objectNumber).setPositionY(570);
+					objects.get(objectNumber).setPositionY(550);
 					break;
 				case 5:
-					objects.get(objectNumber).setPositionX(30);
+					objects.get(objectNumber).setPositionX(10);
 					objects.get(objectNumber).setPositionY(570);
 					break;
 				case 6:
 					objects.get(objectNumber).setPositionX(0);
-					objects.get(objectNumber).setPositionY(570);
+					objects.get(objectNumber).setPositionY(600);
 					break;
 				}
 				objectNumber = 0;
 
 			} else if (objects.get(1).getPositionX() == 200) {
-				objects.get(objectNumber).setPositionX(200);
-				objects.get(objectNumber).setPositionY(500);
-				objectNumber = 0;
+				flag1 = false;
+				flag2 = false;
+				for (int k = 2; k < 7; k++) {
+					if (objects.get(k).getPositionX() == 200) {
+						flag1 = true;
+					} else if (objects.get(k).getPositionX() == 280)
+						flag2 = true;
+				}
+				/*
+				 * objects.get(objectNumber).setPositionX(200);
+				 * objects.get(objectNumber).setPositionY(500); objectNumber = 0;
+				 */
+				if (flag1 == false && flag2 == false) {
+					objects.get(objectNumber).setPositionX(200);
+					objects.get(objectNumber).setPositionY(500);
+					objectNumber = 0;
+				} else if (flag1 == true && flag2 == false) {
+					objects.get(objectNumber).setPositionX(280);
+					objects.get(objectNumber).setPositionY(500);
+					objectNumber = 0;
+				}
+				flag1 = false;
+				flag2 = false;
 			} else if (objects.get(objectNumber).intersects(objects.get(1))) {
 				switch (objectNumber) {
 				case 2:
@@ -534,6 +562,8 @@ public class Level2 extends IGameLevel {
 			}
 
 		}
+		flag1 = false;
+		flag2 = false;
 
 		return objectNumber;
 	}

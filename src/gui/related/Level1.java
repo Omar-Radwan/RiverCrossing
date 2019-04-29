@@ -33,7 +33,6 @@ public class Level1 extends IGameLevel {
 			objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/sheep.png")));
 		else
 			objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/goat.png")));
-		// hagib b2a el goat
 		objects.get(1).setPositionX(500);
 		objects.get(1).setPositionY(600);
 		objects.get(2).setPositionX(520);
@@ -91,19 +90,7 @@ public class Level1 extends IGameLevel {
 				}
 			}
 
-		} /*
-			 * objects.get(1).setPositionX(400); objects.get(1).setPositionY(500);
-			 * objects.get(2).setPositionX(550); objects.get(2).setPositionY(500);
-			 * objects.get(3).setPositionX(590); objects.get(3).setPositionY(510);
-			 * objects.get(4).setPositionX(650); objects.get(4).setPositionY(510);
-			 * objects.get(5).setPositionX(690); objects.get(5).setPositionY(540);
-			 * 
-			 * 
-			 * objects.get(6).setPositionX(730);
-			 * 
-			 * 
-			 * objects.get(6).setPositionY(580);
-			 */
+		}
 
 		for (int k = 3; k < 6; k++) {
 			if (objects.get(k).getPositionX() == 620 && objectNumber != 0) {
@@ -162,8 +149,6 @@ public class Level1 extends IGameLevel {
 			}
 		}
 
-		/* } */
-
 		for (int k = 3; k < 6; k++) {
 			if (objects.get(k).getPositionX() == 50 || objects.get(k).getPositionX() == 1
 					|| objects.get(k).getPositionX() == 100) {
@@ -193,124 +178,6 @@ public class Level1 extends IGameLevel {
 		return objectNumber;
 
 	}
-
-	/*
-	 * public void makeNewGame() { Label scorelabel = new Label();
-	 * scorelabel.setText("Score: " +score); //scorelabel.setFont(Font.font
-	 * ("Verdana", 20)); scorelabel.setFont(Font.font("Verdana", FontWeight.BOLD,
-	 * 15)); scorelabel.setTextFill(Color.BROWN); scorelabel.setLayoutX(350);
-	 * scorelabel.setLayoutY(100);
-	 * 
-	 * double posX = 0.0; double posY = 0.0;
-	 * 
-	 * Group root = new Group(); Canvas canvas = new Canvas(800, 800);
-	 * root.getChildren().add(canvas);
-	 * 
-	 * GraphicsContext gc = canvas.getGraphicsContext2D(); // object background
-	 * objects[0] = new Sprite(new Image("file:background.jpg"));
-	 * 
-	 * objects[0].render(gc); // -------------------------------------
-	 * 
-	 * // boat object objects[1] = new Sprite(new Image("file:boat.jpg"));
-	 * objects[1].setPositionX(500); objects[1].setPositionY(600);
-	 * objects[1].render(gc); // ------------------------------- // farmer object
-	 * objects[2] = new Sprite(new Image("file:farmer.png"));
-	 * objects[2].setPositionX(520); objects[2].setPositionY(570);
-	 * objects[2].render(gc); // -------------------------------------- // plant
-	 * object objects[3] = new Sprite(new Image("file:plant.png"));
-	 * objects[3].setPositionX(580); objects[3].setPositionY(510);
-	 * objects[3].render(gc); // -------------------------------------------- //
-	 * carni animal // el mafrod ha3mel random ya3ni bas lesa ama agib animal tany
-	 * // ha3mel rand we law 0 yeb2a el object da lion // law 1 haykon el object da
-	 * wolf same will go with herbi objects[4] = new Sprite(new
-	 * Image("file:lion.png")); objects[4].setPositionX(650);
-	 * objects[4].setPositionY(530); objects[4].render(gc);
-	 * 
-	 * // ---------------------------------------------- // herbi objects[5] = new
-	 * Sprite(new Image("file:sheep.png")); objects[5].setPositionX(730);
-	 * objects[5].setPositionY(530); objects[5].render(gc); //
-	 * --------------------------------------------- // animation button : /* new
-	 * AnimationTimer() {
-	 * 
-	 * @Override public void handle(long arg0) { objects[1].addDeltaX(300);
-	 * objects[2].addDeltaX(-300); for(int i =0 ; i<6 ; i++) { objects[i].update();
-	 * objects[i].render(gc); }
-	 * 
-	 * } };
-	 */
-	// --------------------------------------------
-	// button move :
-	/*
-	 * Button move = new Button("Move"); move.setOnAction(new
-	 * EventHandler<ActionEvent>() {
-	 * 
-	 * @Override public void handle(ActionEvent event) { score ++;
-	 * scorelabel.setText(Integer.toString(score));
-	 * scorelabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-	 * scorelabel.setTextFill(Color.BROWN);
-	 * 
-	 * scorelabel.setText("Score: " + score); if(objects[1].getPositionX() == 500){
-	 * objects[1].addDeltaX(-350); objects[2].addDeltaX(-350); for (int j = 3; j <
-	 * 6; j++) { if (objects[j].intersects(objects[1])) {
-	 * objects[j].addDeltaX(-350); } } for (int i = 0; i < 6; i++) {
-	 * objects[i].update(); objects[i].render(gc); } } else {
-	 * objects[1].addDeltaX(350); objects[2].addDeltaX(350); for (int j = 3; j < 6;
-	 * j++) { if (objects[j].intersects(objects[1])) { objects[j].addDeltaX(350); }
-	 * } for (int i = 0; i < 6; i++) { objects[i].update(); objects[i].render(gc); }
-	 * }
-	 * 
-	 * } });
-	 */
-	/*
-	 * move.setStyle("-fx-font-size: 15pt;"); move.setLayoutX(380);
-	 * move.setLayoutY(150); root.getChildren().add(scorelabel);
-	 * root.getChildren().add(move); Scene level1 = new Scene(root, 800, 800);
-	 * level1.setOnMousePressed(new EventHandler<MouseEvent>() {
-	 * 
-	 * @Override public void handle(MouseEvent event) { // TODO Auto-generated
-	 * method stub temp.setPositionX(event.getX()); temp.setPositionY(event.getY());
-	 * for (int i = 3; i < 6; i++) { if (objects[i].intersects(temp)) { objectNumber
-	 * = i; } }
-	 */
-
-	/*
-	 * for(int k = 3 ; k<6 ;k++) { if(k == objectNumber) continue; else
-	 * if(objects[k].intersects(objects[objectNumber])) { objectNumber = 0; } }
-	 */
-	// System.out.println("X: " + event.getX() + " Y: " + event.getY());
-	/*
-	 * } });
-	 */
-	// if(objectNumber != 0) {
-	// System.out.println("Hello");
-	// new AnimationTimer() {
-	@Override
-	// public void handle(long arg0) {
-	/*
-	 * for(int k = 3 ; k<6 ;k++) { if(k == objectNumber) continue; else
-	 * if(objects[k].intersects(objects[objectNumber])) { objectNumber = 0; } }
-	 */
-	/*
-	 * for(int k =3 ;k<6; k++) { if(objects.get(k).getPositionX() == 620)
-	 * objectNumber = 0; } if (objectNumber != 0 ) { if(objects[1].getPositionX() ==
-	 * 500) { objects[objectNumber].setPositionX(620);
-	 * objects[objectNumber].setPositionY(580); objectNumber = 0; } else
-	 * if(objects[objectNumber].intersects(objects[1])){ boolean flag1 = false;
-	 * boolean flag2 = false; for(int l =3 ; l<6 ; l++) {
-	 * if(objects[l].getPositionX() == 50) { flag1 = true; } else if
-	 * (objects[l].getPositionX()==0) { flag2 = true; } } if(!(flag1 || flag2))
-	 * objects[objectNumber].setPositionX(50); else if (flag1 && flag2 == false)
-	 * objects[objectNumber].setPositionX(0); else {
-	 * objects[objectNumber].setPositionX(100);
-	 * objects[objectNumber].setPositionY(500);
-	 * 
-	 * } objectNumber = 0; } else objectNumber = 0; for (int i = 0; i < 6; i++) {
-	 * objects[i].update(); objects[i].render(gc); }
-	 * 
-	 * } } }.start(); // } stage.setScene(leSvel1);
-	 * 
-	 * }
-	 */
 
 	public void contGame() {
 		// TODO Auto-generated method stub
