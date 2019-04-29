@@ -31,20 +31,20 @@ public class BufferedImagesGetter {
 		ArrayList<String> iCrossersTypes = new ArrayList<>();
 
 		iCrossersTypes.add("farmer");
-		
-		//iCrossersTypes.add("wolf");
+
+		iCrossersTypes.add("wolf");
 		iCrossersTypes.add("lion");
 		iCrossersTypes.add("sheep");
-		
-		//iCrossersTypes.add("goat");
+
+		iCrossersTypes.add("goat");
 		iCrossersTypes.add("plant");
 
 		for (String type : iCrossersTypes) {
 			BufferedImage[] bufferedImages = new BufferedImage[2];
 
 			try {
-				bufferedImages[0] = ImageIO.read(new File(type + ".png"));
-				//bufferedImages[1] = ImageIO.read(new File(type + "reverse.png"));
+				bufferedImages[0] = ImageIO.read(new File("src/gui/related/" + type + ".png"));
+				// bufferedImages[1] = ImageIO.read(new File(type + "reverse.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -75,7 +75,7 @@ public class BufferedImagesGetter {
 	}
 
 	public BufferedImage[] getCarrotImages() {
-		return bufferedImageMap.get("carrot");
+		return bufferedImageMap.get("plant");
 	}
 
 }

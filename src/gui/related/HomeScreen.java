@@ -1,34 +1,23 @@
 package gui.related;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import javafx.scene.control.TextArea;
-import javafx.application.Application;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import controller.RiverCrossingController;
+import controller.interfaces.IRiverCrossingController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import level.Level1Model;
 
 public class HomeScreen {
 //private Image image;
@@ -36,9 +25,11 @@ public class HomeScreen {
 	private Scene scenehomescreen;
 	private IGameLevel gameLevel;
 	private Level level;
+	private IRiverCrossingController controller;
 
 	public HomeScreen(Stage stage1) {
 		this.stage = stage1;
+		controller = RiverCrossingController.getInstance();
 	}
 
 	public void Homescreen() {
@@ -55,9 +46,11 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent e) {
-
+				controller.newGame(new Level1Model());
 				gameLevel = new Level1();
 				gameLevel.selectlevel(gameLevel, stage);
+		
+			
 
 			}
 		});

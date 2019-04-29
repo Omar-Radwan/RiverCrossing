@@ -8,8 +8,16 @@ import controller.commands.LoadCommand;
 import controller.commands.SaveCommand;
 import controller.commands.interfaces.Command;
 import controller.interfaces.IRiverCrossingController;
+import crossers.abstractclasses.Carnivorous;
+import crossers.abstractclasses.Herbivorous;
+import crossers.abstractclasses.Plant;
+import crossers.concreteclasses.Farmer;
 import crossers.interfaces.ICrosser;
+import gui.related.Level;
+import gui.related.Level1;
+import gui.related.Level2;
 import level.ICrossingStrategy;
+import level.Level1Model;
 
 public class RiverCrossingController implements IRiverCrossingController {
 
@@ -18,13 +26,13 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	private Stack<Memento> undoStack;
 	private Stack<Memento> redoStack;
-
+	public Level levelView;
 	// singleton
 	private static RiverCrossingController instance;
 
 	private RiverCrossingController() {
 		commandMap = new HashMap<String, Command>();
-
+		gameState = new GameState();
 		commandMap.put("save", new SaveCommand());
 		commandMap.put("load", new LoadCommand());
 
@@ -60,6 +68,14 @@ public class RiverCrossingController implements IRiverCrossingController {
 	public void newGame(ICrossingStrategy gameStrategy) {
 		this.gameState.setGameStrategy(gameStrategy);
 		resetGame();
+
+		if (gameStrategy instanceof Level1Model) {
+			levelView = new Level1(getImagesDetails());
+		} else {
+			levelView = new Level2();
+		}
+		getImagesDetails();
+
 	}
 
 	@Override
@@ -211,5 +227,41 @@ public class RiverCrossingController implements IRiverCrossingController {
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	public ImageDetail[] getImagesDetails() {
+
+		ImageDetail[] imageDetails = new ImageDetail[7];
+
+		imageDetails[1] = new ImageDetail(false, null);
+		imageDetails[1].setOnLeft(gameState.isBoatOnTheLeftBank());
+
+		for (ICrosser x : gameState.getCrossersOnRightBank()) {
+			if (x instanceof Farmer) {
+				imageDetails[2] = new ImageDetail(true, x.getImages()[0]);
+			} else if (x instanceof Herbivorous) {
+				imageDetails[4] = new ImageDetail(true, x.getImages()[0]);
+			} else if (x instanceof Carnivorous) {
+				imageDetails[3] = new ImageDetail(true, x.getImages()[0]);
+			} else if (x instanceof Plant) {
+				System.out.println(x.getImages()[0]);
+				imageDetails[5] = new ImageDetail(true, x.getImages()[0]);
+			}
+		}
+
+		for (ICrosser x : gameState.getCrossersOnLeftBank()) {
+			if (x instanceof Farmer) {
+				imageDetails[2] = new ImageDetail(false, x.getImages()[0]);
+			} else if (x instanceof Herbivorous) {
+				imageDetails[5] = new ImageDetail(false, x.getImages()[0]);
+			} else if (x instanceof Carnivorous) {
+				imageDetails[4] = new ImageDetail(false, x.getImages()[0]);
+			} else if (x instanceof Plant) {
+				imageDetails[3] = new ImageDetail(false, x.getImages()[0]);
+			}
+
+		}
+
+		return imageDetails;
+	}
 
 }

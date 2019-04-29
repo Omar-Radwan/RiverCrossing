@@ -23,7 +23,8 @@ public class Main extends Application {
 		CrosserAC.setICrosserFactory(iCrossersFactory);
 		CrosserAC.setBufferedImageFactory(bufferedImagesGetter);
 
-
+		bufferedImagesGetter = BufferedImagesGetter.getInstance();
+		System.out.println(bufferedImagesGetter.getLionImages());
 
 		launch(args);
 

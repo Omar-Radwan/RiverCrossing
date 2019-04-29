@@ -271,5 +271,6 @@ public class GameState {
 		isBoatOnTheLeftBank = true;
 		numberOfSails = 0;
 	}
+	
 
 }

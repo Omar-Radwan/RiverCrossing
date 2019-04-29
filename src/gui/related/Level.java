@@ -2,6 +2,9 @@ package gui.related;
 
 import java.util.ArrayList;
 
+import controller.ImageDetail;
+import controller.RiverCrossingController;
+import controller.interfaces.IRiverCrossingController;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +32,7 @@ public abstract class Level {
 	static Stage stage;
 	Sprite temp = new Sprite();
 	int objectNumber = 0;
+	IRiverCrossingController controller = RiverCrossingController.getInstance();
 
 	public Level() {
 
@@ -130,9 +134,12 @@ public abstract class Level {
 		move.setEffect(shadow1);
 
 		move.setOnAction(new EventHandler<ActionEvent>() {
-
+			
+		
 			@Override
 			public void handle(ActionEvent arg0) {
+				
+				
 				if (g instanceof Level2) {
 					if (Level2.flag)
 						score++;
@@ -214,5 +221,7 @@ public abstract class Level {
 		}.start();
 		stage.setScene(level);
 	}
+
+	public abstract void draw(ImageDetail[] imageDetails);
 
 }

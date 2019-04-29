@@ -3,6 +3,8 @@ package gui.related;
 import java.util.ArrayList;
 import java.util.Random;
 
+import controller.ImageDetail;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -18,32 +20,19 @@ public class Level1 extends IGameLevel {
 	private Random rand = new Random();
 
 	// private Image [] image = new Image[6];
-	public Level1() {
-		int ran1 = rand.nextInt(2);
-		int ran2 = rand.nextInt(2);
-		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/background.jpg")));
-		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/boat.jpg")));
-		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/farmer.png")));
-		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/plant.png")));
-		// if(ran1 == 0)
-		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/lion.png")));
-		// else
-		// hagib wolf bas not now w y add it here
-		if (ran2 == 0)
-			objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/sheep.png")));
-		else
-			objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/goat.png")));
+	public Level1(ImageDetail[] imagesDetails) {
+
+		objects.add(new Sprite(new Image("file:src/gui/related/background.jpg")));
+		objects.add(new Sprite(new Image("file:src/gui/related/boat.jpg")));
 		objects.get(1).setPositionX(500);
 		objects.get(1).setPositionY(600);
-		objects.get(2).setPositionX(520);
-		objects.get(2).setPositionY(570);
-		objects.get(3).setPositionX(580);
-		objects.get(3).setPositionY(510);
-		objects.get(4).setPositionX(650);
-		objects.get(4).setPositionY(530);
-		objects.get(5).setPositionX(730);
-		objects.get(5).setPositionY(530);
+		draw(imagesDetails);
+		
+		// hagib wolf bas not now w y add it here
 
+	}
+	public Level1() {
+		
 	}
 
 	public void moveOnAction(GraphicsContext gc) {
@@ -187,6 +176,59 @@ public class Level1 extends IGameLevel {
 	@Override
 	public void makeNewGame() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public void draw(ImageDetail[] imagesDetails) {
+
+		Image images[] = new Image[6];
+
+		for (int i = 2; i < 6; i++) {
+			System.out.println(imagesDetails[i]);
+			images[i] = SwingFXUtils.toFXImage(imagesDetails[i].getImage(), null);
+			objects.add(new Sprite(images[i]));
+		}
+
+		if (imagesDetails[2].isOnLeft()) {
+			objects.get(2).setPositionX(170);
+			objects.get(2).setPositionY(570);
+		}
+
+		else {
+			objects.get(2).setPositionX(520);
+			objects.get(2).setPositionY(570);
+		}
+
+		if (imagesDetails[3].isOnLeft()) {
+			objects.get(3).setPositionY(580);
+			objects.get(3).setPositionX(50);
+		}
+
+		else {
+			objects.get(3).setPositionX(580);
+			objects.get(3).setPositionY(510);
+		}
+
+		if (imagesDetails[4].isOnLeft()) {
+			objects.get(4).setPositionX(1);
+			objects.get(4).setPositionY(580);
+		}
+
+		else {
+
+			objects.get(4).setPositionX(650);
+			objects.get(4).setPositionY(530);
+
+		}
+
+		if (imagesDetails[5].isOnLeft()) {
+			objects.get(5).setPositionX(100);
+			objects.get(5).setPositionY(500);
+		} else {
+			objects.get(5).setPositionX(730);
+			objects.get(5).setPositionY(530);
+
+		}
 
 	}
 
