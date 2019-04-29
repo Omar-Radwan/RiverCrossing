@@ -23,12 +23,8 @@ public class Main extends Application {
 		CrosserAC.setICrosserFactory(iCrossersFactory);
 		CrosserAC.setBufferedImageFactory(bufferedImagesGetter);
 
-		RiverCrossingController riverCrossingController = RiverCrossingController.getInstance();
-		ICrossingStrategy iCrossingStrategy = new Level2Model();
-		riverCrossingController.newGame(iCrossingStrategy);
 
-		riverCrossingController.saveGame();
-		riverCrossingController.loadGame();
+
 		launch(args);
 
 	}

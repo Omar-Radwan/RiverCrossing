@@ -1,21 +1,22 @@
 package controller.commands;
 
-import controller.IRiverCrossingController;
+import controller.GameState;
+import controller.commands.interfaces.Command;
 
 public class LoadCommand implements Command {
 
-	IRiverCrossingController Controller;
+	GameState gameState;
 
 	public LoadCommand() {
 	}
 
-	public LoadCommand(IRiverCrossingController Controller) {
-		this.Controller = Controller;
+	public LoadCommand(GameState gameState) {
+		this.gameState = gameState;
 	}
 
 	@Override
 	public void execute() {
-		Controller.loadGame();
+		gameState.loadFromXml();
 
 	}
 

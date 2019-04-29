@@ -1,11 +1,12 @@
 package controller.commands;
 
-import controller.IRiverCrossingController;
+import controller.commands.interfaces.Command;
+import controller.interfaces.IRiverCrossingController;
 import level.ICrossingStrategy;
 
 public class NewGameCommand implements Command {
 
-	IRiverCrossingController Controller;
+	IRiverCrossingController gameState;
 	ICrossingStrategy gameStrategy;
 
 	public NewGameCommand() {
@@ -13,11 +14,11 @@ public class NewGameCommand implements Command {
 	}
 
 	public NewGameCommand(IRiverCrossingController Controller) {
-		this.Controller = Controller;
+		this.gameState = Controller;
 	}
 
 	public void setController(IRiverCrossingController Controller) {
-		this.Controller = Controller;
+		this.gameState = Controller;
 	}
 
 	public void setGameStrategy(ICrossingStrategy gameStrategy) {
@@ -26,7 +27,7 @@ public class NewGameCommand implements Command {
 
 	@Override
 	public void execute() {
-		Controller.newGame(gameStrategy);
+		gameState.newGame(gameStrategy);
 
 	}
 

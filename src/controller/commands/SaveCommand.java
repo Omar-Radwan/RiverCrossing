@@ -1,25 +1,26 @@
 package controller.commands;
 
-import controller.IRiverCrossingController;
+import controller.GameState;
+import controller.commands.interfaces.Command;
 
 public class SaveCommand implements Command {
 
-	IRiverCrossingController Controller;
+	GameState gameState;
 
 	public SaveCommand() {
 	}
 
-	public SaveCommand(IRiverCrossingController Controller) {
-		this.Controller = Controller;
+	public SaveCommand(GameState gameState) {
+		this.gameState = gameState;
 	}
 
-	public void setController(IRiverCrossingController Controller) {
-		this.Controller = Controller;
+	public void setController(GameState gameState) {
+		this.gameState = gameState;
 	}
 
 	@Override
 	public void execute() {
-		Controller.saveGame();
+		gameState.saveStateToXml();
 	}
-	
+
 }

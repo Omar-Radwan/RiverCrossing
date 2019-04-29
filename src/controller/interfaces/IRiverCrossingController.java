@@ -1,4 +1,4 @@
-package controller;
+package controller.interfaces;
 
 import java.util.List;
 
@@ -13,7 +13,6 @@ public interface IRiverCrossingController {
 	public void newGame(ICrossingStrategy gameStrategy);
 
 	public void resetGame();
-	
 
 	/*
 	 * Getters
@@ -35,17 +34,16 @@ public interface IRiverCrossingController {
 	 */
 	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank);
 
-	
 	public boolean canUndo();
 
-	public boolean canRedo(CareTaker T);
+	public boolean canRedo();
 
 	/*
 	 * Commands
 	 */
-	public void undo(Memento M);
+	public void undo();
 
-	public void redo(Memento M);
+	public void redo();
 
 	public void saveGame();
 
