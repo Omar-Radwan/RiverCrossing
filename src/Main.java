@@ -1,30 +1,16 @@
 import java.io.IOException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
 
 import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.abstractclasses.CrosserAC;
-import crossers.concreteclasses.Farmer;
-import crossers.interfaces.ICrosser;
 import gui.related.HomeScreen;
 //import gui.related.HomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import level.ICrossingStrategy;
-import level.Level1Model;
 import level.Level2Model;
-
-import org.w3c.dom.*;
-
-import java.io.*;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
-import javax.xml.transform.stream.*;
 
 public class Main extends Application {
 
@@ -42,7 +28,7 @@ public class Main extends Application {
 
 		riverCrossingController.saveGame();
 		riverCrossingController.loadGame();
-		// launch(args);
+		launch(args);
 
 	}
 
