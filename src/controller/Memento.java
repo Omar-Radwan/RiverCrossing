@@ -1,3 +1,4 @@
+package controller;
 
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class Memento {
 	public List<ICrosser> getCrossersOnLeftBank() {
 		return crossersOnLeftBank;
 	}
-
+	
 	public List<ICrosser> getBoatRiders() {
 		return boatRiders;
 	}

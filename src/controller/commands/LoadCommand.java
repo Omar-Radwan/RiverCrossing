@@ -1,4 +1,6 @@
+package controller.commands;
 
+import controller.IRiverCrossingController;
 
 public class LoadCommand implements Command {
 

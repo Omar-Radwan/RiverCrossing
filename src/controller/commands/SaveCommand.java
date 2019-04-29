@@ -1,8 +1,6 @@
+package controller.commands;
 
-
-import java.io.FileNotFoundException;
-
-import javax.xml.transform.TransformerException;
+import controller.IRiverCrossingController;
 
 public class SaveCommand implements Command {
 
@@ -21,11 +19,7 @@ public class SaveCommand implements Command {
 
 	@Override
 	public void execute() {
-		try {
-			Controller.saveGame();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Controller.saveGame();
 	}
-
+	
 }

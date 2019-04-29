@@ -1,18 +1,23 @@
+package controller;
 
-import java.io.FileNotFoundException;
 import java.util.List;
-
-import javax.xml.transform.TransformerException;
 
 import crossers.interfaces.ICrosser;
 import level.ICrossingStrategy;
 
 public interface IRiverCrossingController {
 
+	/*
+	 * Commands
+	 */
 	public void newGame(ICrossingStrategy gameStrategy);
 
 	public void resetGame();
+	
 
+	/*
+	 * Getters
+	 */
 	public String[] getInstructions();
 
 	public List<ICrosser> getCrossersOnRightBank();
@@ -25,17 +30,24 @@ public interface IRiverCrossingController {
 
 	public boolean canMove(List<ICrosser> crossers, boolean fromLeftToRightBank);
 
+	/*
+	 * Command
+	 */
 	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank);
 
+	
 	public boolean canUndo();
 
 	public boolean canRedo(CareTaker T);
 
+	/*
+	 * Commands
+	 */
 	public void undo(Memento M);
 
 	public void redo(Memento M);
 
-	public void saveGame() throws FileNotFoundException, TransformerException;
+	public void saveGame();
 
 	public void loadGame();
 

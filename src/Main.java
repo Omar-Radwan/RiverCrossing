@@ -2,6 +2,7 @@ import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import controller.RiverCrossingController;
 import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.abstractclasses.CrosserAC;

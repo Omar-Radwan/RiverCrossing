@@ -1,34 +1,37 @@
+package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
+import org.xml.sax.SAXException;
+
+import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
 import level.ICrossingStrategy;
 import level.Level1Model;
 import level.Level2Model;
 import level.LevelFactory;
-
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
-
-import com.sun.javafx.scene.traversal.WeightedClosestCorner;
-
-import java.io.*;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
-import javax.xml.transform.stream.*;
-
-import crossers.ICrossersFactory;
-import crossers.concreteclasses.Carrot;
-import crossers.concreteclasses.Farmer;
-import crossers.concreteclasses.Goat;
-import crossers.concreteclasses.Lion;
-import crossers.concreteclasses.Sheep;
-import crossers.concreteclasses.Wolf;
 
 @XmlRootElement
 public class RiverCrossingController implements IRiverCrossingController {
@@ -40,6 +43,8 @@ public class RiverCrossingController implements IRiverCrossingController {
 	private boolean isBoatOnTheLeftBank;
 	private int numberOfSails;
 	private ICrossingStrategy gameStrategy;
+
+	private GameData gameData;
 
 	// not sure if these must be included
 	private int index = 0;
@@ -119,16 +124,9 @@ public class RiverCrossingController implements IRiverCrossingController {
 		numberOfSails = 0;
 	}
 
-	// helping function to use in reset game
-	private <T> void duplicateList(List<T> source, List<T> destination) {
-		for (T x : source) {
-			destination.add(x);
-		}
-	}
-
 	@Override
 	public String[] getInstructions() {
-		return gameStrategy.getInstructions();
+		return gameData.getStrategy.getInstuctions();
 	}
 
 	@Override
@@ -173,14 +171,48 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public boolean canMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
-		// TODO Auto-generated method stub
-		return false;
+
+		if (fromLeftToRightBank == true) {
+			for (ICrosser x : crossers) {
+				crossersOnLeftBank.remove(x);
+			}
+
+			if (gameStrategy.isValid(crossersOnRightBank, crossersOnLeftBank, crossers)) {
+				doMove(crossers, fromLeftToRightBank);
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
+		else {
+			for (ICrosser x : crossers) {
+				crossersOnRightBank.add(x);
+			}
+
+			if (!gameStrategy.isValid(crossersOnRightBank, crossersOnLeftBank, crossers)) {
+				doMove(crossers, fromLeftToRightBank);
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 	}
 
 	@Override
 	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
-		// TODO Auto-generated method stub
 
+		if (fromLeftToRightBank) {
+			for (ICrosser x : crossers) {
+				crossersOnRightBank.add(x);
+			}
+		} else {
+			for (ICrosser x : crossers) {
+				crossersOnLeftBank.add(x);
+			}
+		}
 	}
 
 	@Override
@@ -210,6 +242,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 		return crossersOnLeftBank;
 	}
 
+	// should handle these exceptions in the view
 	@Override
 	public void saveGame() {
 
@@ -283,6 +316,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	}
 
+	// should handle the exceptions in the view
 	@Override
 	public void loadGame() {
 		File file = new File(levelFactory.levelType(gameStrategy) + ".xml");
@@ -357,6 +391,13 @@ public class RiverCrossingController implements IRiverCrossingController {
 		iCrosserElement.appendChild(labelToBeShownElement);
 
 		rootElement.appendChild(iCrosserElement);
+	}
+
+	// helping function to use in reset game
+	private <T> void duplicateList(List<T> source, List<T> destination) {
+		for (T x : source) {
+			destination.add(x);
+		}
 	}
 
 }

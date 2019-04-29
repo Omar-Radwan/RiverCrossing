@@ -19,21 +19,26 @@ public class Level1Model extends LevelModel {
 	@Override
 	public boolean isValid(List<ICrosser> rightBankCrossers, List<ICrosser> leftBankCrossers,
 			List<ICrosser> boatRiders) {
+		
 		boolean boat = false;
 		boolean rightBank = true;
 		boolean leftBank = true;
+		
 		for (ICrosser x : boatRiders) {
 			if (x instanceof Farmer)
 				boat = true;
 		}
 		if (boatRiders.size() > 2)
 			boat = false;
+		
 		if (leftBankCrossers.size() == 2)
 			if (Math.abs(leftBankCrossers.get(0).getEatingRank() - leftBankCrossers.get(1).getEatingRank()) == 1)
 				leftBank = false;
+		
 		if (rightBankCrossers.size() == 2)
 			if (Math.abs(rightBankCrossers.get(0).getEatingRank() - rightBankCrossers.get(1).getEatingRank()) == 1)
 				rightBank = false;
+		
 		return boat && rightBank && leftBank;
 	}
 
