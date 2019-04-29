@@ -6,6 +6,7 @@ import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -36,10 +38,54 @@ public abstract class Level {
 	public void game(Object g) {
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
+		Button redo = new Button("Redo");
+		redo.setStyle("-fx-font-size: 15pt;");
+		redo.setLayoutY(0);
+		redo.setLayoutX(730);
+		redo.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		root.getChildren().add(redo);
+		Button exit = new Button ("Exit");
+		exit.setStyle("-fx-font-size: 15pt;");
+		exit.setLayoutX(740);
+		exit.setLayoutY(755);
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				//save actions
+				System.exit(0);
+			}
+		});
+		root.getChildren().add(exit);
 		Button undo = new Button("Undo");
 		undo.setStyle("-fx-font-size: 15pt;");
 		undo.setLayoutX(0);
 		undo.setLayoutY(0);
+		Button instructions = new Button ("Instructions");
+		instructions.setStyle("-fx-font-size: 15pt;");
+		instructions.setLayoutX(680);
+		instructions.setLayoutY(50);
+		root.getChildren().add(instructions);
+		instructions.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if(g instanceof Level1) {
+					//array labels lel instructions
+				}
+				else if (g instanceof Level2) {
+					//array labels le instructions level 2
+				}
+				
+			}
+		});
 		HBox hb = new HBox();
 		hb.getChildren().add(undo);
 		hb.setSpacing(10);
@@ -54,7 +100,14 @@ public abstract class Level {
 			objects.get(i).render(gc);
 		}
 		root.getChildren().add(hb);
-		
+		redo.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		undo.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -66,7 +119,7 @@ public abstract class Level {
 		Label scorelabel = new Label();
 		scorelabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
 		scorelabel.setTextFill(Color.BROWN);
-		scorelabel.setLayoutX(380);
+		scorelabel.setLayoutX(360);
 		scorelabel.setLayoutY(100);
 		Button move = new Button("Move");
 		move.setOnAction(new EventHandler<ActionEvent>() {
@@ -106,7 +159,7 @@ public abstract class Level {
 				
 			}*/
 		move.setStyle("-fx-font-size: 15pt;");
-		move.setLayoutX(380);
+		move.setLayoutX(360);
 		move.setLayoutY(150);
 		root.getChildren().add(scorelabel);
 		root.getChildren().add(move);

@@ -471,7 +471,11 @@ public void contGame() {
 
 }
 public void moveOnAction(GraphicsContext gc)
-{
+{ boolean flagMove = false;
+for (int j =2 ; j< 7 ; j++) {
+	 if(objects.get(1).intersects(objects.get(j)))
+		 flagMove = true;
+}if(flagMove) {
 if (objects.get(1).getPositionX() == 400) {
 
 objects.get(1).addDeltaX(-200);
@@ -503,13 +507,64 @@ objects.get(i).update();
 objects.get(i).render(gc);
 }
 }
-
+}
 }
 
 
 public int animationSet(GraphicsContext gc)
-{boolean flag1 = false;
+{
+boolean flag1 = false;
  boolean flag2 = false;
+ for (int k = 2 ; k< 7 ; k++) {
+	 if(objects.get(k).getPositionX() == 550  || objects.get(k).getPositionX() == 590 || objects.get(k).getPositionX() == 650 || objects.get(k).getPositionX() == 690 || objects.get(k).getPositionX() == 730 )  {
+		 if(objects.get(k).intersects(temp)) {
+			 if(objects.get(1).getPositionX() == 400) {
+				 for(int i =2 ; i< 7 ; i++) {
+					 if(objects.get(i).getPositionX() == 400)
+						 flag1 = true;
+					 else if (objects.get(i).getPositionX() == 480)
+						 flag2 = true;
+				 }
+			 }
+		 }
+		 
+	 }
+ }
+ for(int k = 2 ; k<7 ; k++) {
+	 if((objects.get(k).getPositionX() == 400 || objects.get(k).getPositionX() == 480) && objectNumber != 0) {
+		 if((objects.get(k).getPositionX()==400 || objects.get(k).getPositionX() == 480) && temp.intersects(objects.get(k) ) ){
+			 switch(k) {
+			 case 2 : 	
+				 	objects.get(2).setPositionX(550);
+					objects.get(2).setPositionY(500);
+					break;
+			 case 3 :
+				    objects.get(3).setPositionX(590);
+					objects.get(3).setPositionY(510);
+					break ;
+			 case 4 :
+				 	objects.get(4).setPositionX(650);
+					objects.get(4).setPositionY(510);
+					break ;
+			 case 5 :
+				 	objects.get(5).setPositionX(690);
+				 	objects.get(5).setPositionY(540);
+				 	break;
+			 case 6 :
+				 	objects.get(6).setPositionX(730);
+				 	objects.get(6).setPositionY(580);
+				 	break;
+			 }
+
+			 		for (int i = 0; i < 7; i++) {
+			 			objects.get(i).update();
+						objects.get(i).render(gc);
+					}
+					 objectNumber = 0;
+		 }
+		 
+	 }
+ }
 for(int  k =2 ; k<7 ; k++) {
 	if(objects.get(k).getPositionX() == 400) {
 		flag1 = true;
@@ -535,38 +590,31 @@ else if(flag1 == true && flag2 == false) {
 
 }
 else if (objects.get(objectNumber).intersects(objects.get(1))) {
-if(objectNumber==2)
-{
-objects.get(2).setPositionX(60);
-objects.get(2).setPositionY(581);
 
-}
-if(objectNumber==3)
-{
-objects.get(3).setPositionX(50);
-objects.get(3).setPositionY(550);
+	switch (objectNumber) {
+	case 2: 
+		objects.get(objectNumber).setPositionX(60); 
+		objects.get(objectNumber).setPositionY(581);
+		break;
+	case 3 : 
+		objects.get(objectNumber).setPositionX(50);
+		objects.get(objectNumber).setPositionY(550);
+		break;
+	case 4 :
+		objects.get(objectNumber).setPositionX(40);
+		objects.get(objectNumber).setPositionY(570);
+		break ;
+	case 5 :
+		objects.get(objectNumber).setPositionX(30);
+		objects.get(objectNumber).setPositionY(570);
+		break;
+	case 6 :
+		objects.get(objectNumber).setPositionX(0);
+		objects.get(objectNumber).setPositionY(570);
+		break ;
+	}
+	objectNumber = 0;
 
-}
-if(objectNumber==4)
-{
-
-objects.get(3).setPositionX(40);
-objects.get(3).setPositionY(570);
-
-}
-if(objectNumber==5)
-{
-objects.get(5).setPositionX(30);
-objects.get(5).setPositionY(570);
-
-}
-if(objectNumber==6)
-{
-
-objects.get(6).setPositionX(0);
-objects.get(6).setPositionY(570);
-
-}
 
 
 }
@@ -576,36 +624,32 @@ objects.get(objectNumber).setPositionY(500);
 objectNumber = 0;
 }
 else if( objects.get(objectNumber).intersects(objects.get(1))) {
-if(objectNumber==2)
-{
-objects.get(2).setPositionX(570);
-objects.get(2).setPositionY(500);
+	switch (objectNumber) {
+	case 2 :
+			objects.get(2).setPositionX(570);
+			objects.get(2).setPositionY(500);
+			break;
+	case 3 :
 
-}
-if(objectNumber==3)
-{
-objects.get(3).setPositionX(590);
-objects.get(3).setPositionY(510);
+			objects.get(3).setPositionX(590);
+			objects.get(3).setPositionY(510);
+			break;
+	case 4 :
+			objects.get(4).setPositionX(650);
+			objects.get(4).setPositionY(510);
+			break ;
+	case 5 :
 
-}
-if(objectNumber==4)
-{
-objects.get(4).setPositionX(650);
-objects.get(4).setPositionY(510);
+			objects.get(5).setPositionX(690);
+			objects.get(5).setPositionY(540);
+			break;
+	case 6 :
+			objects.get(6).setPositionX(730);
+			objects.get(6).setPositionY(580);
+			break;
 
-}
-if(objectNumber==5)
-{
-objects.get(5).setPositionX(690);
-objects.get(5).setPositionY(540);
-
-}
-if(objectNumber==6)
-{
-objects.get(6).setPositionX(730);
-objects.get(6).setPositionY(580);
-
-}
+		
+	}
 
 
 }

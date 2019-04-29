@@ -33,8 +33,8 @@ public class Level1 extends IGameLevel {
 	private Random rand = new Random();
 	// private Image [] image = new Image[6];
 	public Level1() {
-		int ran1 = rand.nextInt(1);
-		int ran2 = rand.nextInt(1);
+		int ran1 = rand.nextInt(2);
+		int ran2 = rand.nextInt(2);
 		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/background.jpg" ) ));
 		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/boat.jpg")));
 		objects.add( new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/farmer.png")));
@@ -43,9 +43,10 @@ public class Level1 extends IGameLevel {
 			objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/lion.png")));
 		//else
 			//hagib wolf bas not now w y add it here 
-		//if (ran2 == 0)
+		if (ran2 == 0)
 			objects.add( new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/sheep.png")));
-		//else
+		else
+			objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/goat.png")));
 			// hagib b2a el goat			
 		objects.get(1).setPositionX(500);
 		objects.get(1).setPositionY(600);
@@ -61,9 +62,6 @@ public class Level1 extends IGameLevel {
 		
 	}
 	
-	/*public Level1(Stage stage1) {
-		stage = stage1;
-	}*/
 	public void moveOnAction(GraphicsContext gc) {
 		if(objects.get(1).getPositionX() == 500){
 			objects.get(1).addDeltaX(-350);
@@ -92,9 +90,43 @@ public class Level1 extends IGameLevel {
 					}
 			}
 	}
+	
+	
 	public int animationSet(GraphicsContext gc) {
+		boolean flag1 = false;
+		for (int k =3 ; k< 6 ; k++) {
+			if(objects.get(k).getPositionX() == 580 || objects.get(k).getPositionX() == 650 || objects.get(k).getPositionX() == 730){
+				if(objects.get(k).intersects(temp)) {
+					if(objects.get(1).getPositionX() == 500) {
+						for(int i =3 ; i<6 ; i++) {
+							if(objects.get(i).getPositionX() == 620) {
+								flag1 = true;
+							}
+						}
+					}
+				}
+			}
+				
+			}/*objects.get(1).setPositionX(400);
+	objects.get(1).setPositionY(500);
+	objects.get(2).setPositionX(550);
+	objects.get(2).setPositionY(500);
+	objects.get(3).setPositionX(590);
+	objects.get(3).setPositionY(510);
+	objects.get(4).setPositionX(650);
+	objects.get(4).setPositionY(510);
+	objects.get(5).setPositionX(690);
+	objects.get(5).setPositionY(540);
+	
+	
+	objects.get(6).setPositionX(730);
+	
+	
+	objects.get(6).setPositionY(580);*/
+		
+		
 			for(int k =3 ;k<6; k++) {
-			if(objects.get(k).getPositionX() == 620) {
+			if(objects.get(k).getPositionX() == 620 && objectNumber != 0) {
 				if(objects.get(k).getPositionX() == 620 && temp.intersects(objects.get(k)))
 				{
 					switch (k) {
@@ -118,11 +150,13 @@ public class Level1 extends IGameLevel {
 						objects.get(i).render(gc);
 					}
 				objectNumber = 0;
-			//new position is 270
 		
 				}
 				}
 			}
+	
+			
+			if(!flag1) {
 		if (objectNumber != 0 ) {
 			if(objects.get(1).getPositionX() == 500) {
 			objects.get(objectNumber).setPositionX(620);
@@ -141,26 +175,7 @@ public class Level1 extends IGameLevel {
 						objects.get(objectNumber).setPositionX(100);
 						objects.get(objectNumber).setPositionY(500);
 				}
-				/*boolean flag1 = false;
-				boolean flag2 = false;
-				for(int l =3 ; l<6 ; l++) {
-					if(objects.get(l).getPositionX() == 50) {
-						flag1 = true;
-					}
-					else if (objects.get(l).getPositionX()==1) {
-						flag2 = true;
-					}
-				}
-				if(!(flag1 || flag2)) 
-					objects.get(objectNumber).setPositionX(50);
-				else if (flag1 && flag2 == false)
-					objects.get(objectNumber).setPositionX(1);
-				else {
-					objects.get(objectNumber).setPositionX(100);
-					objects.get(objectNumber).setPositionY(500);
-
-				}*/
-				objectNumber = 0;
+								objectNumber = 0;
 			}
 			else 
 				objectNumber = 0;
@@ -170,32 +185,10 @@ public class Level1 extends IGameLevel {
 			}
 
 		}
+	}
 		
 	/*}*/
-		/* if(objects.get(1).getPositionX() == 150) {
-			 //System.out.println(objects.get(1).getPositionX() );
-			// System.out.println(x);
-			for(int k =3 ; k< 6 ; k++) {
-				if(objects.get(k).intersects(temp) && objects.get(k).getPositionX() != 270) {
-					System.out.println(objects.get(k).getPositionX());
-					for(int i =3 ; i <6 ; i++) {
-						if(objects.get(i).getPositionX() == 270)
-							objectNumber = 0;
-						x = 0;
-					}
-				//	System.out.println(x);
-				}
-			}
-			if(x != 0 && (objects.get(x).getPositionX() != 270  )) {
-				System.out.println(x);
-				System.out.println(objects.get(x).getPositionX());
-					objects.get(x).setPositionX(270);
-					objects.get(x).setPositionY(580);
-					objectNumber = 0;
-					x = 0;
-			}
-					//}
-		*/
+		
 		for(int k =3 ; k<6 ; k++) {
 			if(objects.get(k).getPositionX() == 50 || objects.get(k).getPositionX() == 1 || objects.get(k).getPositionX() == 100) {
 				if(objects.get(k).intersects(temp)) {
