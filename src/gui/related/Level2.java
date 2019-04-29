@@ -22,13 +22,19 @@ public class Level2 extends IGameLevel {
 
 	public Level2() {
 
-		objects.add(new Sprite(new Image("file:src/gui/related/background.jpg")));
-		objects.add(new Sprite(new Image("file:src/gui/related/boat2.png", 170, 170, false, false)));
-		objects.add(new Sprite(new Image("file:src/gui/related/farmer1.png", 80, 80, false, false)));
-		objects.add(new Sprite(new Image("file:src/gui/related/farmer3.png", 110, 110, false, false)));
-		objects.add(new Sprite(new Image("file:src/gui/related/farmer2.png", 70, 70, false, false)));
-		objects.add(new Sprite(new Image("file:src/gui/related/farmer4.png", 70, 70, false, false)));
-		objects.add(new Sprite(new Image("file:src/gui/related/animallevel2.png", 70, 70, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/background.jpg")));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/boat2.png", 170,
+				170, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer1.png", 80,
+				80, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer3.png", 110,
+				110, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer2.png", 70,
+				70, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer4.png", 70,
+				70, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/animallevel2.png",
+				70, 70, false, false)));
 
 		objects.get(1).setPositionX(400);
 		objects.get(1).setPositionY(500);
