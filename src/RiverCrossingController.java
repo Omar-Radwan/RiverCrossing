@@ -1,3 +1,4 @@
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -264,7 +265,6 @@ public class RiverCrossingController implements IRiverCrossingController {
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					}
-					System.out.println("done");
 				} catch (TransformerException e) {
 					e.printStackTrace();
 				}
