@@ -23,8 +23,8 @@ public class HomeScreen {
 //private Image image;
 	private Stage stage;
 	private Scene scenehomescreen;
+
 	private IGameLevel gameLevel;
-	private Level level;
 	private IRiverCrossingController controller;
 
 	public HomeScreen(Stage stage1) {
@@ -35,9 +35,6 @@ public class HomeScreen {
 	public void Homescreen() {
 
 		VBox label = new VBox();
-		// Label l1 = new Label("River Crossing puzzle");
-		// label.getChildren().add(l1);
-		// label.setAlignment(Pos.CENTER);
 		HBox buttons = new HBox(10);
 		Button level1 = new Button("Level 1");
 		level1.setStyle("-fx-font-size: 15pt;");
@@ -49,8 +46,6 @@ public class HomeScreen {
 				controller.newGame(new Level1Model());
 				gameLevel = new Level1();
 				gameLevel.selectlevel(gameLevel, stage);
-		
-			
 
 			}
 		});
@@ -86,12 +81,16 @@ public class HomeScreen {
 		VBox vb = new VBox(10);
 		vb.getChildren().addAll(label, buttons, grid);
 
-		Image img = new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/homeground.png");
+		Image img = new Image("file:src/gui/related/homeground.png");
+
 		BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+
 		vb.setBackground(new Background(bgImg));
+
 		scenehomescreen = new Scene(vb, 800, 800);
+
 		stage.setScene(scenehomescreen);
 
 	}

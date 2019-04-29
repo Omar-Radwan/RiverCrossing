@@ -1,23 +1,17 @@
 package gui.related;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import controller.ImageDetail;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
 public class Level1 extends IGameLevel {
-	private Stage stage;
-	// private Sprite[] objects = new Sprite[6];
-	// Sprite temp = new Sprite();
-	// private int score=0;
+
 	static int objectNumber = 0;
 	static int x;
 	static ArrayList<Sprite> objects = new ArrayList<Sprite>();
-	private Random rand = new Random();
 
 	// private Image [] image = new Image[6];
 	public Level1(ImageDetail[] imagesDetails) {
@@ -27,12 +21,13 @@ public class Level1 extends IGameLevel {
 		objects.get(1).setPositionX(500);
 		objects.get(1).setPositionY(600);
 		draw(imagesDetails);
-		
+
 		// hagib wolf bas not now w y add it here
 
 	}
+
 	public Level1() {
-		
+
 	}
 
 	public void moveOnAction(GraphicsContext gc) {

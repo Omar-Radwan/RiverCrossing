@@ -25,13 +25,18 @@ import javafx.stage.Stage;
 public abstract class Level {
 
 	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
-	private GraphicsContext gc; /* canvas.getGraphicsContext2D(); */
+	private GraphicsContext gc;
+
 	private Canvas canvas = new Canvas(800, 800);
+
 	Group root = new Group();
+
 	private int score = 0;
 	static Stage stage;
+
 	Sprite temp = new Sprite();
 	int objectNumber = 0;
+
 	IRiverCrossingController controller = RiverCrossingController.getInstance();
 
 	public Level() {
@@ -45,7 +50,6 @@ public abstract class Level {
 		DropShadow shadow2 = new DropShadow();
 		Button redo = new Button("Redo");
 		redo.setEffect(shadow2);
-		// redo.setStyle("-fx-font-size: 10pt;");
 		redo.setLayoutY(0);
 		redo.setLayoutX(750);
 		redo.setOnAction(new EventHandler<ActionEvent>() {
@@ -134,12 +138,10 @@ public abstract class Level {
 		move.setEffect(shadow1);
 
 		move.setOnAction(new EventHandler<ActionEvent>() {
-			
-		
+
 			@Override
 			public void handle(ActionEvent arg0) {
-				
-				
+
 				if (g instanceof Level2) {
 					if (Level2.flag)
 						score++;

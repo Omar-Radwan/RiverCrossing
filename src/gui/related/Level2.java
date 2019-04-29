@@ -2,6 +2,7 @@ package gui.related;
 
 import java.util.ArrayList;
 
+import controller.ImageDetail;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -566,6 +567,12 @@ public class Level2 extends IGameLevel {
 		flag2 = false;
 
 		return objectNumber;
+	}
+
+	@Override
+	public void draw(ImageDetail[] imageDetails) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
