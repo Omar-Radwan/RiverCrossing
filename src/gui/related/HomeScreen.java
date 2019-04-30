@@ -33,6 +33,7 @@ public class HomeScreen {
 	}
 
 	public void Homescreen() {
+		Level.stage = stage;
 
 		VBox label = new VBox();
 		HBox buttons = new HBox(10);
@@ -43,9 +44,10 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent e) {
-				controller.newGame(new Level1Model());
-				gameLevel = new Level1();
-				gameLevel.selectlevel(gameLevel, stage);
+				gameLevel = new IGameLevel();
+				gameLevel.selectlevel("level1", stage);
+				controller.setStrategy(new Level1Model());
+				controller.setView(new Level1());
 
 			}
 		});
@@ -54,15 +56,13 @@ public class HomeScreen {
 		level2.setStyle("-fx-font-size: 15pt;");
 
 		buttons.setAlignment(Pos.CENTER);
-		level2.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent e) {
-
-				gameLevel = new Level2();
-				gameLevel.selectlevel(gameLevel, stage);
-			}
-		});
+		/*
+		 * level2.setOnAction(new EventHandler<ActionEvent>() {
+		 * 
+		 * @Override public void handle(ActionEvent e) {
+		 * 
+		 * gameLevel = new Level2(); gameLevel.selectlevel(gameLevel, stage); } });
+		 */
 		buttons.getChildren().addAll(level1, level2);
 		GridPane grid = new GridPane();
 		Button exit = new Button("Exit");

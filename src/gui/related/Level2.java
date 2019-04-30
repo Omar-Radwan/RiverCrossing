@@ -2,7 +2,6 @@ package gui.related;
 
 import java.util.ArrayList;
 
-import controller.ImageDetail;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Level2 extends IGameLevel {
+public class Level2 extends Level {
 	private Stage stage;
 //private Sprite[] objects = new Sprite[7];
 //private int weight = 0;
@@ -340,13 +339,11 @@ public class Level2 extends IGameLevel {
 	 * }
 	 */
 
-	@Override
 	public void makeNewGame() {
 // TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void contGame() {
 // TODO Auto-generated method stub
 
@@ -570,9 +567,9 @@ public class Level2 extends IGameLevel {
 	}
 
 	@Override
-	public void draw(ImageDetail[] imageDetails) {
-		// TODO Auto-generated method stub
-		
+	public void draw() {
+
+
 	}
 
 }

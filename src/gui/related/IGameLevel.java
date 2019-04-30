@@ -1,5 +1,7 @@
 package gui.related;
 
+import controller.RiverCrossingController;
+import controller.interfaces.IRiverCrossingController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -13,13 +15,17 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import level.Level1Model;
 
-public abstract class IGameLevel extends Level {
+public class IGameLevel {
 
-	// Level level;
-	public void selectlevel(Object gameLevel, Stage stage) {
+	IRiverCrossingController controller = RiverCrossingController.getInstance();
+
+	public void selectlevel(String choice, Stage stage) {
+
 		Button newGame = new Button("New game");
 		Button loadGame = new Button("Continue");
+
 		newGame.setStyle("-fx-font-size: 15pt;");
 		loadGame.setStyle("-fx-font-size: 15pt;");
 
@@ -27,25 +33,26 @@ public abstract class IGameLevel extends Level {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (gameLevel instanceof Level1) {
-					Level.stage = stage;
-					((Level) gameLevel).game(gameLevel);
-				} else if (gameLevel instanceof Level2) {
-					Level.stage = stage;
-					((Level) gameLevel).game(gameLevel);
-
-				}
+				if (choice.equals("level1")) {
+					controller.newGame(new Level1Model());
+				} /*
+					 * else if (gameLevel instanceof Level2) { Level.stage = stage; ((Level)
+					 * gameLevel).game(gameLevel);
+					 * 
+					 * }
+					 */
 
 			}
 		});
+
 		loadGame.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-
+				controller.loadGame();
 			}
 		});
+
 		VBox vb = new VBox(10);
 		vb.setAlignment(Pos.TOP_CENTER);
 		vb.getChildren().addAll(newGame, loadGame);
@@ -59,11 +66,5 @@ public abstract class IGameLevel extends Level {
 		stage.setScene(scene);
 
 	}
-
-	// ha3mel beha new game
-	public abstract void makeNewGame();
-
-	// ha3mel beha continue lel game fa lazem a2ra mel file
-	public abstract void contGame();
 
 }

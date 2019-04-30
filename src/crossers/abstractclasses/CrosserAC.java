@@ -2,10 +2,6 @@ package crossers.abstractclasses;
 
 import java.awt.image.BufferedImage;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
@@ -18,7 +14,7 @@ public abstract class CrosserAC implements ICrosser {
 	protected BufferedImage[] images;
 	protected static BufferedImagesGetter bufferedImageFactory;
 	protected static ICrossersFactory iCrossersFactory;
-
+	protected int number;
 	// msh3arf di al mfrod tb2a kda wla l2
 	protected String labelToBeShown;
 
@@ -100,6 +96,14 @@ public abstract class CrosserAC implements ICrosser {
 
 	public void setImages(BufferedImage[] images) {
 		this.images = images;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 }

@@ -220,7 +220,7 @@ public class GameState {
 			ICrosser iCrosser = iCrossersFactory.getICrosser(iCrosserProperties.item(0).getTextContent());
 			iCrosser.setWeight(Double.parseDouble(iCrosserProperties.item(1).getTextContent()));
 			iCrosser.setLabelToBeShown(iCrosserProperties.item(2).getTextContent());
-
+			iCrosser.setNumber(Integer.parseInt(iCrosserProperties.item(3).getTextContent()));
 			list.add(iCrosser);
 		}
 	}
@@ -238,18 +238,22 @@ public class GameState {
 		Element typeElement = document.createElement("type");
 		Element weightElement = document.createElement("weight");
 		Element labelToBeShownElement = document.createElement("label-to-be-shown");
+		Element numberElement = document.createElement("number");
 
 		Text typeText = document.createTextNode(iCrossersFactory.iCrosserType(iCrosser));
 		Text weightText = document.createTextNode(Double.toString(iCrosser.getWeight()));
 		Text labelToBeShownText = document.createTextNode(iCrosser.getLabelToBeShown());
+		Text numberText = document.createTextNode(Integer.toString(iCrosser.getNumber()));
 
 		typeElement.appendChild(typeText);
 		weightElement.appendChild(weightText);
 		labelToBeShownElement.appendChild(labelToBeShownText);
+		numberElement.appendChild(numberText);
 
 		iCrosserElement.appendChild(typeElement);
 		iCrosserElement.appendChild(weightElement);
 		iCrosserElement.appendChild(labelToBeShownElement);
+		iCrosserElement.appendChild(numberElement);
 
 		rootElement.appendChild(iCrosserElement);
 	}
@@ -263,14 +267,13 @@ public class GameState {
 
 	public void reset() {
 
-		duplicateList(gameStrategy.getInitialCrossers(), crossersOnLeftBank);
+		duplicateList(gameStrategy.getInitialCrossers(), crossersOnRightBank);
 
-		crossersOnRightBank.clear();
+		crossersOnLeftBank.clear();
 		boatRiders.clear();
 
-		isBoatOnTheLeftBank = true;
+		isBoatOnTheLeftBank = false;
 		numberOfSails = 0;
 	}
-	
 
 }

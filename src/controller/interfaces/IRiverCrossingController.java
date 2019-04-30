@@ -3,6 +3,7 @@ package controller.interfaces;
 import java.util.List;
 
 import crossers.interfaces.ICrosser;
+import gui.related.Level;
 import level.ICrossingStrategy;
 
 public interface IRiverCrossingController {
@@ -51,6 +52,9 @@ public interface IRiverCrossingController {
 
 	public List<List<ICrosser>> solveGame();
 
-	List<ICrosser> getCrossersOnLeftBank();
+
+	public void setStrategy(ICrossingStrategy gameStrategy);
+
+	public void setView(Level levelView);
 
 }

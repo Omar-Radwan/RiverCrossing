@@ -3,6 +3,7 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import controller.RiverCrossingController;
+import controller.interfaces.IRiverCrossingController;
 import crossers.BufferedImagesGetter;
 import crossers.ICrossersFactory;
 import crossers.abstractclasses.CrosserAC;
@@ -10,8 +11,7 @@ import gui.related.HomeScreen;
 //import gui.related.HomeScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import level.ICrossingStrategy;
-import level.Level2Model;
+import level.Level1Model;
 
 public class Main extends Application {
 
@@ -25,6 +25,7 @@ public class Main extends Application {
 
 		bufferedImagesGetter = BufferedImagesGetter.getInstance();
 		System.out.println(bufferedImagesGetter.getLionImages());
+
 
 		launch(args);
 

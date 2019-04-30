@@ -2,15 +2,11 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Stack;
 
 import controller.commands.LoadCommand;
 import controller.commands.SaveCommand;
 import controller.commands.interfaces.Command;
 import controller.interfaces.IRiverCrossingController;
-import crossers.abstractclasses.Carnivorous;
-import crossers.abstractclasses.Herbivorous;
-import crossers.abstractclasses.Plant;
 import crossers.concreteclasses.Farmer;
 import crossers.interfaces.ICrosser;
 import gui.related.Level;
@@ -20,13 +16,11 @@ import level.ICrossingStrategy;
 import level.Level1Model;
 
 public class RiverCrossingController implements IRiverCrossingController {
-
-	private GameState gameState;
 	private HashMap<String, Command> commandMap;
 
-	private Stack<Memento> undoStack;
-	private Stack<Memento> redoStack;
+	private GameState gameState;
 	public Level levelView;
+
 	// singleton
 	private static RiverCrossingController instance;
 
@@ -35,7 +29,6 @@ public class RiverCrossingController implements IRiverCrossingController {
 		gameState = new GameState();
 		commandMap.put("save", new SaveCommand());
 		commandMap.put("load", new LoadCommand());
-
 	};
 
 	public static RiverCrossingController getInstance() {
@@ -67,15 +60,16 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void newGame(ICrossingStrategy gameStrategy) {
 		this.gameState.setGameStrategy(gameStrategy);
+
 		resetGame();
 
 		if (gameStrategy instanceof Level1Model) {
-			levelView = new Level1(getImagesDetails());
+			levelView = new Level1();
 		} else {
 			levelView = new Level2();
 		}
-		getImagesDetails();
 
+		levelView.draw();
 	}
 
 	@Override
@@ -116,6 +110,9 @@ public class RiverCrossingController implements IRiverCrossingController {
 				doMove(crossers, fromLeftToRightBank);
 				return true;
 			} else {
+				for (ICrosser x : crossers) {
+						gameState.getCrossersOnLeftBank().add(x);
+				}
 				return false;
 			}
 
@@ -123,14 +120,17 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 		else {
 			for (ICrosser x : crossers) {
-				gameState.getCrossersOnRightBank().add(x);
+				gameState.getCrossersOnRightBank().remove(x);
 			}
 
-			if (!gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
+			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
 					gameState.getCrossersOnLeftBank(), crossers)) {
 				doMove(crossers, fromLeftToRightBank);
 				return true;
 			} else {
+				for (ICrosser x : crossers) {
+						gameState.getCrossersOnRightBank().add(x);
+				}
 				return false;
 			}
 		}
@@ -144,21 +144,23 @@ public class RiverCrossingController implements IRiverCrossingController {
 			for (ICrosser x : crossers) {
 				gameState.getCrossersOnRightBank().add(x);
 			}
+			gameState.setBoatOnTheLeftBank(false);
 		} else {
 			for (ICrosser x : crossers) {
 				gameState.getCrossersOnLeftBank().add(x);
 			}
+			gameState.setBoatOnTheLeftBank(true);
 		}
 	}
 
 	@Override
 	public boolean canUndo() {
-		return !undoStack.isEmpty();
+		return false;
 	}
 
 	@Override
 	public boolean canRedo() {
-		return !redoStack.isEmpty();
+		return false;
 	}
 
 	@Override
@@ -182,13 +184,14 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void saveGame() {
-		commandMap.get("save").execute();
-
+		// commandMap.get("save").execute();
+		gameState.saveStateToXml();
 	}
 
 	@Override
 	public void loadGame() {
-		commandMap.get("load").execute();
+		gameState.loadFromXml();
+		levelView.draw();
 	}
 
 	/*
@@ -212,11 +215,6 @@ public class RiverCrossingController implements IRiverCrossingController {
 	}
 
 	@Override
-	public List<ICrosser> getCrossersOnLeftBank() {
-		return gameState.getCrossersOnLeftBank();
-	}
-
-	@Override
 	public boolean isBoatOnTheLeftBank() {
 		return gameState.isBoatOnTheLeftBank();
 	}
@@ -226,42 +224,15 @@ public class RiverCrossingController implements IRiverCrossingController {
 		return gameState.getNumberOfSails();
 	}
 
-	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+	@Override
+	public void setStrategy(ICrossingStrategy gameStrategy) {
+		this.gameState.setGameStrategy(gameStrategy);
 
-	public ImageDetail[] getImagesDetails() {
+	}
 
-		ImageDetail[] imageDetails = new ImageDetail[7];
-
-		imageDetails[1] = new ImageDetail(false, null);
-		imageDetails[1].setOnLeft(gameState.isBoatOnTheLeftBank());
-
-		for (ICrosser x : gameState.getCrossersOnRightBank()) {
-			if (x instanceof Farmer) {
-				imageDetails[2] = new ImageDetail(true, x.getImages()[0]);
-			} else if (x instanceof Herbivorous) {
-				imageDetails[4] = new ImageDetail(true, x.getImages()[0]);
-			} else if (x instanceof Carnivorous) {
-				imageDetails[3] = new ImageDetail(true, x.getImages()[0]);
-			} else if (x instanceof Plant) {
-				System.out.println(x.getImages()[0]);
-				imageDetails[5] = new ImageDetail(true, x.getImages()[0]);
-			}
-		}
-
-		for (ICrosser x : gameState.getCrossersOnLeftBank()) {
-			if (x instanceof Farmer) {
-				imageDetails[2] = new ImageDetail(false, x.getImages()[0]);
-			} else if (x instanceof Herbivorous) {
-				imageDetails[5] = new ImageDetail(false, x.getImages()[0]);
-			} else if (x instanceof Carnivorous) {
-				imageDetails[4] = new ImageDetail(false, x.getImages()[0]);
-			} else if (x instanceof Plant) {
-				imageDetails[3] = new ImageDetail(false, x.getImages()[0]);
-			}
-
-		}
-
-		return imageDetails;
+	@Override
+	public void setView(Level levelView) {
+		this.levelView = levelView;
 	}
 
 }

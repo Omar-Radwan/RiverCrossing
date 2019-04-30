@@ -55,21 +55,6 @@ public class Level2Model extends LevelModel {
 		initialCrossers.get(4)
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(4)) + " " + 20 + " Kg");
 
-		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
-		initialCrossers.get(5).setWeight(20);
-		initialCrossers.get(5)
-				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(5)) + " " + 20 + " Kg");
-
-		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
-		initialCrossers.get(6).setWeight(20);
-		initialCrossers.get(6)
-				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(6)) + " " + 20 + " Kg");
-
-		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
-		initialCrossers.get(7).setWeight(20);
-		initialCrossers.get(7)
-				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(7)) + " " + 20 + " Kg");
-
 	}
 
 	protected void fillInstructions() {
