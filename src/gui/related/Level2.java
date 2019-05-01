@@ -19,7 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Level2 extends Level {
-	private Stage stage;
+	//private Stage stage;
 //private Sprite[] objects = new Sprite[7];
 //private int weight = 0;
 	static HBox menu = new HBox();
@@ -96,7 +96,8 @@ public class Level2 extends Level {
 
 		menu.setSpacing(10);
 		menu.getChildren().add((label4));
-		root.getChildren().add(menu);
+
+		
 	}
 
 	/*

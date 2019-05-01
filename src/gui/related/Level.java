@@ -80,7 +80,7 @@ public abstract class Level {
 	}
 
 	public void doTheCommonThingsInAllLevels() {
-
+		
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
 
