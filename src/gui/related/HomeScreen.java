@@ -62,7 +62,7 @@ public class HomeScreen {
 		  
 		  @Override public void handle(ActionEvent e) {
 		  
-		  gameLevel = new IGameLevel(); 
+		  gameLevel = new IGameLevel();
 		  gameLevel.selectlevel("level2", stage);
 		  controller.setStrategy(new Level2Model());
 		  controller.setView(new Level2());

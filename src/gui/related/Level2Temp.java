@@ -1,104 +1,108 @@
-package gui.related;
+ package gui.related;
 
-import java.util.List;
+import com.sun.javafx.geom.AreaOp.AddOp;
 
-import crossers.concreteclasses.Farmer;
-import crossers.interfaces.ICrosser;
 import javafx.animation.AnimationTimer;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.io.InputStream;
+import java.util.ArrayList;
 
-public class Level2 extends Level {
+public class Level2Temp extends IGameLevel {
 	private Stage stage;
 //private Sprite[] objects = new Sprite[7];
 //private int weight = 0;
 	static HBox menu = new HBox();
 //private int score=0;
 //Sprite temp = new Sprite();
-	static int objectNumber = 0;
-
+	static ArrayList<Sprite> objects = new ArrayList<Sprite>();
 	public Level2() {
+		
+		objects.add( new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/background.jpg")));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/boat2.png", 170,
+				170, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer1.png", 80,
+				80, false, false)));
+		objects.add( new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer3.png", 110,
+				110, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer2.png", 70,
+				70, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer4.png", 70,
+				70, false, false)));
+		objects.add(new Sprite(new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/animallevel2.png", 70,
+				70, false, false)));
 
-		objects = new Sprite[7];
+		objects.get(1).setPositionX(400);
+		objects.get(1).setPositionY(500);
+		objects.get(2).setPositionX(580);
+		objects.get(2).setPositionY(480);
+		objects.get(3).setPositionX(590);
+		objects.get(3).setPositionY(510);
+		objects.get(4).setPositionX(650);
+		objects.get(4).setPositionY(510);
+		objects.get(5).setPositionX(690);
+		objects.get(5).setPositionY(540);
+		objects.get(6).setPositionX(730);
+		objects.get(6).setPositionY(580);
 
-		objects[0] = (new Sprite(new Image("file:src/gui/related/background.jpg", 0, 0, false, false)));
-		objects[1] = (new Sprite(new Image("file:src/gui/related/boat2.png", 170, 170, false, false)));
+	Image image = new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer1small.png", 30, 30,
+	false, false);
+	Label label = new Label("90kg");
+	label.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+	label.setGraphic(new ImageView(image));
 
-		/*
-		 * objects[2] = (new Sprite(new Image("file:src/gui/related/farmer1.png", 80,
-		 * 80, false, false))); objects[3] = (new Sprite(new
-		 * Image("file:src/gui/related/farmer3.png", 110, 110, false, false)));
-		 * objects[4] = (new Sprite(new Image("file:src/gui/related/farmer2.png", 70,
-		 * 70, false, false))); objects[5] = (new Sprite(new
-		 * Image("file:src/gui/related/farmer4.png", 70, 70, false, false))); objects[6]
-		 * = (new Sprite(new Image("file:src/gui/related/animallevel2.png", 70, 70,
-		 * false, false)));
-		 */
+	menu.setSpacing(2);
+	menu.getChildren().add((label));
 
-		rightX = new int[] { 0, 400, 580, 590, 650, 690, 730 };
-		rightY = new int[] { 0, 500, 480, 510, 510, 540, 580 };
+	Image image2 = new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer3small.png", 30, 30,
+	false, false);
+	Label label2 = new Label("80kg");
+	label2.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+	label2.setGraphic(new ImageView(image2));
 
-		leftX = new int[] { 0, 200, 110 ,60 ,40 ,10 ,0 };
-		leftY = new int[] { 0, 500, 530, 550 , 550 , 570 , 600  };
+	menu.setSpacing(2);
+	menu.getChildren().add((label2));
 
-		/*
-		 * objects[1].setPositionX(400); objects[1].setPositionY(500);
-		 * 
-		 * objects[2].setPositionX(580); objects[2].setPositionY(480);
-		 * 
-		 * objects[3].setPositionX(590); objects.get(3).setPositionY(510);
-		 * 
-		 * objects.get(4).setPositionX(650); objects.get(4).setPositionY(510);
-		 * 
-		 * objects.get(5).setPositionX(690); objects.get(5).setPositionY(540);
-		 * 
-		 * objects.get(6).setPositionX(730); objects.get(6).setPositionY(580);
-		 */
+	Image image3 = new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer2small.png", 30, 30,
+	false, false);
+	Label label3 = new Label("60kg");
+	label3.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+	label3.setGraphic(new ImageView(image3));
 
-		Image image = new Image("file:src/gui/related/farmer1small.png", 30, 30, false, false);
-		Label label = new Label("90kg");
-		label.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label.setGraphic(new ImageView(image));
+	menu.setSpacing(2);
+	menu.getChildren().add((label3));
 
-		menu.setSpacing(2);
-		menu.getChildren().add((label));
+	Image image4 = new Image("file:///C:/Users/lenovo/git/RiverCrossing/src/gui/related/farmer4small.png", 30, 30,
+	false, false);
+	Label label4 = new Label("40kg");
+	label4.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+	label4.setGraphic(new ImageView(image4));
 
-		Image image2 = new Image("file:src/gui/related/farmer3small.png", 30, 30, false, false);
-		Label label2 = new Label("80kg");
-		label2.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label2.setGraphic(new ImageView(image2));
+	menu.setSpacing(10);
+	menu.getChildren().add((label4));
 
-		menu.setSpacing(2);
-		menu.getChildren().add((label2));
 
-		Image image3 = new Image("file:src/gui/related/farmer2small.png", 30, 30, false, false);
-		Label label3 = new Label("60kg");
-		label3.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label3.setGraphic(new ImageView(image3));
-
-		menu.setSpacing(2);
-		menu.getChildren().add((label3));
-
-		Image image4 = new Image("file:src/gui/related/farmer4small.png", 30, 30, false, false);
-		Label label4 = new Label("40kg");
-		label4.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label4.setGraphic(new ImageView(image4));
-
-		menu.setSpacing(10);
-		menu.getChildren().add((label4));
-		root.getChildren().add(menu);
 	}
 
+	static int objectNumber = 0;
 	/*
 	 * public NewLevel2(Stage stage1) { stage = stage1; }
 	 * 
@@ -350,106 +354,114 @@ public class Level2 extends Level {
 	 * }
 	 */
 
+	@Override
+	public void makeNewGame() {
+// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void contGame() {
+// TODO Auto-generated method stub
+
+	}
 	static boolean flag = false;
 
-	public boolean moveOnAction(GraphicsContext gc) {
+	public void moveOnAction(GraphicsContext gc) {
 		boolean flagMove = false;
 		for (int j = 2; j < 7; j++) {
-			if (objects[1].intersects(objects[j]))
+			if (objects.get(1).intersects(objects.get(j)))
 				flagMove = true;
 		}
 		flag = flagMove;
 
 		if (flagMove) {
 			flagMove = false;
+			
+			if (objects.get(1).getPositionX() == 400) {
 
-			if (objects[1].getPositionX() == 400) {
-
-				objects[1].addDeltaX(-200);
+				objects.get(1).addDeltaX(-200);
 
 				for (int j = 1; j < 7; j++) {
-					if (objects[j].intersects(objects[1])) {
-						objects[j].addDeltaX(-200);
+					if (objects.get(j).intersects(objects.get(1))) {
+						objects.get(j).addDeltaX(-200);
 
 					}
 
 				}
-				/*for (int i = 0; i < 7; i++) {
-					objects[i].update();
-					objects[i].render(gc);
+				for (int i = 0; i < 7; i++) {
+					objects.get(i).update();
+					objects.get(i).render(gc);
 
-				}*/
-				updateAndRender();
+				}
 			}
 
 			else {
-				objects[1].addDeltaX(200);
+				objects.get(1).addDeltaX(200);
 				for (int j = 1; j < 7; j++) {
-					if (objects[j].intersects(objects[1])) {
-						objects[j].addDeltaX(200);
+					if (objects.get(j).intersects(objects.get(1))) {
+						objects.get(j).addDeltaX(200);
 
 					}
 				}
-				/*for (int i = 0; i < 7; i++) {
-					objects[i].update();
-					objects[i].render(gc);
-				}*/
-				updateAndRender();
-				
+				for (int i = 0; i < 7; i++) {
+					objects.get(i).update();
+					objects.get(i).render(gc);
+				}
 			}
 		}
-		return flag;
-		
 	}
 
-	public void animationSet(GraphicsContext gc) {
+	public int animationSet(GraphicsContext gc) {
 		boolean flag1 = false;
 		boolean flag2 = false;
 		for (int k = 2; k < 7; k++) {
-			if (objects[k].getPositionX() == 580 || objects[k].getPositionX() == 590 || objects[k].getPositionX() == 650
-					|| objects[k].getPositionX() == 690 || objects[k].getPositionX() == 730) {
-				if (objects[k].intersects(temp)) {
-					if (objects[1].getPositionX() == 400) {
+			if (objects.get(k).getPositionX() == 580 || objects.get(k).getPositionX() == 590
+					|| objects.get(k).getPositionX() == 650 || objects.get(k).getPositionX() == 690
+					|| objects.get(k).getPositionX() == 730) {
+				if (objects.get(k).intersects(temp)) {
+					if (objects.get(1).getPositionX() == 400) {
 						for (int i = 2; i < 7; i++) {
-							if (objects[i].getPositionX() == 400)
+							if (objects.get(i).getPositionX() == 400)
 								flag1 = true;
-							else if (objects[i].getPositionX() == 480)
+							else if (objects.get(i).getPositionX() == 480)
 								flag2 = true;
 						}
 					}
 				}
+
 			}
 		}
 		for (int k = 2; k < 7; k++) {
-			if ((objects[k].getPositionX() == 400 || objects[k].getPositionX() == 480) && objectNumber != 0) {
-				if ((objects[k].getPositionX() == 400 || objects[k].getPositionX() == 480)
-						&& temp.intersects(objects[k])) {
+			if ((objects.get(k).getPositionX() == 400 || objects.get(k).getPositionX() == 480) && objectNumber != 0) {
+				if ((objects.get(k).getPositionX() == 400 || objects.get(k).getPositionX() == 480)
+						&& temp.intersects(objects.get(k))) {
 					switch (k) {
 					case 2:
-						objects[2].setPositionX(580);
-						objects[2].setPositionY(480);
+						objects.get(2).setPositionX(580);
+						objects.get(2).setPositionY(480);
 						break;
 					case 3:
-						objects[3].setPositionX(590);
-						objects[3].setPositionY(510);
+						objects.get(3).setPositionX(590);
+						objects.get(3).setPositionY(510);
 						break;
 					case 4:
-						objects[4].setPositionX(650);
-						objects[4].setPositionY(510);
+						objects.get(4).setPositionX(650);
+						objects.get(4).setPositionY(510);
 						break;
 					case 5:
-						objects[5].setPositionX(690);
-						objects[5].setPositionY(540);
+						objects.get(5).setPositionX(690);
+						objects.get(5).setPositionY(540);
 						break;
 					case 6:
-						objects[6].setPositionX(730);
-						objects[6].setPositionY(580);
+						objects.get(6).setPositionX(730);
+						objects.get(6).setPositionY(580);
 						break;
 					}
 
 					for (int i = 0; i < 7; i++) {
-						objects[i].update();
-						objects[i].render(gc);
+						objects.get(i).update();
+						objects.get(i).render(gc);
 					}
 					objectNumber = 0;
 				}
@@ -457,100 +469,101 @@ public class Level2 extends Level {
 			}
 		}
 		for (int k = 2; k < 7; k++) {
-			if (objects[k].getPositionX() == 400) {
+			if (objects.get(k).getPositionX() == 400) {
 				flag1 = true;
-			} else if (objects[k].getPositionX() == 480)
+			} else if (objects.get(k).getPositionX() == 480)
 				flag2 = true;
 		}
 		if (flag1 == true && flag2 == true)
 			objectNumber = 0;
 		if (objectNumber != 0) {
-			if (objects[1].getPositionX() == 400) {
-				if ((flag1 == false && flag2 == false) || (flag1 == false && flag2 == true)) {
-					objects[objectNumber].setPositionX(400);
-					objects[objectNumber].setPositionY(500);
+
+			if (objects.get(1).getPositionX() == 400) {
+				if (flag1 == false && flag2 == false) {
+					objects.get(objectNumber).setPositionX(400);
+					objects.get(objectNumber).setPositionY(500);
 					objectNumber = 0;
 				} else if (flag1 == true && flag2 == false) {
-					objects[objectNumber].setPositionX(480);
-					objects[objectNumber].setPositionY(500);
+					objects.get(objectNumber).setPositionX(480);
+					objects.get(objectNumber).setPositionY(500);
 					objectNumber = 0;
 				}
-				flag1 = false;
+				flag1 =false;
 				flag2 = false;
 
-			} else if (objects[objectNumber].intersects(objects[1])) {
+			}
+			else if (objects.get(objectNumber).intersects(objects.get(1))) {
 
 				switch (objectNumber) {
 				case 2:
-					objects[objectNumber].setPositionX(110);
-					objects[objectNumber].setPositionY(530);
+					objects.get(objectNumber).setPositionX(110);
+					objects.get(objectNumber).setPositionY(530);
 					break;
 				case 3:
-					objects[objectNumber].setPositionX(60);
-					objects[objectNumber].setPositionY(550);
+					objects.get(objectNumber).setPositionX(60);
+					objects.get(objectNumber).setPositionY(550);
 					break;
 				case 4:
-					objects[objectNumber].setPositionX(40);
-					objects[objectNumber].setPositionY(550);
+					objects.get(objectNumber).setPositionX(40);
+					objects.get(objectNumber).setPositionY(550);
 					break;
 				case 5:
-					objects[objectNumber].setPositionX(10);
-					objects[objectNumber].setPositionY(570);
+					objects.get(objectNumber).setPositionX(10);
+					objects.get(objectNumber).setPositionY(570);
 					break;
 				case 6:
-					objects[objectNumber].setPositionX(0);
-					objects[objectNumber].setPositionY(600);
+					objects.get(objectNumber).setPositionX(0);
+					objects.get(objectNumber).setPositionY(600);
 					break;
 				}
 				objectNumber = 0;
 
-			} else if (objects[1].getPositionX() == 200) {
+			} else if (objects.get(1).getPositionX() == 200) {
 				flag1 = false;
 				flag2 = false;
 				for (int k = 2; k < 7; k++) {
-					if (objects[k].getPositionX() == 200) {
+					if (objects.get(k).getPositionX() == 200) {
 						flag1 = true;
-					} else if (objects[k].getPositionX() == 280)
+					} else if (objects.get(k).getPositionX() == 280)
 						flag2 = true;
 				}
-				/*
-				 * objects.get(objectNumber).setPositionX(200);
-				 * objects.get(objectNumber).setPositionY(500); objectNumber = 0;
-				 */
-				if ((flag1 == false && flag2 == false) || (flag1 == false && flag2==true)) {
-					objects[objectNumber].setPositionX(200);
-					objects[objectNumber].setPositionY(500);
+				/*objects.get(objectNumber).setPositionX(200);
+				objects.get(objectNumber).setPositionY(500);
+				objectNumber = 0;*/
+				if (flag1 == false && flag2 == false) {
+					objects.get(objectNumber).setPositionX(200);
+					objects.get(objectNumber).setPositionY(500);
 					objectNumber = 0;
 				} else if (flag1 == true && flag2 == false) {
-					objects[objectNumber].setPositionX(280);
-					objects[objectNumber].setPositionY(500);
+					objects.get(objectNumber).setPositionX(280);
+					objects.get(objectNumber).setPositionY(500);
 					objectNumber = 0;
 				}
-				flag1 = false;
+				flag1 =false;
 				flag2 = false;
-			} else if (objects[objectNumber].intersects(objects[1])) {
+			} else if (objects.get(objectNumber).intersects(objects.get(1))) {
 				switch (objectNumber) {
 				case 2:
-					objects[2].setPositionX(570);
-					objects[2].setPositionY(500);
+					objects.get(2).setPositionX(570);
+					objects.get(2).setPositionY(500);
 					break;
 				case 3:
 
-					objects[3].setPositionX(590);
-					objects[3].setPositionY(510);
+					objects.get(3).setPositionX(590);
+					objects.get(3).setPositionY(510);
 					break;
 				case 4:
-					objects[4].setPositionX(650);
-					objects[4].setPositionY(510);
+					objects.get(4).setPositionX(650);
+					objects.get(4).setPositionY(510);
 					break;
 				case 5:
 
-					objects[5].setPositionX(690);
-					objects[5].setPositionY(540);
+					objects.get(5).setPositionX(690);
+					objects.get(5).setPositionY(540);
 					break;
 				case 6:
-					objects[6].setPositionX(730);
-					objects[6].setPositionY(580);
+					objects.get(6).setPositionX(730);
+					objects.get(6).setPositionY(580);
 					break;
 
 				}
@@ -558,100 +571,15 @@ public class Level2 extends Level {
 			}
 
 			for (int i = 0; i < 7; i++) {
-				objects[i].update();
-				objects[i].render(gc);
+				objects.get(i).update();
+				objects.get(i).render(gc);
 			}
 
 		}
 		flag1 = false;
 		flag2 = false;
-		//System.out.println(objects[objectNumber].getPositionX());
 
-		//return objectNumber;
-	}
-
-	@Override
-	public void draw() {
-
-		setBoatPosition();
-		setCrossersPositionsAndImages();
-		doTheCommonThingsInAllLevels();
-		renderObjects();
-
-		new AnimationTimer() {
-
-			@Override
-			public void handle(long now) {
-				 animationSet(gc);
-			}
-		}.start();
-
-		//moveOnAction(gc);
-move.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				List<ICrosser> crossersOnBoat = buildCrossersOnBoat();
-				
-				if (controller.canMove(crossersOnBoat, controller.isBoatOnTheLeftBank())) {
-					score++;
-					updateScoreLabel();
-					moveOnAction(gc);
-					if (controller.getCrosserOnLeftBank().size() == 5) {
-						//JOptionPane.showMessageDialog(null, "You Won!");
-					}
-				} else {
-					System.out.println("errrrrrrrrrr");
-				}
-
-			}
-		});
-
-level.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-	@Override
-	public void handle(MouseEvent event) {
-		temp.setPositionX(event.getX());
-		temp.setPositionY(event.getY());
-		for (int i = 2; i < 7; i++) {
-			if (objects[i].intersects(temp)) {
-				objectNumber = i;
-				//animationSet(gc);
-				//Level2. = objectNumber;
-			}
-		}
-		//System.out.println(objectNumber);
-
-	}
-
-});
-
-		
-	}
-
-	
-
-	public void setCrossersPositionsAndImages() {
-		for (ICrosser x : controller.getCrosserOnLeftBank()) {
-			int indx = x.getNumber();
-			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[0], null)
-					: SwingFXUtils.toFXImage(x.getImages()[0], null);
-
-			objects[indx] = new Sprite(image);
-			objects[indx].setPositionX(leftX[indx]);
-			objects[indx].setPositionY(leftY[indx]);
-		}
-		System.out.println(controller.getCrossersOnRightBank());
-		for (ICrosser x : controller.getCrossersOnRightBank()) {
-			int indx = x.getNumber();
-			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[0], null)
-					: SwingFXUtils.toFXImage(x.getImages()[0], null);
-
-			objects[indx] = new Sprite(image);
-			objects[indx].setPositionX(rightX[indx]);
-			objects[indx].setPositionY(rightY[indx]);
-
-		}
+		return objectNumber;
 	}
 
 }

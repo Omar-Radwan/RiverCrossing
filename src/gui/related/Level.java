@@ -17,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -208,11 +209,11 @@ public abstract class Level {
 	}
 
 	// bt set al positon bta3 al boat 3la 7asab hwa mgod ymen wla shmal
-	public void setBoatPosition() {
+	public void setBoatPosition() { 
 
 		if (controller.isBoatOnTheLeftBank()) {
 			objects[1].setPositionX(leftX[1]);
-			objects[1].setPositionY(leftX[1]);
+			objects[1].setPositionY(leftY[1]);
 		} else {
 			objects[1].setPositionX(rightX[1]);
 			objects[1].setPositionY(rightY[1]);
@@ -250,6 +251,7 @@ public abstract class Level {
 		return crossersOnBoat;
 
 	}
+
 
 	// codes to look at
 
