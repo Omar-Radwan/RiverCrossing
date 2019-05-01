@@ -54,7 +54,7 @@ public class Level2Model extends LevelModel {
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(3)) + " " + 40 + " Kg");
 		initialCrossers.get(3).setNumber(5);
 
-		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
+		initialCrossers.add(iCrossersFactory.getICrosser("horse"));
 		initialCrossers.get(4).setWeight(20);
 
 		initialCrossers.get(4)

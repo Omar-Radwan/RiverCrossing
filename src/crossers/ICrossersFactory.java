@@ -5,6 +5,7 @@ import java.util.Random;
 import crossers.concreteclasses.Carrot;
 import crossers.concreteclasses.Farmer;
 import crossers.concreteclasses.Goat;
+import crossers.concreteclasses.Horse;
 import crossers.concreteclasses.Lion;
 import crossers.concreteclasses.Sheep;
 import crossers.concreteclasses.Wolf;
@@ -40,6 +41,8 @@ public class ICrossersFactory {
 			return new Sheep();
 		} else if (type.equalsIgnoreCase("carrot")) {
 			return new Carrot();
+		} else if (type.equalsIgnoreCase("horse")) {
+			return new Horse();
 		} else {
 			return null;
 		}

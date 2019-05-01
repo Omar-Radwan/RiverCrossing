@@ -41,6 +41,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void undo() {
 		gameState.undo(careTaker.undo());
+		
 		levelView.draw();
 	}
 

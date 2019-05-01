@@ -15,11 +15,13 @@ public class Memento {
 	
 	public Memento(List<ICrosser> crossersOnRightBank , List<ICrosser> crossersOnLeftBank, List<ICrosser> boatRiders,
 			boolean isBoatOnTheLeftBank, int numberOfSails) {
+		
 		duplicateList(crossersOnLeftBank, this.crossersOnLeftBank);
 		duplicateList(crossersOnRightBank, this.crossersOnRightBank);
 		duplicateList(boatRiders, this.boatRiders);
 		this.numberOfSails = numberOfSails;
 		this.isBoatOnTheLeftBank = isBoatOnTheLeftBank;
+	
 	}
 
 	public List<ICrosser> getCrossersOnRightBank() {

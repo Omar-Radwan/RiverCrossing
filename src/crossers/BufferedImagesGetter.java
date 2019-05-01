@@ -38,6 +38,7 @@ public class BufferedImagesGetter {
 
 		iCrossersTypes.add("goat");
 		iCrossersTypes.add("plant");
+		iCrossersTypes.add("horse");
 
 		for (String type : iCrossersTypes) {
 			BufferedImage[] bufferedImages;
@@ -87,6 +88,10 @@ public class BufferedImagesGetter {
 
 	public BufferedImage[] getCarrotImages() {
 		return bufferedImageMap.get("plant");
+	}
+
+	public BufferedImage[] getHorseImages() {
+		return bufferedImageMap.get("horse");	
 	}
 
 }
