@@ -40,7 +40,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void undo() {
-		gameState.undo(careTaker.undo());
+		gameState.undo(careTaker.undo(gameState.save()));
 
 		levelView.setCrossersPositionsAndImages();
 		levelView.setBoatPosition();
@@ -49,7 +49,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void redo() {
-		gameState.redo(careTaker.redo());
+		gameState.redo(careTaker.redo(gameState.save()));
 		levelView.setCrossersPositionsAndImages();
 		levelView.setBoatPosition();
 		levelView.renderObjects();
@@ -158,6 +158,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
+		careTaker.resetRedoStack();
 
 		if (fromLeftToRightBank) {
 			for (ICrosser x : crossers) {

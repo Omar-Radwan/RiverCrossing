@@ -32,15 +32,15 @@ public class CareTaker {
 		redoStack.clear();
 	}
 
-	public Memento undo() {
+	public Memento undo(Memento m) {
 		Memento M = undoStack.pop();
-		redoStack.push(M);
+		redoStack.push(m);
 		return M;
 	}
 
-	public Memento redo() {
+	public Memento redo(Memento m) {
 		Memento M = redoStack.pop();
-		undoStack.push(M);
+		undoStack.push(m);
 		return M;
 	}
 	public boolean isRedoStackEmpty()
