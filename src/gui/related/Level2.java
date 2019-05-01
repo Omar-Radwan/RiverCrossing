@@ -635,7 +635,7 @@ level.setOnMousePressed(new EventHandler<MouseEvent>() {
 	public void setCrossersPositionsAndImages() {
 		for (ICrosser x : controller.getCrosserOnLeftBank()) {
 			int indx = x.getNumber();
-			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[0], null)
+			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[indx-2], null)
 					: SwingFXUtils.toFXImage(x.getImages()[0], null);
 
 			objects[indx] = new Sprite(image);
@@ -645,9 +645,9 @@ level.setOnMousePressed(new EventHandler<MouseEvent>() {
 		System.out.println(controller.getCrossersOnRightBank());
 		for (ICrosser x : controller.getCrossersOnRightBank()) {
 			int indx = x.getNumber();
-			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[0], null)
+			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[indx-2], null)
 					: SwingFXUtils.toFXImage(x.getImages()[0], null);
-
+			System.out.println((int)(indx-2)+" height "+image.getHeight()+" width "+image.getWidth());
 			objects[indx] = new Sprite(image);
 			objects[indx].setPositionX(rightX[indx]);
 			objects[indx].setPositionY(rightY[indx]);
