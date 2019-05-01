@@ -2,8 +2,6 @@ package gui.related;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import crossers.interfaces.ICrosser;
 import javafx.animation.AnimationTimer;
 import javafx.embed.swing.SwingFXUtils;
@@ -44,10 +42,9 @@ public class Level1 extends Level {
 					objects[j].addDeltaX(-350);
 				}
 			}
-			/*for (int i = 0; i < 6; i++) {
-				objects[i].update();
-				objects[i].render(gc);
-			}*/
+			/*
+			 * for (int i = 0; i < 6; i++) { objects[i].update(); objects[i].render(gc); }
+			 */
 			updateAndRender();
 		} else {
 			objects[1].addDeltaX(350);
@@ -88,10 +85,9 @@ public class Level1 extends Level {
 					objects[k].setPositionX(rightX[k]);
 					objects[k].setPositionY(rightY[k]);
 
-				/*	for (int i = 0; i < 6; i++) {
-						objects[i].update();
-						objects[i].render(gc);
-					}*/
+					/*
+					 * for (int i = 0; i < 6; i++) { objects[i].update(); objects[i].render(gc); }
+					 */
 					updateAndRender();
 					objectNumber = 0;
 
@@ -175,7 +171,7 @@ public class Level1 extends Level {
 					updateScoreLabel();
 					moveOnAction(gc);
 					if (controller.getCrosserOnLeftBank().size() == 4) {
-						//JOptionPane.showMessageDialog(null, "You Won!");
+						// JOptionPane.showMessageDialog(null, "You Won!");
 					}
 				} else {
 					System.out.println("errrrrrrrrrr");
@@ -207,7 +203,7 @@ public class Level1 extends Level {
 	// function btgeb al sowar bta3t al objecs mn al list of crossers al fl
 	// controller
 	// w btrsm kol crosser f al ganb al almfrod yb2a mwgod fih
-
+	@Override
 	public void setCrossersPositionsAndImages() {
 		for (ICrosser x : controller.getCrosserOnLeftBank()) {
 			Image image = SwingFXUtils.toFXImage(x.getImages()[0], null);

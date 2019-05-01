@@ -41,13 +41,18 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void undo() {
 		gameState.undo(careTaker.undo());
-		
-		levelView.draw();
+
+		levelView.setCrossersPositionsAndImages();
+		levelView.setBoatPosition();
+		levelView.renderObjects();
 	}
 
 	@Override
 	public void redo() {
 		gameState.redo(careTaker.redo());
+		levelView.setCrossersPositionsAndImages();
+		levelView.setBoatPosition();
+		levelView.renderObjects();
 	}
 
 	@Override
@@ -108,7 +113,9 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public boolean canMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
-
+		Memento m = new Memento(gameState.getCrossersOnRightBank(), gameState.getCrossersOnLeftBank(),
+				gameState.getBoatRiders(), gameState.isBoatOnTheLeftBank(), gameState.getNumberOfSails());
+		careTaker.addMemento(m);
 		if (fromLeftToRightBank == true) {
 			for (ICrosser x : crossers) {
 				gameState.getCrossersOnLeftBank().remove(x);
@@ -116,7 +123,9 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
 					gameState.getCrossersOnLeftBank(), crossers)) {
+
 				doMove(crossers, fromLeftToRightBank);
+
 				return true;
 			} else {
 				for (ICrosser x : crossers) {
@@ -134,9 +143,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
 					gameState.getCrossersOnLeftBank(), crossers)) {
-				Memento m = new Memento(gameState.getCrossersOnRightBank(), gameState.getCrossersOnLeftBank(),
-						gameState.getBoatRiders(), gameState.isBoatOnTheLeftBank(), gameState.getNumberOfSails());
-				careTaker.addMemento(m);
+
 				doMove(crossers, fromLeftToRightBank);
 				return true;
 			} else {

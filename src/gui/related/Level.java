@@ -16,8 +16,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -61,34 +59,29 @@ public abstract class Level {
 		instructions = new Button("Instructions");
 
 	}
-	private void setStyle(Button button) {
-		button.setStyle(" -fx-background-color: \n" + 
-				"        #ecebe9,\n" + 
-				"        rgba(0,0,0,0.05),\n" + 
-				"        linear-gradient(#dcca8a, #c7a740),\n" + 
-				"        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),\n" + 
-				"        linear-gradient(#f6ebbe, #e6c34d);\n" + 
-				"    -fx-background-insets: 0,9 9 8 9,9,10,11;\n" + 
-				"    -fx-background-radius: 50;\n" + 
-				"    -fx-padding: 15 30 15 30;\n" + 
-				"    -fx-font-family: \"Times New Roman\";\n" + 
-				"    -fx-font-size: 10px;\n" + 
-				"    -fx-text-fill: #311c09;\n" + 
-				"    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);");
 
+	private void setStyle(Button button) {
+		button.setStyle(" -fx-background-color: \n" + "        #ecebe9,\n" + "        rgba(0,0,0,0.05),\n"
+				+ "        linear-gradient(#dcca8a, #c7a740),\n"
+				+ "        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),\n"
+				+ "        linear-gradient(#f6ebbe, #e6c34d);\n" + "    -fx-background-insets: 0,9 9 8 9,9,10,11;\n"
+				+ "    -fx-background-radius: 50;\n" + "    -fx-padding: 15 30 15 30;\n"
+				+ "    -fx-font-family: \"Times New Roman\";\n" + "    -fx-font-size: 10px;\n"
+				+ "    -fx-text-fill: #311c09;\n"
+				+ "    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);");
 
 	}
 
 	public void doTheCommonThingsInAllLevels() {
-		
+
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
 
 		// redo draw
 		redo = new Button("Redo");
 		setStyle(redo);
-	//	DropShadow redoShadow = new DropShadow();
-		//redo.setEffect(redoShadow);
+		// DropShadow redoShadow = new DropShadow();
+		// redo.setEffect(redoShadow);
 		redo.setLayoutY(0);
 		redo.setLayoutX(720);
 
@@ -98,6 +91,15 @@ public abstract class Level {
 			@Override
 			public void handle(ActionEvent event) {
 
+				if (controller.canRedo()) {
+					System.out.println("Left: " + controller.getCrosserOnLeftBank());
+					System.out.println("Right: " + controller.getCrossersOnRightBank());
+
+					controller.redo();
+					System.out.println("left: " + controller.getCrosserOnLeftBank());
+					System.out.println("Right: " + controller.getCrossersOnRightBank());
+
+				}
 			}
 		});
 
@@ -106,7 +108,7 @@ public abstract class Level {
 		// exit drawing
 		exit = new Button("Exit");
 		setStyle(exit);
-		//exit.setStyle("-fx-font-size: 15pt;");
+		// exit.setStyle("-fx-font-size: 15pt;");
 		exit.setLayoutX(720);
 		exit.setLayoutY(740);
 
@@ -123,9 +125,9 @@ public abstract class Level {
 		root.getChildren().add(exit);
 
 		// undo drawing
-		//DropShadow undoShadow = new DropShadow();
+		// DropShadow undoShadow = new DropShadow();
 		undo = new Button("Undo");
-		//undo.setEffect(undoShadow);
+		// undo.setEffect(undoShadow);
 		setStyle(undo);
 		undo.setLayoutX(0);
 		undo.setLayoutY(20);
@@ -135,16 +137,22 @@ public abstract class Level {
 			@Override
 			public void handle(ActionEvent event) {
 				if (controller.canUndo()) {
+					System.out.println("Left: " + controller.getCrosserOnLeftBank());
+					System.out.println("Right: " + controller.getCrossersOnRightBank());
+
 					controller.undo();
+					System.out.println("left: " + controller.getCrosserOnLeftBank());
+					System.out.println("Right: " + controller.getCrossersOnRightBank());
+
 				}
 
 			}
 		});
 		// insturctions drawing
-		//DropShadow instructionsShadow = new DropShadow();
-		//instructions.setEffect(instructionsShadow);
+		// DropShadow instructionsShadow = new DropShadow();
+		// instructions.setEffect(instructionsShadow);
 		setStyle(instructions);
-		//instructions.setStyle("-fx-font-size: 15pt;");
+		// instructions.setStyle("-fx-font-size: 15pt;");
 		instructions.setLayoutX(693);
 		instructions.setLayoutY(50);
 
@@ -187,10 +195,10 @@ public abstract class Level {
 
 		// move drawing
 		move = new Button("Move");
-		//DropShadow moveShadow = new DropShadow();
-		//move.setEffect(moveShadow);
+		// DropShadow moveShadow = new DropShadow();
+		// move.setEffect(moveShadow);
 		setStyle(move);
-		//move.setStyle("-fx-font-size: 15pt;");
+		// move.setStyle("-fx-font-size: 15pt;");
 		move.setLayoutX(360);
 		move.setLayoutY(150);
 
@@ -231,7 +239,7 @@ public abstract class Level {
 	}
 
 	// bt set al positon bta3 al boat 3la 7asab hwa mgod ymen wla shmal
-	public void setBoatPosition() { 
+	public void setBoatPosition() {
 
 		if (controller.isBoatOnTheLeftBank()) {
 			objects[1].setPositionX(leftX[1]);
@@ -274,6 +282,7 @@ public abstract class Level {
 
 	}
 
+	public abstract void setCrossersPositionsAndImages();
 
 	// codes to look at
 

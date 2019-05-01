@@ -631,7 +631,7 @@ level.setOnMousePressed(new EventHandler<MouseEvent>() {
 	}
 
 	
-
+	@Override
 	public void setCrossersPositionsAndImages() {
 		for (ICrosser x : controller.getCrosserOnLeftBank()) {
 			int indx = x.getNumber();
