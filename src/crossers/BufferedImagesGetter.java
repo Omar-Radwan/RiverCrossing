@@ -40,11 +40,22 @@ public class BufferedImagesGetter {
 		iCrossersTypes.add("plant");
 
 		for (String type : iCrossersTypes) {
-			BufferedImage[] bufferedImages = new BufferedImage[2];
+			BufferedImage[] bufferedImages;
+
+			if (type.equals("farmer")) {
+				bufferedImages = new BufferedImage[5];
+			} else {
+				bufferedImages = new BufferedImage[2];
+			}
 
 			try {
 				bufferedImages[0] = ImageIO.read(new File("src/gui/related/" + type + ".png"));
-				// bufferedImages[1] = ImageIO.read(new File(type + "reverse.png"));
+				if (type.equals("farmer")) {
+					for (int i = 1; i <= 4; i++) {
+						bufferedImages[i] = ImageIO.read(new File("src/gui/related/" + type + i + ".png"));
+					}
+				}
+				// bufferedImages[1] = ImageIO.read(new File(type + "Reverse.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

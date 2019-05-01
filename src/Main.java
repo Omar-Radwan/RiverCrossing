@@ -24,7 +24,7 @@ public class Main extends Application {
 		CrosserAC.setBufferedImageFactory(bufferedImagesGetter);
 
 		bufferedImagesGetter = BufferedImagesGetter.getInstance();
-		System.out.println(bufferedImagesGetter.getLionImages());
+		System.out.println(bufferedImagesGetter.getFarmerImages()[3]);
 
 
 		launch(args);

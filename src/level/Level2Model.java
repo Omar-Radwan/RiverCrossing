@@ -34,27 +34,32 @@ public class Level2Model extends LevelModel {
 		initialCrossers.get(0).setWeight(90);
 		initialCrossers.get(0)
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(0)) + " " + 90 + " Kg");
+		initialCrossers.get(0).setNumber(2);
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(1).setWeight(80);
 		initialCrossers.get(1)
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(1)) + " " + 80 + " Kg");
+		initialCrossers.get(1).setNumber(3);
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(2).setWeight(60);
 		initialCrossers.get(2)
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(2)) + " " + 60 + " Kg");
+		initialCrossers.get(2).setNumber(4);
 
 		initialCrossers.add(iCrossersFactory.getICrosser("farmer"));
 		initialCrossers.get(3).setWeight(40);
 		initialCrossers.get(3)
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(3)) + " " + 40 + " Kg");
+		initialCrossers.get(3).setNumber(5);
 
 		initialCrossers.add(iCrossersFactory.getRandomHerbivorous());
 		initialCrossers.get(4).setWeight(20);
+
 		initialCrossers.get(4)
 				.setLabelToBeShown(iCrossersFactory.iCrosserType(initialCrossers.get(4)) + " " + 20 + " Kg");
-
+		initialCrossers.get(4).setNumber(6);
 	}
 
 	protected void fillInstructions() {

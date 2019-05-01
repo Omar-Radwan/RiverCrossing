@@ -1,9 +1,13 @@
 package gui.related;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import controller.RiverCrossingController;
 import controller.interfaces.IRiverCrossingController;
+import crossers.interfaces.ICrosser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -43,12 +47,21 @@ public abstract class Level {
 	protected Scene level;
 	protected Button undo;
 
+	int[] rightX;
+	int[] rightY;
+
+	int[] leftX;
+	int[] leftY;
+
+	int[] boatX = {};
+	int[] boatY = {};
+
 	public Level() {
 		instructions = new Button("Instructions");
 
 	}
 
-	public void game() {
+	public void doTheCommonThingsInAllLevels() {
 
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
@@ -96,9 +109,18 @@ public abstract class Level {
 		undo.setLayoutX(0);
 		undo.setLayoutY(0);
 
-		DropShadow instructionsShadow = new DropShadow();
+		undo.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				if (controller.canUndo()) {
+					controller.undo();
+				}
+
+			}
+		});
 		// insturctions drawing
+		DropShadow instructionsShadow = new DropShadow();
 		instructions.setEffect(instructionsShadow);
 		instructions.setStyle("-fx-font-size: 15pt;");
 		instructions.setLayoutX(680);
@@ -154,9 +176,13 @@ public abstract class Level {
 		root.getChildren().add(move);
 
 		level = new Scene(root, 800, 800);
+
+		renderObjects();
+
 		stage.setScene(level);
 	}
 
+	// abstract method 3shan kol level lazm y7aded hwa hitrasam ezay
 	public abstract void draw();
 
 	public void updateScoreLabel() {
@@ -164,6 +190,65 @@ public abstract class Level {
 		scorelabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
 		scorelabel.setTextFill(Color.BROWN);
 		scorelabel.setText("Score: " + score);
+	}
+
+	// bt render kol al objects al mwgoda
+	public void renderObjects() {
+		for (int i = 0; i < objects.length; i++) {
+			objects[i].render(gc);
+		}
+	}
+
+	// bt update w t redner kol al objects
+	public void updateAndRender() {
+		for (int i = 0; i < objects.length; i++) {
+			objects[i].update();
+			objects[i].render(gc);
+		}
+	}
+
+	// bt set al positon bta3 al boat 3la 7asab hwa mgod ymen wla shmal
+	public void setBoatPosition() {
+
+		if (controller.isBoatOnTheLeftBank()) {
+			objects[1].setPositionX(leftX[1]);
+			objects[1].setPositionY(leftX[1]);
+		} else {
+			objects[1].setPositionX(rightX[1]);
+			objects[1].setPositionY(rightY[1]);
+		}
+	}
+
+	// btgeb al crosser al index bta3o n f objects .. di m3mola 3shan nst5ha f
+	// buildCrossersOnBoat()
+	public ICrosser getCrosserWithNumber(int n) {
+		for (ICrosser x : controller.getCrosserOnLeftBank()) {
+			if (x.getNumber() == n) {
+				return x;
+			}
+		}
+
+		for (ICrosser x : controller.getCrossersOnRightBank()) {
+			if (x.getNumber() == n) {
+				return x;
+			}
+		}
+		return null;
+	}
+
+	// btshoof men al crossers al mwgoden 3la al boat dlw2ty w t3ml list of crossers
+	// bihom 3shan nb3tha llcontroller.
+	public List<ICrosser> buildCrossersOnBoat() {
+		List<ICrosser> crossersOnBoat = new LinkedList<ICrosser>();
+
+		for (int i = 2; i < objects.length; i++) {
+			if (objects[i].intersects(objects[1])) {
+				crossersOnBoat.add(getCrosserWithNumber(i));
+			}
+		}
+
+		return crossersOnBoat;
+
 	}
 
 	// codes to look at

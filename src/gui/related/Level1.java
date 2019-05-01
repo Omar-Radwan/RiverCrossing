@@ -1,6 +1,5 @@
 package gui.related;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import crossers.interfaces.ICrosser;
@@ -17,13 +16,15 @@ public class Level1 extends Level {
 	static int objectNumber = 0;
 	static int x;
 
-	int[] leftX = { 0, 0, 170, 50, 1, 100 };
-	int[] rightX = { 0, 0, 520, 580, 650, 730 };
-
-	int[] leftY = { 0, 0, 570, 580, 580, 500 };
-	int[] rightY = { 0, 0, 570, 510, 530, 530 };
-
 	public Level1() {
+
+		// al arrays di 3shan n3rf n3ml loop n8iar biha amaken al objects badal al
+		// switch case
+		rightX = new int[] { 0, 500, 520, 580, 650, 730 };
+		rightY = new int[] { 0, 600, 570, 510, 530, 530 };
+		leftX = new int[] { 0, 150, 170, 50, 1, 100 };
+		leftY = new int[] { 0, 600, 570, 580, 580, 500 };
+
 		objects = new Sprite[6];
 
 		objects[0] = (new Sprite(new Image("file:src/gui/related/background.jpg")));
@@ -53,11 +54,9 @@ public class Level1 extends Level {
 					objects[j].addDeltaX(350);
 				}
 			}
-			for (int i = 0; i < 6; i++) {
-				objects[i].update();
-				objects[i].render(gc);
-			}
+			updateAndRender();
 		}
+
 	}
 
 	public int animationSet(GraphicsContext gc) {
@@ -82,21 +81,10 @@ public class Level1 extends Level {
 		for (int k = 3; k < 6; k++) {
 			if (objects[k].getPositionX() == 620 && objectNumber != 0) {
 				if (objects[k].getPositionX() == 620 && temp.intersects(objects[k])) {
-					switch (k) {
-					case 3:
-						objects[k].setPositionX(580);
-						objects[k].setPositionY(510);
-						break;
-					case 4:
-						objects[k].setPositionX(650);
-						objects[k].setPositionY(530);
-						break;
-					case 5:
-						objects[k].setPositionX(730);
-						objects[k].setPositionY(530);
-						break;
 
-					}
+					objects[k].setPositionX(rightX[k]);
+					objects[k].setPositionY(rightY[k]);
+
 					for (int i = 0; i < 6; i++) {
 						objects[i].update();
 						objects[i].render(gc);
@@ -128,11 +116,7 @@ public class Level1 extends Level {
 					objectNumber = 0;
 				} else
 					objectNumber = 0;
-				for (int i = 0; i < 6; i++) {
-					objects[i].update();
-					objects[i].render(gc);
-				}
-
+				updateAndRender();
 			}
 		}
 
@@ -156,77 +140,17 @@ public class Level1 extends Level {
 				}
 			}
 		}
-		for (int i = 0; i < 6; i++) {
-			objects[i].update();
-			objects[i].render(gc);
-		}
+
+		updateAndRender();
 
 		return objectNumber;
 
 	}
 
 	public void draw() {
-
-		if (controller.isBoatOnTheLeftBank()) {
-			objects[1].setPositionX(150);
-			objects[1].setPositionY(600);
-		} else {
-			objects[1].setPositionX(500);
-			objects[1].setPositionY(600);
-		}
-		for (ICrosser x : controller.getCrosserOnLeftBank()) {
-			Image image = SwingFXUtils.toFXImage(x.getImages()[0], null);
-			int indx = x.getNumber();
-			objects[indx] = new Sprite(image);
-			objects[indx].setPositionX(leftX[indx]);
-			objects[indx].setPositionY(leftY[indx]);
-		}
-
-		for (ICrosser x : controller.getCrossersOnRightBank()) {
-
-			Image image = SwingFXUtils.toFXImage(x.getImages()[0], null);
-			int indx = x.getNumber();
-			objects[indx] = new Sprite(image);
-			objects[indx].setPositionX(rightX[indx]);
-			objects[indx].setPositionY(rightY[indx]);
-
-		}
-
-		game();
-		for (int i = 0; i < objects.length; i++) {
-			System.out.println(objects[i]);
-			objects[i].render(gc);
-		}
-
-		move.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-
-				List<ICrosser> crossersOnBoat = new LinkedList<ICrosser>();
-
-				for (int i = 2; i < 6; i++) {
-					if (objects[i].intersects(objects[1])) {
-						crossersOnBoat.add(getCrosserWithNumber(i));
-						System.out.println(controller.getCrossersOnRightBank());
-						System.out.println(controller.getCrosserOnLeftBank());
-					}
-				}
-
-				if (controller.canMove(crossersOnBoat, controller.isBoatOnTheLeftBank())) {
-					score++;
-					updateScoreLabel();
-					moveOnAction(gc);
-				} else {
-					System.out.println("errrrrrrrrrr");
-				}
-
-				if (controller.getCrosserOnLeftBank().size() == 4) {
-					System.out.println("You Won");
-				}
-
-			}
-		});
+		setBoatPosition();
+		setCrossersPositionsAndImages();
+		doTheCommonThingsInAllLevels();
 
 		new AnimationTimer() {
 
@@ -235,6 +159,26 @@ public class Level1 extends Level {
 				objectNumber = animationSet(gc);
 			}
 		}.start();
+
+		move.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				List<ICrosser> crossersOnBoat = buildCrossersOnBoat();
+				if (controller.canMove(crossersOnBoat, controller.isBoatOnTheLeftBank())) {
+					score++;
+					updateScoreLabel();
+					moveOnAction(gc);
+					if (controller.getCrosserOnLeftBank().size() == 4) {
+						System.out.println("You Won");
+					}
+				} else {
+					System.out.println("errrrrrrrrrr");
+				}
+
+			}
+		});
 
 		level.setOnMousePressed(new EventHandler<MouseEvent>() {
 
@@ -256,19 +200,30 @@ public class Level1 extends Level {
 
 	}
 
-	public ICrosser getCrosserWithNumber(int n) {
+	// function btgeb al sowar bta3t al objecs mn al list of crossers al fl
+	// controller
+	// w btrsm kol crosser f al ganb al almfrod yb2a mwgod fih
+
+	public void setCrossersPositionsAndImages() {
 		for (ICrosser x : controller.getCrosserOnLeftBank()) {
-			if (x.getNumber() == n) {
-				return x;
-			}
+			Image image = SwingFXUtils.toFXImage(x.getImages()[0], null);
+
+			int indx = x.getNumber();
+			objects[indx] = new Sprite(image);
+			objects[indx].setPositionX(leftX[indx]);
+			objects[indx].setPositionY(leftY[indx]);
 		}
 
 		for (ICrosser x : controller.getCrossersOnRightBank()) {
-			if (x.getNumber() == n) {
-				return x;
-			}
+			Image image = SwingFXUtils.toFXImage(x.getImages()[0], null);
+			System.out.println(image.getHeight());
+			System.out.println(image.getWidth());
+			int indx = x.getNumber();
+			objects[indx] = new Sprite(image);
+			objects[indx].setPositionX(rightX[indx]);
+			objects[indx].setPositionY(rightY[indx]);
+
 		}
-		return null;
 	}
 
 }

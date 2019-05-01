@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import level.Level1Model;
+import level.Level2Model;
 
 public class HomeScreen {
 //private Image image;
@@ -56,13 +57,17 @@ public class HomeScreen {
 		level2.setStyle("-fx-font-size: 15pt;");
 
 		buttons.setAlignment(Pos.CENTER);
-		/*
-		 * level2.setOnAction(new EventHandler<ActionEvent>() {
-		 * 
-		 * @Override public void handle(ActionEvent e) {
-		 * 
-		 * gameLevel = new Level2(); gameLevel.selectlevel(gameLevel, stage); } });
-		 */
+		
+		  level2.setOnAction(new EventHandler<ActionEvent>() {
+		  
+		  @Override public void handle(ActionEvent e) {
+		  
+		  gameLevel = new IGameLevel(); 
+		  gameLevel.selectlevel("level2", stage);
+		  controller.setStrategy(new Level2Model());
+		  controller.setView(new Level2());
+		  } });
+		 
 		buttons.getChildren().addAll(level1, level2);
 		GridPane grid = new GridPane();
 		Button exit = new Button("Exit");

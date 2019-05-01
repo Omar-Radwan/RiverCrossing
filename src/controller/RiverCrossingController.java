@@ -7,7 +7,6 @@ import controller.commands.LoadCommand;
 import controller.commands.SaveCommand;
 import controller.commands.interfaces.Command;
 import controller.interfaces.IRiverCrossingController;
-import crossers.concreteclasses.Farmer;
 import crossers.interfaces.ICrosser;
 import gui.related.Level;
 import gui.related.Level1;
@@ -23,6 +22,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	// singleton
 	private static RiverCrossingController instance;
+	CareTaker careTaker = CareTaker.getInstance();
 
 	private RiverCrossingController() {
 		commandMap = new HashMap<String, Command>();
@@ -111,7 +111,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 				return true;
 			} else {
 				for (ICrosser x : crossers) {
-						gameState.getCrossersOnLeftBank().add(x);
+					gameState.getCrossersOnLeftBank().add(x);
 				}
 				return false;
 			}
@@ -125,11 +125,13 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
 					gameState.getCrossersOnLeftBank(), crossers)) {
+				Memento m = new Memento(gameState);
+				careTaker.addMemento(m);
 				doMove(crossers, fromLeftToRightBank);
 				return true;
 			} else {
 				for (ICrosser x : crossers) {
-						gameState.getCrossersOnRightBank().add(x);
+					gameState.getCrossersOnRightBank().add(x);
 				}
 				return false;
 			}
@@ -155,7 +157,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public boolean canUndo() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -173,8 +175,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
-
+		this.gameState = careTaker.undo();
 	}
 
 	@Override

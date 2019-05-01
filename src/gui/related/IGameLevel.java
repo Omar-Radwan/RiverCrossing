@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import level.Level1Model;
+import level.Level2Model;
 
 public class IGameLevel {
 
@@ -41,6 +42,9 @@ public class IGameLevel {
 					 * 
 					 * }
 					 */
+				else if(choice.equals("level2")) {
+					controller.newGame(new Level2Model());
+				}
 
 			}
 		});

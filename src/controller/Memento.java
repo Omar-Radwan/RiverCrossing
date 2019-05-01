@@ -12,13 +12,13 @@ public class Memento {
 	private boolean isBoatOnTheLeftBank;
 	private int numberOfSails;
 
-	public Memento(List<ICrosser> crossersOnRightBank, List<ICrosser> crossersOnLeftBank, List<ICrosser> boatRiders,
-			boolean isBoatOnTheLeftBank, int numberOfSails) {
-		duplicateList(crossersOnLeftBank, this.crossersOnLeftBank);
-		duplicateList(crossersOnRightBank, this.crossersOnRightBank);
-		duplicateList(boatRiders, this.boatRiders);
-		this.numberOfSails = numberOfSails;
-		this.isBoatOnTheLeftBank = isBoatOnTheLeftBank;
+	
+	public Memento(GameState gameState) {
+		duplicateList(gameState.getCrossersOnLeftBank(), this.crossersOnLeftBank);
+		duplicateList(gameState.getCrossersOnRightBank(), this.crossersOnRightBank);
+		duplicateList(gameState.getBoatRiders(), this.boatRiders);
+		this.numberOfSails = gameState.getNumberOfSails();
+		this.isBoatOnTheLeftBank = gameState.isBoatOnTheLeftBank();
 	}
 
 	public List<ICrosser> getCrossersOnRightBank() {
