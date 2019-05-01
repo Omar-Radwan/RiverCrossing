@@ -61,6 +61,23 @@ public abstract class Level {
 		instructions = new Button("Instructions");
 
 	}
+	private void setStyle(Button button) {
+		button.setStyle(" -fx-background-color: \n" + 
+				"        #ecebe9,\n" + 
+				"        rgba(0,0,0,0.05),\n" + 
+				"        linear-gradient(#dcca8a, #c7a740),\n" + 
+				"        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),\n" + 
+				"        linear-gradient(#f6ebbe, #e6c34d);\n" + 
+				"    -fx-background-insets: 0,9 9 8 9,9,10,11;\n" + 
+				"    -fx-background-radius: 50;\n" + 
+				"    -fx-padding: 15 30 15 30;\n" + 
+				"    -fx-font-family: \"Times New Roman\";\n" + 
+				"    -fx-font-size: 10px;\n" + 
+				"    -fx-text-fill: #311c09;\n" + 
+				"    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);");
+
+
+	}
 
 	public void doTheCommonThingsInAllLevels() {
 
@@ -69,10 +86,11 @@ public abstract class Level {
 
 		// redo draw
 		redo = new Button("Redo");
-		DropShadow redoShadow = new DropShadow();
-		redo.setEffect(redoShadow);
+		setStyle(redo);
+	//	DropShadow redoShadow = new DropShadow();
+		//redo.setEffect(redoShadow);
 		redo.setLayoutY(0);
-		redo.setLayoutX(750);
+		redo.setLayoutX(720);
 
 		// redo set on action
 		redo.setOnAction(new EventHandler<ActionEvent>() {
@@ -87,9 +105,10 @@ public abstract class Level {
 
 		// exit drawing
 		exit = new Button("Exit");
-		exit.setStyle("-fx-font-size: 15pt;");
-		exit.setLayoutX(740);
-		exit.setLayoutY(450);
+		setStyle(exit);
+		//exit.setStyle("-fx-font-size: 15pt;");
+		exit.setLayoutX(720);
+		exit.setLayoutY(740);
 
 		// exit set on action
 		exit.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,11 +123,12 @@ public abstract class Level {
 		root.getChildren().add(exit);
 
 		// undo drawing
-		DropShadow undoShadow = new DropShadow();
+		//DropShadow undoShadow = new DropShadow();
 		undo = new Button("Undo");
-		undo.setEffect(undoShadow);
+		//undo.setEffect(undoShadow);
+		setStyle(undo);
 		undo.setLayoutX(0);
-		undo.setLayoutY(0);
+		undo.setLayoutY(20);
 
 		undo.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -121,10 +141,11 @@ public abstract class Level {
 			}
 		});
 		// insturctions drawing
-		DropShadow instructionsShadow = new DropShadow();
-		instructions.setEffect(instructionsShadow);
-		instructions.setStyle("-fx-font-size: 15pt;");
-		instructions.setLayoutX(680);
+		//DropShadow instructionsShadow = new DropShadow();
+		//instructions.setEffect(instructionsShadow);
+		setStyle(instructions);
+		//instructions.setStyle("-fx-font-size: 15pt;");
+		instructions.setLayoutX(693);
 		instructions.setLayoutY(50);
 
 		// instructions set on action must be implemented by child
@@ -166,9 +187,10 @@ public abstract class Level {
 
 		// move drawing
 		move = new Button("Move");
-		DropShadow moveShadow = new DropShadow();
-		move.setEffect(moveShadow);
-		move.setStyle("-fx-font-size: 15pt;");
+		//DropShadow moveShadow = new DropShadow();
+		//move.setEffect(moveShadow);
+		setStyle(move);
+		//move.setStyle("-fx-font-size: 15pt;");
 		move.setLayoutX(360);
 		move.setLayoutY(150);
 
