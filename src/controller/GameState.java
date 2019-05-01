@@ -55,6 +55,26 @@ public class GameState {
 		iCrossersFactory = ICrossersFactory.getInstance();
 	}
 
+	public Memento save() {
+		return new Memento(crossersOnRightBank, crossersOnLeftBank, boatRiders, isBoatOnTheLeftBank, numberOfSails);
+	}
+
+	public void undo(Memento m) {
+		boatRiders = m.getBoatRiders();
+		crossersOnRightBank = m.getCrossersOnRightBank();
+		crossersOnLeftBank = m.getCrossersOnLeftBank();
+		numberOfSails = m.getNumberOfSails();
+		isBoatOnTheLeftBank = m.isBoatOnTheLeftBank();
+	}
+
+	public void redo(Memento m) {
+		boatRiders = m.getBoatRiders();
+		crossersOnRightBank = m.getCrossersOnRightBank();
+		crossersOnLeftBank = m.getCrossersOnLeftBank();
+		numberOfSails = m.getNumberOfSails();
+		isBoatOnTheLeftBank = m.isBoatOnTheLeftBank();
+	}
+
 	public List<ICrosser> getCrossersOnRightBank() {
 		return crossersOnRightBank;
 	}

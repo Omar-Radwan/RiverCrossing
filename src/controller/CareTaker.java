@@ -43,9 +43,12 @@ public class CareTaker {
 		undoStack.push(M);
 		return M;
 	}
-	/*
-	 * public Memento getMemento() { RiverCrossingController r =
-	 * RiverCrossingController.getInstance(); // Memento M =
-	 * mementos.get(r.getIndex()); return M; }
-	 */
+	public boolean isRedoStackEmpty()
+	{
+		return redoStack.isEmpty();
+	}
+	public boolean isUndoStackEmpty()
+	{
+		return undoStack.isEmpty();
+	}
 }

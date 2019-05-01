@@ -18,6 +18,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 	private HashMap<String, Command> commandMap;
 
 	private GameState gameState;
+	private CareTaker caretaker = CareTaker.getInstance();
 	public Level levelView;
 
 	// singleton
@@ -37,25 +38,32 @@ public class RiverCrossingController implements IRiverCrossingController {
 		return instance;
 	}
 
-	/*
-	 * public Memento save() { setIndex(getIndex() + 1); return new
-	 * Memento(crossersOnRightBank, crossersOnLeftBank, boatRiders,
-	 * isBoatOnTheLeftBank, numberOfSails); }
-	 * 
-	 * @Override public void undo(Memento m) { boatRiders = m.getBoatRiders();
-	 * crossersOnRightBank = m.getCrossersOnRightBank(); crossersOnLeftBank =
-	 * m.getCrossersOnLeftBank(); numberOfSails = m.getNumberOfSails();
-	 * isBoatOnTheLeftBank = m.isBoatOnTheLeftBank(); setIndex(getIndex() - 1); }
-	 * 
-	 * @Override public void redo(Memento m) { boatRiders = m.getBoatRiders();
-	 * crossersOnRightBank = m.getCrossersOnRightBank(); crossersOnLeftBank =
-	 * m.getCrossersOnLeftBank(); numberOfSails = m.getNumberOfSails();
-	 * isBoatOnTheLeftBank = m.isBoatOnTheLeftBank(); setIndex(getIndex() + 1); }
-	 * 
-	 * public int getIndex() { return index; }
-	 * 
-	 * public void setIndex(int index) { this.index = index; }
-	 */
+	@Override
+	public void undo() {
+		gameState.undo(careTaker.undo());
+		levelView.draw();
+	}
+
+	@Override
+	public void redo() {
+		gameState.redo(careTaker.redo());
+	}
+
+	@Override
+	public boolean canUndo() {
+		if (careTaker.isUndoStackEmpty())
+			return false;
+		else
+			return true;
+	}
+
+	@Override
+	public boolean canRedo() {
+		if (careTaker.isRedoStackEmpty())
+			return false;
+		else
+			return true;
+	}
 
 	@Override
 	public void newGame(ICrossingStrategy gameStrategy) {
@@ -125,7 +133,8 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
 					gameState.getCrossersOnLeftBank(), crossers)) {
-				Memento m = new Memento(gameState);
+				Memento m = new Memento(gameState.getCrossersOnRightBank(), gameState.getCrossersOnLeftBank(),
+						gameState.getBoatRiders(), gameState.isBoatOnTheLeftBank(), gameState.getNumberOfSails());
 				careTaker.addMemento(m);
 				doMove(crossers, fromLeftToRightBank);
 				return true;
@@ -156,32 +165,12 @@ public class RiverCrossingController implements IRiverCrossingController {
 	}
 
 	@Override
-	public boolean canUndo() {
-		return true;
-	}
-
-	@Override
-	public boolean canRedo() {
-		return false;
-	}
-
-	@Override
 	public List<List<ICrosser>> solveGame() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	// should handle these exceptions in the view
-
-	@Override
-	public void undo() {
-		this.gameState = careTaker.undo();
-	}
-
-	@Override
-	public void redo() {
-
-	}
 
 	@Override
 	public void saveGame() {
