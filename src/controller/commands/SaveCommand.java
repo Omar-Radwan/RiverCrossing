@@ -14,7 +14,11 @@ public class SaveCommand implements Command {
 		this.gameState = gameState;
 	}
 
-	public void setController(GameState gameState) {
+	public GameState getGameState() {
+		return gameState;
+	}
+
+	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
 	}
 

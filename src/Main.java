@@ -17,16 +17,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws IOException, ParserConfigurationException {
 
-		ICrossersFactory iCrossersFactory = ICrossersFactory.getInstance();
-		BufferedImagesGetter bufferedImagesGetter = BufferedImagesGetter.getInstance();
-
-		CrosserAC.setICrosserFactory(iCrossersFactory);
-		CrosserAC.setBufferedImageFactory(bufferedImagesGetter);
-
-		bufferedImagesGetter = BufferedImagesGetter.getInstance();
-		System.out.println(bufferedImagesGetter.getFarmerImages()[3]);
-
-
 		launch(args);
 
 	}

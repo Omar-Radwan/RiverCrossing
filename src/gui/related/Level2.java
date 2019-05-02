@@ -16,10 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 
 public class Level2 extends Level {
-	//private Stage stage;
+	// private Stage stage;
 //private Sprite[] objects = new Sprite[7];
 //private int weight = 0;
 	static HBox menu = new HBox();
@@ -48,8 +47,8 @@ public class Level2 extends Level {
 		rightX = new int[] { 0, 400, 580, 590, 650, 690, 730 };
 		rightY = new int[] { 0, 500, 480, 510, 510, 540, 580 };
 
-		leftX = new int[] { 0, 200, 110 ,60 ,40 ,10 ,0 };
-		leftY = new int[] { 0, 500, 530, 550 , 550 , 570 , 600  };
+		leftX = new int[] { 0, 200, 110, 60, 40, 10, 0 };
+		leftY = new int[] { 0, 500, 530, 550, 550, 570, 600 };
 
 		/*
 		 * objects[1].setPositionX(400); objects[1].setPositionY(500);
@@ -97,7 +96,6 @@ public class Level2 extends Level {
 		menu.setSpacing(10);
 		menu.getChildren().add((label4));
 
-		
 	}
 
 	/*
@@ -375,11 +373,11 @@ public class Level2 extends Level {
 					}
 
 				}
-				/*for (int i = 0; i < 7; i++) {
-					objects[i].update();
-					objects[i].render(gc);
-
-				}*/
+				/*
+				 * for (int i = 0; i < 7; i++) { objects[i].update(); objects[i].render(gc);
+				 * 
+				 * }
+				 */
 				updateAndRender();
 			}
 
@@ -391,16 +389,15 @@ public class Level2 extends Level {
 
 					}
 				}
-				/*for (int i = 0; i < 7; i++) {
-					objects[i].update();
-					objects[i].render(gc);
-				}*/
+				/*
+				 * for (int i = 0; i < 7; i++) { objects[i].update(); objects[i].render(gc); }
+				 */
 				updateAndRender();
-				
+
 			}
 		}
 		return flag;
-		
+
 	}
 
 	public void animationSet(GraphicsContext gc) {
@@ -518,7 +515,7 @@ public class Level2 extends Level {
 				 * objects.get(objectNumber).setPositionX(200);
 				 * objects.get(objectNumber).setPositionY(500); objectNumber = 0;
 				 */
-				if ((flag1 == false && flag2 == false) || (flag1 == false && flag2==true)) {
+				if ((flag1 == false && flag2 == false) || (flag1 == false && flag2 == true)) {
 					objects[objectNumber].setPositionX(200);
 					objects[objectNumber].setPositionY(500);
 					objectNumber = 0;
@@ -566,40 +563,38 @@ public class Level2 extends Level {
 		}
 		flag1 = false;
 		flag2 = false;
-		//System.out.println(objects[objectNumber].getPositionX());
+		// System.out.println(objects[objectNumber].getPositionX());
 
-		//return objectNumber;
+		// return objectNumber;
 	}
 
 	@Override
 	public void draw() {
 
-		setBoatPosition();
-		setCrossersPositionsAndImages();
 		doTheCommonThingsInAllLevels();
-		renderObjects();
 
 		new AnimationTimer() {
 
 			@Override
 			public void handle(long now) {
-				 animationSet(gc);
+				animationSet(gc);
 			}
 		}.start();
 
-		//moveOnAction(gc);
-move.setOnAction(new EventHandler<ActionEvent>() {
-			
+		// moveOnAction(gc);
+		move.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
 			public void handle(ActionEvent event) {
 				List<ICrosser> crossersOnBoat = buildCrossersOnBoat();
-				
+
 				if (controller.canMove(crossersOnBoat, controller.isBoatOnTheLeftBank())) {
+					controller.doMove(crossersOnBoat, controller.isBoatOnTheLeftBank());
 					score++;
 					updateScoreLabel();
 					moveOnAction(gc);
 					if (controller.getCrosserOnLeftBank().size() == 5) {
-						//JOptionPane.showMessageDialog(null, "You Won!");
+						// JOptionPane.showMessageDialog(null, "You Won!");
 					}
 				} else {
 					System.out.println("errrrrrrrrrr");
@@ -608,34 +603,32 @@ move.setOnAction(new EventHandler<ActionEvent>() {
 			}
 		});
 
-level.setOnMousePressed(new EventHandler<MouseEvent>() {
+		level.setOnMousePressed(new EventHandler<MouseEvent>() {
 
-	@Override
-	public void handle(MouseEvent event) {
-		temp.setPositionX(event.getX());
-		temp.setPositionY(event.getY());
-		for (int i = 2; i < 7; i++) {
-			if (objects[i].intersects(temp)) {
-				objectNumber = i;
-				//animationSet(gc);
-				//Level2. = objectNumber;
+			@Override
+			public void handle(MouseEvent event) {
+				temp.setPositionX(event.getX());
+				temp.setPositionY(event.getY());
+				for (int i = 2; i < 7; i++) {
+					if (objects[i].intersects(temp)) {
+						objectNumber = i;
+						// animationSet(gc);
+						// Level2. = objectNumber;
+					}
+				}
+				// System.out.println(objectNumber);
+
 			}
-		}
-		//System.out.println(objectNumber);
+
+		});
 
 	}
 
-});
-
-		
-	}
-
-	
 	@Override
 	public void setCrossersPositionsAndImages() {
 		for (ICrosser x : controller.getCrosserOnLeftBank()) {
 			int indx = x.getNumber();
-			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[indx-1], null)
+			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[indx - 1], null)
 					: SwingFXUtils.toFXImage(x.getImages()[0], null);
 
 			objects[indx] = new Sprite(image);
@@ -645,9 +638,9 @@ level.setOnMousePressed(new EventHandler<MouseEvent>() {
 		System.out.println(controller.getCrossersOnRightBank());
 		for (ICrosser x : controller.getCrossersOnRightBank()) {
 			int indx = x.getNumber();
-			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[indx-1], null)
+			Image image = x instanceof Farmer ? SwingFXUtils.toFXImage(x.getImages()[indx - 1], null)
 					: SwingFXUtils.toFXImage(x.getImages()[0], null);
-			System.out.println((int)(indx-2)+" height "+image.getHeight()+" width "+image.getWidth());
+			System.out.println((int) (indx - 2) + " height " + image.getHeight() + " width " + image.getWidth());
 			objects[indx] = new Sprite(image);
 			objects[indx].setPositionX(rightX[indx]);
 			objects[indx].setPositionY(rightY[indx]);

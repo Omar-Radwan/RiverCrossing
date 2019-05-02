@@ -77,7 +77,7 @@ public class BufferedImagesGetter {
 	public BufferedImage[] getLionImages() {
 		return bufferedImageMap.get("lion");
 	}
-
+	
 	public BufferedImage[] getSheepImages() {
 		return bufferedImageMap.get("sheep");
 	}

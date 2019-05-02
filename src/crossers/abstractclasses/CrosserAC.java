@@ -12,9 +12,12 @@ public abstract class CrosserAC implements ICrosser {
 	protected double weight;
 	protected int eatingRank;
 	protected BufferedImage[] images;
+
 	protected static BufferedImagesGetter bufferedImageFactory;
 	protected static ICrossersFactory iCrossersFactory;
+	
 	protected int number;
+	
 	// msh3arf di al mfrod tb2a kda wla l2
 	protected String labelToBeShown;
 

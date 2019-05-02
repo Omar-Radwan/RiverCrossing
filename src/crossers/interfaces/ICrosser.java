@@ -20,8 +20,8 @@ public interface ICrosser {
 
 	public void setNumber(int number);
 
-	public int getNumber();
-
+	
 	// added methods
 	public void setWeight(double weight);
+	public int getNumber();
 }

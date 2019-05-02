@@ -148,8 +148,7 @@ public class Level1 extends Level {
 	}
 
 	public void draw() {
-		setBoatPosition();
-		setCrossersPositionsAndImages();
+
 		doTheCommonThingsInAllLevels();
 
 		new AnimationTimer() {
@@ -167,6 +166,7 @@ public class Level1 extends Level {
 
 				List<ICrosser> crossersOnBoat = buildCrossersOnBoat();
 				if (controller.canMove(crossersOnBoat, controller.isBoatOnTheLeftBank())) {
+					controller.doMove(crossersOnBoat, controller.isBoatOnTheLeftBank());
 					score++;
 					updateScoreLabel();
 					moveOnAction(gc);

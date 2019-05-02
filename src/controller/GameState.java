@@ -27,6 +27,8 @@ import org.xml.sax.SAXException;
 
 import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
+import gui.related.Level1;
+import gui.related.Level2;
 import level.ICrossingStrategy;
 import level.Level1Model;
 import level.Level2Model;
@@ -286,7 +288,7 @@ public class GameState {
 	}
 
 	public void reset() {
-
+		System.out.println(gameStrategy.getInitialCrossers());
 		duplicateList(gameStrategy.getInitialCrossers(), crossersOnRightBank);
 
 		crossersOnLeftBank.clear();
@@ -294,6 +296,60 @@ public class GameState {
 
 		isBoatOnTheLeftBank = false;
 		numberOfSails = 0;
+
 	}
 
+	public boolean canMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
+		if (fromLeftToRightBank == true) {
+			for (ICrosser x : crossers) {
+				crossersOnLeftBank.remove(x);
+			}
+
+			if (gameStrategy.isValid(crossersOnRightBank, crossersOnLeftBank, crossers)) {
+
+				return true;
+			} else {
+				for (ICrosser x : crossers) {
+					crossersOnLeftBank.add(x);
+				}
+				return false;
+			}
+
+		}
+
+		else {
+			for (ICrosser x : crossers) {
+				crossersOnRightBank.remove(x);
+			}
+
+			if (gameStrategy.isValid(crossersOnRightBank, crossersOnLeftBank, crossers)) {
+				return true;
+			} else {
+				for (ICrosser x : crossers) {
+					crossersOnRightBank.add(x);
+				}
+				return false;
+			}
+		}
+	}
+
+	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
+
+		if (fromLeftToRightBank) {
+			for (ICrosser x : crossers) {
+				crossersOnRightBank.add(x);
+			}
+			isBoatOnTheLeftBank = false;
+		} else {
+			for (ICrosser x : crossers) {
+				crossersOnLeftBank.add(x);
+			}
+			isBoatOnTheLeftBank = true;
+		}
+
+	}
+	public void newGame(ICrossingStrategy gameStrategy) {
+		this.gameStrategy = gameStrategy;
+		reset();
+	}
 }

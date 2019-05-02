@@ -48,7 +48,7 @@ public class HomeScreen {
 				gameLevel = new IGameLevel();
 				gameLevel.selectlevel("level1", stage);
 				controller.setStrategy(new Level1Model());
-				controller.setView(new Level1());
+
 
 			}
 		});
@@ -65,7 +65,6 @@ public class HomeScreen {
 		  gameLevel = new IGameLevel();
 		  gameLevel.selectlevel("level2", stage);
 		  controller.setStrategy(new Level2Model());
-		  controller.setView(new Level2());
 		  } });
 		 
 		buttons.getChildren().addAll(level1, level2);

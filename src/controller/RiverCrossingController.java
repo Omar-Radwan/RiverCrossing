@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import controller.commands.LoadCommand;
+import controller.commands.NewGameCommand;
+import controller.commands.RedoCommand;
+import controller.commands.ResetGameCommand;
 import controller.commands.SaveCommand;
+import controller.commands.UndoCommand;
 import controller.commands.interfaces.Command;
 import controller.interfaces.IRiverCrossingController;
 import crossers.interfaces.ICrosser;
@@ -18,18 +22,20 @@ public class RiverCrossingController implements IRiverCrossingController {
 	private HashMap<String, Command> commandMap;
 
 	private GameState gameState;
-	private CareTaker caretaker = CareTaker.getInstance();
 	public Level levelView;
+	private CareTaker careTaker = CareTaker.getInstance();
 
 	// singleton
 	private static RiverCrossingController instance;
-	CareTaker careTaker = CareTaker.getInstance();
 
 	private RiverCrossingController() {
 		commandMap = new HashMap<String, Command>();
 		gameState = new GameState();
-		commandMap.put("save", new SaveCommand());
-		commandMap.put("load", new LoadCommand());
+		commandMap.put("save", new SaveCommand(gameState));
+		commandMap.put("load", new LoadCommand(gameState));
+		commandMap.put("reset", new ResetGameCommand(gameState));
+		commandMap.put("undo", new UndoCommand(careTaker, gameState));
+		commandMap.put("redo", new RedoCommand(careTaker, gameState));
 	};
 
 	public static RiverCrossingController getInstance() {
@@ -40,18 +46,16 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void undo() {
-		gameState.undo(careTaker.undo(gameState.save()));
-
-		levelView.setCrossersPositionsAndImages();
-		levelView.setBoatPosition();
+		commandMap.get("undo").execute();
+		updateView();
 		levelView.renderObjects();
+
 	}
 
 	@Override
 	public void redo() {
-		gameState.redo(careTaker.redo(gameState.save()));
-		levelView.setCrossersPositionsAndImages();
-		levelView.setBoatPosition();
+		commandMap.get("redo").execute();
+		updateView();
 		levelView.renderObjects();
 	}
 
@@ -73,9 +77,8 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void newGame(ICrossingStrategy gameStrategy) {
-		this.gameState.setGameStrategy(gameStrategy);
-
-		resetGame();
+		commandMap.put("newgame", new NewGameCommand(gameState, gameStrategy));
+		commandMap.get("newgame").execute();
 
 		if (gameStrategy instanceof Level1Model) {
 			levelView = new Level1();
@@ -83,12 +86,15 @@ public class RiverCrossingController implements IRiverCrossingController {
 			levelView = new Level2();
 		}
 
+		updateView();
 		levelView.draw();
 	}
 
 	@Override
 	public void resetGame() {
-		gameState.reset();
+		commandMap.get("reset").execute();
+		updateView();
+		levelView.renderObjects();
 	}
 
 	public void setCrossersOnLeftBank(List<ICrosser> crossersOnLeftBank) {
@@ -116,61 +122,15 @@ public class RiverCrossingController implements IRiverCrossingController {
 		Memento m = new Memento(gameState.getCrossersOnRightBank(), gameState.getCrossersOnLeftBank(),
 				gameState.getBoatRiders(), gameState.isBoatOnTheLeftBank(), gameState.getNumberOfSails());
 		careTaker.addMemento(m);
-		if (fromLeftToRightBank == true) {
-			for (ICrosser x : crossers) {
-				gameState.getCrossersOnLeftBank().remove(x);
-			}
 
-			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
-					gameState.getCrossersOnLeftBank(), crossers)) {
-
-				doMove(crossers, fromLeftToRightBank);
-
-				return true;
-			} else {
-				for (ICrosser x : crossers) {
-					gameState.getCrossersOnLeftBank().add(x);
-				}
-				return false;
-			}
-
-		}
-
-		else {
-			for (ICrosser x : crossers) {
-				gameState.getCrossersOnRightBank().remove(x);
-			}
-
-			if (gameState.getGameStrategy().isValid(gameState.getCrossersOnRightBank(),
-					gameState.getCrossersOnLeftBank(), crossers)) {
-
-				doMove(crossers, fromLeftToRightBank);
-				return true;
-			} else {
-				for (ICrosser x : crossers) {
-					gameState.getCrossersOnRightBank().add(x);
-				}
-				return false;
-			}
-		}
+		return gameState.canMove(crossers, fromLeftToRightBank);
 
 	}
 
 	@Override
 	public void doMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
 		careTaker.resetRedoStack();
-
-		if (fromLeftToRightBank) {
-			for (ICrosser x : crossers) {
-				gameState.getCrossersOnRightBank().add(x);
-			}
-			gameState.setBoatOnTheLeftBank(false);
-		} else {
-			for (ICrosser x : crossers) {
-				gameState.getCrossersOnLeftBank().add(x);
-			}
-			gameState.setBoatOnTheLeftBank(true);
-		}
+		gameState.doMove(crossers, fromLeftToRightBank);
 	}
 
 	@Override
@@ -183,13 +143,12 @@ public class RiverCrossingController implements IRiverCrossingController {
 
 	@Override
 	public void saveGame() {
-		// commandMap.get("save").execute();
-		gameState.saveStateToXml();
+		commandMap.get("save").execute();
 	}
 
 	@Override
 	public void loadGame() {
-		gameState.loadFromXml();
+		commandMap.get("load").execute();
 		levelView.draw();
 	}
 
@@ -234,4 +193,8 @@ public class RiverCrossingController implements IRiverCrossingController {
 		this.levelView = levelView;
 	}
 
+	public void updateView() {
+		levelView.setCrossersPositionsAndImages();
+		levelView.setBoatPosition();
+	}
 }

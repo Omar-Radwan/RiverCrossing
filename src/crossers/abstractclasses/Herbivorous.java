@@ -6,7 +6,6 @@ public abstract class Herbivorous extends CrosserAC{
 		super();
 		this.canSail = false;
 		this.eatingRank =1 ;
-		
 	}
 
 

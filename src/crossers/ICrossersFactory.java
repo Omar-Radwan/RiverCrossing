@@ -14,6 +14,7 @@ import crossers.interfaces.ICrosser;
 public class ICrossersFactory {
 
 	private static ICrossersFactory instance;
+	
 	private Random r;
 
 	public ICrossersFactory() {

@@ -14,6 +14,14 @@ public class LoadCommand implements Command {
 		this.gameState = gameState;
 	}
 
+	public GameState getGameState() {
+		return gameState;
+	}
+
+	public void setGameState(GameState gameState) {
+		this.gameState = gameState;
+	}
+
 	@Override
 	public void execute() {
 		gameState.loadFromXml();
