@@ -27,8 +27,6 @@ import org.xml.sax.SAXException;
 
 import crossers.ICrossersFactory;
 import crossers.interfaces.ICrosser;
-import gui.related.Level1;
-import gui.related.Level2;
 import level.ICrossingStrategy;
 import level.Level1Model;
 import level.Level2Model;
@@ -296,7 +294,6 @@ public class GameState {
 
 		isBoatOnTheLeftBank = false;
 		numberOfSails = 0;
-
 	}
 
 	public boolean canMove(List<ICrosser> crossers, boolean fromLeftToRightBank) {
@@ -346,8 +343,9 @@ public class GameState {
 			}
 			isBoatOnTheLeftBank = true;
 		}
-
+		numberOfSails++;
 	}
+
 	public void newGame(ICrossingStrategy gameStrategy) {
 		this.gameStrategy = gameStrategy;
 		reset();

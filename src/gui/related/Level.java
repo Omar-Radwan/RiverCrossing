@@ -110,7 +110,7 @@ public abstract class Level {
 		setStyle(exit);
 		// exit.setStyle("-fx-font-size: 15pt;");
 		exit.setLayoutX(720);
-		exit.setLayoutY(740);
+		exit.setLayoutY(660);
 
 		// exit set on action
 		exit.setOnAction(new EventHandler<ActionEvent>() {
@@ -141,6 +141,8 @@ public abstract class Level {
 					System.out.println("Right: " + controller.getCrossersOnRightBank());
 
 					controller.undo();
+
+					System.out.println(controller.getNumberOfSails());
 					System.out.println("left: " + controller.getCrosserOnLeftBank());
 					System.out.println("Right: " + controller.getCrossersOnRightBank());
 
@@ -217,10 +219,9 @@ public abstract class Level {
 	public abstract void draw();
 
 	public void updateScoreLabel() {
-		scorelabel.setText(Integer.toString(score));
 		scorelabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
 		scorelabel.setTextFill(Color.BROWN);
-		scorelabel.setText("Score: " + score);
+		scorelabel.setText("Score: " + controller.getNumberOfSails());
 	}
 
 	// bt render kol al objects al mwgoda

@@ -17,11 +17,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import level.Level1Model;
 import level.Level2Model;
+import level.LevelFactory;
 
 public class IGameLevel {
 
 	IRiverCrossingController controller = RiverCrossingController.getInstance();
-
+	LevelFactory levelFactory = LevelFactory.getInstance();
 	public void selectlevel(String choice, Stage stage) {
 
 		Button newGame = new Button("New game");
@@ -34,17 +35,7 @@ public class IGameLevel {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (choice.equals("level1")) {
-					controller.newGame(new Level1Model());
-				} /*
-					 * else if (gameLevel instanceof Level2) { Level.stage = stage; ((Level)
-					 * gameLevel).game(gameLevel);
-					 * 
-					 * }
-					 */
-				else if(choice.equals("level2")) {
-					controller.newGame(new Level2Model());
-				}
+				controller.newGame(levelFactory.getLevel(choice));
 
 			}
 		});
@@ -53,6 +44,7 @@ public class IGameLevel {
 
 			@Override
 			public void handle(ActionEvent event) {
+				controller.setStrategy(levelFactory.getLevel(choice));
 				controller.loadGame();
 			}
 		});

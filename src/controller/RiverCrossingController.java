@@ -49,6 +49,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 		commandMap.get("undo").execute();
 		updateView();
 		levelView.renderObjects();
+		levelView.updateScoreLabel();
 
 	}
 
@@ -57,6 +58,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 		commandMap.get("redo").execute();
 		updateView();
 		levelView.renderObjects();
+		levelView.updateScoreLabel();
 	}
 
 	@Override
@@ -80,14 +82,9 @@ public class RiverCrossingController implements IRiverCrossingController {
 		commandMap.put("newgame", new NewGameCommand(gameState, gameStrategy));
 		commandMap.get("newgame").execute();
 
-		if (gameStrategy instanceof Level1Model) {
-			levelView = new Level1();
-		} else {
-			levelView = new Level2();
-		}
-
 		updateView();
 		levelView.draw();
+		levelView.updateScoreLabel();
 	}
 
 	@Override
@@ -95,6 +92,7 @@ public class RiverCrossingController implements IRiverCrossingController {
 		commandMap.get("reset").execute();
 		updateView();
 		levelView.renderObjects();
+		levelView.updateScoreLabel();
 	}
 
 	public void setCrossersOnLeftBank(List<ICrosser> crossersOnLeftBank) {
@@ -149,7 +147,9 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void loadGame() {
 		commandMap.get("load").execute();
+		updateView();
 		levelView.draw();
+		levelView.updateScoreLabel();
 	}
 
 	/*
@@ -185,6 +185,11 @@ public class RiverCrossingController implements IRiverCrossingController {
 	@Override
 	public void setStrategy(ICrossingStrategy gameStrategy) {
 		this.gameState.setGameStrategy(gameStrategy);
+		if (gameStrategy instanceof Level1Model) {
+			levelView = new Level1();
+		} else {
+			levelView = new Level2();
+		}
 
 	}
 
@@ -196,5 +201,6 @@ public class RiverCrossingController implements IRiverCrossingController {
 	public void updateView() {
 		levelView.setCrossersPositionsAndImages();
 		levelView.setBoatPosition();
+
 	}
 }
