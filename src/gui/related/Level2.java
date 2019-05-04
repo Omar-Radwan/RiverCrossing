@@ -21,7 +21,6 @@ public class Level2 extends Level {
 	// private Stage stage;
 //private Sprite[] objects = new Sprite[7];
 //private int weight = 0;
-	static HBox menu = new HBox();
 //private int score=0;
 //Sprite temp = new Sprite();
 	static int objectNumber = 0;
@@ -95,7 +94,6 @@ public class Level2 extends Level {
 
 		menu.setSpacing(10);
 		menu.getChildren().add((label4));
-
 	}
 
 	/*
@@ -344,10 +342,48 @@ public class Level2 extends Level {
 	/*
 	 * 
 	 * 
-	 * stage.setScene(level2);
+	 * stage.setScene(level2); leftX = new int[] { 0, 150, 170, 50, 1, 100 }; leftY
+	 * = new int[] { 0, 600, 570, 580, 580, 500 };
 	 * 
 	 * }
 	 */
+	static HBox menu = new HBox();
+
+	public void setImageWeight() {
+
+		Image image = new Image("file:src/gui/related/farmer1small.png", 30, 30, false, false);
+		Label label = new Label("90kg");
+		label.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		label.setGraphic(new ImageView(image));
+
+		menu.setSpacing(2);
+		menu.getChildren().add((label));
+
+		Image image2 = new Image("file:src/gui/related/farmer2small.png", 30, 30, false, false);
+		Label label2 = new Label("80kg");
+		label2.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		label2.setGraphic(new ImageView(image2));
+
+		menu.setSpacing(2);
+		menu.getChildren().add((label2));
+
+		Image image3 = new Image("file:src/gui/related/farmer3small.png", 30, 30, false, false);
+		Label label3 = new Label("60kg");
+		label3.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		label3.setGraphic(new ImageView(image3));
+
+		menu.setSpacing(2);
+		menu.getChildren().add((label3));
+
+		Image image4 = new Image("file:src/gui/related/farmer4small.png", 30, 30, false, false);
+		Label label4 = new Label("40kg");
+		label4.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		label4.setGraphic(new ImageView(image4));
+
+		menu.setSpacing(10);
+		menu.getChildren().add((label4));
+
+	}
 
 	static boolean flag = false;
 
@@ -403,6 +439,7 @@ public class Level2 extends Level {
 	public void animationSet(GraphicsContext gc) {
 		boolean flag1 = false;
 		boolean flag2 = false;
+
 		for (int k = 2; k < 7; k++) {
 			if (objects[k].getPositionX() == 580 || objects[k].getPositionX() == 590 || objects[k].getPositionX() == 650
 					|| objects[k].getPositionX() == 690 || objects[k].getPositionX() == 730) {
@@ -418,6 +455,7 @@ public class Level2 extends Level {
 				}
 			}
 		}
+
 		for (int k = 2; k < 7; k++) {
 			if ((objects[k].getPositionX() == 400 || objects[k].getPositionX() == 480) && objectNumber != 0) {
 				if ((objects[k].getPositionX() == 400 || objects[k].getPositionX() == 480)
@@ -444,16 +482,20 @@ public class Level2 extends Level {
 						objects[6].setPositionY(580);
 						break;
 					}
+					/*
+					 * objects[k].setPositionX(rightX[k]); objects[k].setPositionX(rightY[k]);
+					 */
 
-					for (int i = 0; i < 7; i++) {
-						objects[i].update();
-						objects[i].render(gc);
-					}
+					/*
+					 * for (int i = 0; i < 7; i++) { objects[i].update(); objects[i].render(gc); }
+					 */
+					updateAndRender();
 					objectNumber = 0;
 				}
 
 			}
 		}
+
 		for (int k = 2; k < 7; k++) {
 			if (objects[k].getPositionX() == 400) {
 				flag1 = true;
@@ -464,18 +506,22 @@ public class Level2 extends Level {
 			objectNumber = 0;
 		if (objectNumber != 0) {
 			if (objects[1].getPositionX() == 400) {
-				if ((flag1 == false && flag2 == false) || (flag1 == false && flag2 == true)) {
-					objects[objectNumber].setPositionX(400);
-					objects[objectNumber].setPositionY(500);
-					objectNumber = 0;
-				} else if (flag1 == true && flag2 == false) {
-					objects[objectNumber].setPositionX(480);
-					objects[objectNumber].setPositionY(500);
-					objectNumber = 0;
-				}
-				flag1 = false;
-				flag2 = false;
+				if (objects[objectNumber].getPositionX() != 110 && objects[objectNumber].getPositionX() != 60
+						&& objects[objectNumber].getPositionX() != 40 && objects[objectNumber].getPositionX() != 10
+						&& objects[objectNumber].getPositionX() != 0) {
+					if ((flag1 == false && flag2 == false) || (flag1 == false && flag2 == true)) {
+						objects[objectNumber].setPositionX(400);
+						objects[objectNumber].setPositionY(500);
+						objectNumber = 0;
+					} else if (flag1 == true && flag2 == false) {
+						objects[objectNumber].setPositionX(480);
+						objects[objectNumber].setPositionY(500);
+						objectNumber = 0;
+					}
+					flag1 = false;
+					flag2 = false;
 
+				}
 			} else if (objects[objectNumber].intersects(objects[1])) {
 
 				switch (objectNumber) {
@@ -500,6 +546,10 @@ public class Level2 extends Level {
 					objects[objectNumber].setPositionY(600);
 					break;
 				}
+				/*
+				 * objects[objectNumber].setPositionX(leftX[objectNumber]);
+				 * objects[objectNumber].setPositionX(leftY[objectNumber]);
+				 */
 				objectNumber = 0;
 
 			} else if (objects[1].getPositionX() == 200) {
@@ -515,17 +565,23 @@ public class Level2 extends Level {
 				 * objects.get(objectNumber).setPositionX(200);
 				 * objects.get(objectNumber).setPositionY(500); objectNumber = 0;
 				 */
-				if ((flag1 == false && flag2 == false) || (flag1 == false && flag2 == true)) {
-					objects[objectNumber].setPositionX(200);
-					objects[objectNumber].setPositionY(500);
-					objectNumber = 0;
-				} else if (flag1 == true && flag2 == false) {
-					objects[objectNumber].setPositionX(280);
-					objects[objectNumber].setPositionY(500);
-					objectNumber = 0;
+
+				if (objects[objectNumber].getPositionX() != 580 && objects[objectNumber].getPositionX() != 590
+						&& objects[objectNumber].getPositionX() != 650 && objects[objectNumber].getPositionX() != 690
+						&& objects[objectNumber].getPositionX() != 730) {
+					if ((flag1 == false && flag2 == false) || (flag1 == false && flag2 == true)) {
+
+						objects[objectNumber].setPositionX(200);
+						objects[objectNumber].setPositionY(500);
+						objectNumber = 0;
+					} else if (flag1 == true && flag2 == false) {
+						objects[objectNumber].setPositionX(280);
+						objects[objectNumber].setPositionY(500);
+						objectNumber = 0;
+					}
+					flag1 = false;
+					flag2 = false;
 				}
-				flag1 = false;
-				flag2 = false;
 			} else if (objects[objectNumber].intersects(objects[1])) {
 				switch (objectNumber) {
 				case 2:
@@ -552,6 +608,10 @@ public class Level2 extends Level {
 					break;
 
 				}
+				/*
+				 * objects[objectNumber].setPositionX(rightX[objectNumber]);
+				 * objects[objectNumber].setPositionX(rightY[objectNumber]);
+				 */
 
 			}
 
@@ -570,6 +630,10 @@ public class Level2 extends Level {
 
 	@Override
 	public void draw() {
+
+		setImageWeight();
+		setBoatPosition();
+		setCrossersPositionsAndImages();
 
 		doTheCommonThingsInAllLevels();
 
@@ -594,10 +658,11 @@ public class Level2 extends Level {
 					updateScoreLabel();
 					moveOnAction(gc);
 					if (controller.getCrosserOnLeftBank().size() == 5) {
+
+						// win.display();
 						// JOptionPane.showMessageDialog(null, "You Won!");
+
 					}
-				} else {
-					System.out.println("errrrrrrrrrr");
 				}
 
 			}
