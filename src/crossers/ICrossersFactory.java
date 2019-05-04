@@ -14,7 +14,7 @@ import crossers.interfaces.ICrosser;
 public class ICrossersFactory {
 
 	private static ICrossersFactory instance;
-	
+
 	private Random r;
 
 	public ICrossersFactory() {
@@ -76,6 +76,9 @@ public class ICrossersFactory {
 		} else if (iCrosser instanceof Carrot) {
 			return "Carrot";
 
+		}
+		else if (iCrosser instanceof Horse) {
+			return "Horse";
 		}
 		return "";
 	}

@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 
 public class InvalidMove {
 	private JFrame frame = new JFrame();
-	public void display(){
+
+	public void display() {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("");
@@ -25,8 +26,8 @@ public class InvalidMove {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				//JFrame.DISPOSE_ON_CLOSE;
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				window.close();
 				
 			}
 		});
@@ -36,7 +37,7 @@ public class InvalidMove {
 		Scene scene = new Scene(vb);
 		window.setScene(scene);
 		window.show();
-		
+
 	}
 
 }

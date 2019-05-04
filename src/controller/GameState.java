@@ -238,6 +238,7 @@ public class GameState {
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			NodeList iCrosserProperties = nodeList.item(i).getChildNodes();
 			ICrosser iCrosser = iCrossersFactory.getICrosser(iCrosserProperties.item(0).getTextContent());
+			System.out.println(Double.parseDouble(iCrosserProperties.item(1).getTextContent()));
 			iCrosser.setWeight(Double.parseDouble(iCrosserProperties.item(1).getTextContent()));
 			iCrosser.setLabelToBeShown(iCrosserProperties.item(2).getTextContent());
 			iCrosser.setNumber(Integer.parseInt(iCrosserProperties.item(3).getTextContent()));
