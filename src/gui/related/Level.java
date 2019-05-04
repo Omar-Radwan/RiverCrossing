@@ -45,7 +45,7 @@ public abstract class Level {
 	protected Label scorelabel;
 	protected Scene level;
 	protected Button undo;
-
+	protected Button reset;
 	int[] rightX;
 	int[] rightY;
 
@@ -76,7 +76,20 @@ public abstract class Level {
 
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
+		//reset 
+		reset = new Button("reset");
+		setStyle(reset);
+		reset.setLayoutX(0);
+		reset.setLayoutY(100);
+		root.getChildren().add(reset);
+		reset.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				controller.resetGame();
+				
+			}
+		});
 		// redo draw
 		redo = new Button("Redo");
 		setStyle(redo);
@@ -123,15 +136,19 @@ public abstract class Level {
 		});
 
 		root.getChildren().add(exit);
-
+		
 		// undo drawing
 		// DropShadow undoShadow = new DropShadow();
+		//HBox hb = new HBox();
+		//hb.setSpacing(10);
 		undo = new Button("Undo");
+		
 		// undo.setEffect(undoShadow);
 		setStyle(undo);
-		undo.setLayoutX(0);
-		undo.setLayoutY(20);
-
+		//undo.setLayoutX(0);
+		//undo.setLayoutY(20);
+		//hb.getChildren().addAll(undo , Level2.menu);
+	//	root.getChildren().add(hb);
 		undo.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -177,6 +194,8 @@ public abstract class Level {
 		hb.setSpacing(10);
 
 		hb.getChildren().add(undo);
+		hb.getChildren().add(Level2.menu);
+		
 		/*
 		 * if (g instanceof Level1) { objects = Level1.objects; } else if (g instanceof
 		 * Level2) { objects = Level2.objects; hb.getChildren().add(Level2.menu); }

@@ -24,6 +24,8 @@ public class Level2 extends Level {
 //private int score=0;
 //Sprite temp = new Sprite();
 	static int objectNumber = 0;
+	private Win win = new Win();
+	private InvalidMove invalid = new InvalidMove();
 
 	public Level2() {
 
@@ -63,37 +65,35 @@ public class Level2 extends Level {
 		 * objects.get(6).setPositionX(730); objects.get(6).setPositionY(580);
 		 */
 
-		Image image = new Image("file:src/gui/related/farmer1small.png", 30, 30, false, false);
-		Label label = new Label("90kg");
-		label.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label.setGraphic(new ImageView(image));
-
-		menu.setSpacing(2);
-		menu.getChildren().add((label));
-
-		Image image2 = new Image("file:src/gui/related/farmer3small.png", 30, 30, false, false);
-		Label label2 = new Label("80kg");
-		label2.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label2.setGraphic(new ImageView(image2));
-
-		menu.setSpacing(2);
-		menu.getChildren().add((label2));
-
-		Image image3 = new Image("file:src/gui/related/farmer2small.png", 30, 30, false, false);
-		Label label3 = new Label("60kg");
-		label3.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label3.setGraphic(new ImageView(image3));
-
-		menu.setSpacing(2);
-		menu.getChildren().add((label3));
-
-		Image image4 = new Image("file:src/gui/related/farmer4small.png", 30, 30, false, false);
-		Label label4 = new Label("40kg");
-		label4.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-		label4.setGraphic(new ImageView(image4));
-
-		menu.setSpacing(10);
-		menu.getChildren().add((label4));
+		/*
+		 * Image image = new Image("file:src/gui/related/farmer1small.png", 30, 30,
+		 * false, false); Label label = new Label("90kg");
+		 * label.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		 * label.setGraphic(new ImageView(image));
+		 * 
+		 * menu.setSpacing(2); menu.getChildren().add((label));
+		 * 
+		 * Image image2 = new Image("file:src/gui/related/farmer3small.png", 30, 30,
+		 * false, false); Label label2 = new Label("80kg");
+		 * label2.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		 * label2.setGraphic(new ImageView(image2));
+		 * 
+		 * menu.setSpacing(2); menu.getChildren().add((label2));
+		 * 
+		 * Image image3 = new Image("file:src/gui/related/farmer2small.png", 30, 30,
+		 * false, false); Label label3 = new Label("60kg");
+		 * label3.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		 * label3.setGraphic(new ImageView(image3));
+		 * 
+		 * menu.setSpacing(2); menu.getChildren().add((label3));
+		 * 
+		 * Image image4 = new Image("file:src/gui/related/farmer4small.png", 30, 30,
+		 * false, false); Label label4 = new Label("40kg");
+		 * label4.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		 * label4.setGraphic(new ImageView(image4));
+		 * 
+		 * menu.setSpacing(10); menu.getChildren().add((label4));
+		 */
 	}
 
 	/*
@@ -383,6 +383,14 @@ public class Level2 extends Level {
 		menu.setSpacing(10);
 		menu.getChildren().add((label4));
 
+		Image image5 = new Image("file:src/gui/related/horse.png", 30, 30, false, false);
+		Label label5 = new Label("20kg");
+		label5.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		label5.setGraphic(new ImageView(image5));
+
+		menu.setSpacing(10);
+		menu.getChildren().add((label5));
+
 	}
 
 	static boolean flag = false;
@@ -659,10 +667,13 @@ public class Level2 extends Level {
 					moveOnAction(gc);
 					if (controller.getCrosserOnLeftBank().size() == 5) {
 
-						// win.display();
-						// JOptionPane.showMessageDialog(null, "You Won!");
+						win.display();
 
 					}
+			
+				}
+				else {
+					invalid.display();
 				}
 
 			}

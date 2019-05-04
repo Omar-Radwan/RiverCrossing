@@ -15,6 +15,9 @@ public class Level1 extends Level {
 
 	static int objectNumber = 0;
 	static int x;
+	private Win win = new Win();
+	private InvalidMove invalid = new InvalidMove();
+
 	public Level1() {
 
 		// al arrays di 3shan n3rf n3ml loop n8iar biha amaken al objects badal al
@@ -55,6 +58,7 @@ public class Level1 extends Level {
 			}
 			updateAndRender();
 		}
+
 
 	}
 
@@ -97,13 +101,15 @@ public class Level1 extends Level {
 		if (!flag1) {
 			if (objectNumber != 0) {
 				if (objects[1].getPositionX() == 500) {
-					if(objects[objectNumber].getPositionX() == 50 || objects[objectNumber].getPositionX() == 1 || objects[objectNumber].getPositionX() == 100)
+					if (objects[objectNumber].getPositionX() == 50 || objects[objectNumber].getPositionX() == 1
+							|| objects[objectNumber].getPositionX() == 100)
 						objectNumber = 0;
-					if(objectNumber != 0) {
-					objects[objectNumber].setPositionX(620);
-					objects[objectNumber].setPositionY(580);
-					objectNumber = 0;
-				} } else if (objects[objectNumber].intersects(objects[1])) {
+					if (objectNumber != 0) {
+						objects[objectNumber].setPositionX(620);
+						objects[objectNumber].setPositionY(580);
+						objectNumber = 0;
+					}
+				} else if (objects[objectNumber].intersects(objects[1])) {
 					switch (objectNumber) {
 					case 3:
 						objects[objectNumber].setPositionX(50);
@@ -172,13 +178,17 @@ public class Level1 extends Level {
 					score++;
 					updateScoreLabel();
 					moveOnAction(gc);
-					if (controller.getCrosserOnLeftBank().size() == 4) {
-					//	win.display();
-						// JOptionPane.showMessageDialog(null, "You Won!");
-					}
-				} else {
-					System.out.println("errrrrrrrrrr");
+					if (controller.getCrosserOnLeftBank().size() == 4   ) {
+
+						win.display();
+
+				
+			}
+								} 
+				else {
+					invalid.display();
 				}
+
 
 			}
 		});
@@ -198,8 +208,12 @@ public class Level1 extends Level {
 				}
 
 			}
+			
+			
 
 		});
+
+
 
 	}
 
