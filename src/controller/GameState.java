@@ -130,10 +130,10 @@ public class GameState {
 		String pathname = "unknownLevel.xml";
 
 		if (gameStrategy instanceof Level1Model)
-			pathname = "level1.xml";
+			pathname = "xmls/level1.xml";
 
 		else if (gameStrategy instanceof Level2Model)
-			pathname = "level2.xml";
+			pathname = "xmls/level2.xml";
 
 		try {
 			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
